@@ -18,12 +18,12 @@ export default function Member({ name, image, linkedin, github, profileLink }) {
     <div className="flex flex-col items-center group">
       <div
         onClick={handleCardClick}
-        className="bg-black/20 backdrop-blur-sm border border-white/10 rounded-2xl p-8 min-w-[320px] group-hover:bg-black/30 group-hover:border-white/20 transition-all duration-300 group-hover:shadow-2xl group-hover:shadow-black/50 flex flex-col items-center hover:scale-105 cursor-pointer"
+        className="bg-black/20 backdrop-blur-sm border border-white/10 rounded-2xl p-10 w-[360px] h-[360px] group-hover:bg-black/30 group-hover:border-white/20 transition-all duration-300 group-hover:shadow-2xl group-hover:shadow-black/50 flex flex-col items-center justify-center hover:scale-105 cursor-pointer"
       >
         
-        <div className="relative mb-6">
+        <div className="relative mb-8">
           {/* Gradient border wrapper */}
-          <div className="relative w-40 h-40 rounded-full bg-gradient-to-br from-gray-400 via-white to-gray-500 p-[3px] group-hover:from-gray-300 group-hover:via-white group-hover:to-gray-400 transition-all duration-300">
+          <div className="relative w-52 h-52 rounded-full bg-gradient-to-br from-gray-400 via-white to-gray-500 p-[3px] group-hover:from-gray-300 group-hover:via-white group-hover:to-gray-400 transition-all duration-300">
             <div className="w-full h-full rounded-full overflow-hidden bg-black/40">
               <img 
                 src={image} 
@@ -34,7 +34,7 @@ export default function Member({ name, image, linkedin, github, profileLink }) {
           </div>
         </div>
 
-        <h3 className="text-2xl font-bold text-white text-center mb-4 group-hover:text-slate-200 transition-all duration-300">
+        <h3 className="text-2xl font-bold text-white text-center mb-6 group-hover:text-slate-200 transition-all duration-300">
           {name}
         </h3>
         
