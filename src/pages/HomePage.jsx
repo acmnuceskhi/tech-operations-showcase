@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import ProjectCard from '../components/ProjectCard'
 import TechChip from '../components/TechChip'
 import Member from '../components/Member'
@@ -7,6 +8,8 @@ import techStack from '../data/logos'
 import members from '../data/members'
 
 export default function HomePage({ teamName = 'Tech Operations', description = 'We make what you see', topN = 3 }) {
+  const navigate = useNavigate()
+  
   // choosing only the top 3 projects from projects
   const topProjects = projects.slice(0, topN)
   
@@ -114,7 +117,7 @@ export default function HomePage({ teamName = 'Tech Operations', description = '
           </div>
           <div className="text-center mt-8">
             <button 
-              className="px-8 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold rounded-lg hover:from-indigo-700 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
+              className="px-8 py-3 bg-white/10 backdrop-blur-sm border border-white/20 text-white font-semibold rounded-lg hover:bg-white/20 hover:border-white/30 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
               onClick={() => {}}
             >
               Show All Projects
@@ -179,23 +182,29 @@ export default function HomePage({ teamName = 'Tech Operations', description = '
             <h3 className="text-3xl font-semibold text-slate-300">Star Performers</h3>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 max-w-6xl mx-auto">
-            {members.filter(m => m.title === "Member").map((performer) => (
-              <Member 
-                key={performer.id}
-                name={performer.name}
-                image={performer.image}
-                linkedin={performer.linkedin}
-                github={performer.github}
-                profileLink={performer.profileLink}
-              />
-            ))}
-          </div>
+          {members.filter(m => m.starPerformer === true).length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 max-w-6xl mx-auto">
+              {members.filter(m => m.starPerformer === true).map((performer) => (
+                <Member 
+                  key={performer.id}
+                  name={performer.name}
+                  image={performer.image}
+                  linkedin={performer.linkedin}
+                  github={performer.github}
+                  profileLink={performer.profileLink}
+                />
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-12 bg-black/10 rounded-xl border border-white/10 max-w-2xl mx-auto">
+              <p className="text-slate-400 text-lg">No star performers yet. Stay tuned!</p>
+            </div>
+          )}
 
           <div className="text-center mt-8">
             <button 
-              className="px-8 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold rounded-lg hover:from-indigo-700 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
-              onClick={() => {}}
+              className="px-8 py-3 bg-white/10 backdrop-blur-sm border border-white/20 text-white font-semibold rounded-lg hover:bg-white/20 hover:border-white/30 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
+              onClick={() => navigate('/members')}
             >
               View All Members
             </button>
