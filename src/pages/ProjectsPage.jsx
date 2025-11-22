@@ -1,14 +1,13 @@
 import React from "react";
 import '../styles/projects.css';
+import projects from '../data/projects';
 
-const PROJECTS = [
-  { title: "PROJECT 1", subtitle: "Description 1", img: "", link: "#" },
-  { title: "PROJECT 2", subtitle: "Description 2", img: "", link: "#" },
-  { title: "PROJECT 3", subtitle: "Description 3", img: "", link: "#" },
-  { title: "PROJECT 4", subtitle: "Description 4", img: "", link: "#" },
-  { title: "PROJECT 5", subtitle: "Description 5", img: "", link: "#" },
-  { title: "PROJECT 6", subtitle: "Description 6", img: "", link: "#" },
-];
+const PROJECTS = projects.map(project => ({
+  title: project.title,
+  subtitle: project.desc,
+  img: project.image,
+  link: project.link
+}));
 
 function ProjectCard({ title, subtitle, img, link }) {
   return (

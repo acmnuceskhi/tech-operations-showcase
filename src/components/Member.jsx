@@ -1,13 +1,16 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import { FaLinkedin, FaGithub } from 'react-icons/fa'
 
 export default function Member({ name, image, linkedin, github, profileLink }) {
+  const navigate = useNavigate()
+  
   const handleCardClick = () => {
     const url = profileLink || linkedin || github
     if (url && url !== '#') {
       // Check if it's an internal link
       if (url.startsWith('/')) {
-        window.location.href = url
+        navigate(url)
       } else {
         window.open(url, '_blank', 'noopener,noreferrer')
       }

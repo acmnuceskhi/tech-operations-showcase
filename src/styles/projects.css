@@ -109,8 +109,8 @@
 }
 
 @keyframes softGlow {
-  0% { text-shadow: 0 0 5px #fff33, 0 0 10px #fff22; }
-  100% { text-shadow: 0 0 10px #fff66, 0 0 20px #fff44; }
+  0% { text-shadow: 0 0 5px rgba(255, 255, 255, 0.33), 0 0 10px rgba(255, 255, 255, 0.22); }
+  100% { text-shadow: 0 0 10px rgba(255, 255, 255, 0.66), 0 0 20px rgba(255, 255, 255, 0.44); }
 }
 
 @keyframes fadeRise {

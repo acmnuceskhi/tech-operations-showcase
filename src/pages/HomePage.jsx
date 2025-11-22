@@ -1,6 +1,5 @@
-import { Link } from "react-router-dom";
 import React, { useEffect, useRef, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import ProjectCard from '../components/ProjectCard'
 import TechChip from '../components/TechChip'
 import Member from '../components/Member'
@@ -113,13 +112,13 @@ export default function HomePage({ teamName = 'Tech Operations', description = '
           </div>
           <div className="grid grid-cols-3 gap-12">
             {topProjects.map((p) => (
-              <ProjectCard key={p.id} title={p.title} desc={p.desc} image={p.image} link={p.link} tags={p.tags} />
+              <ProjectCard key={p.id} title={p.title} desc={p.desc} image={p.image} link={p.link} />
             ))}
           </div>
           <div className="text-center mt-8">
             <Link
               to="/projects"
-              className="inline-block px-8 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold rounded-lg hover:from-indigo-700 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
+              className="px-8 py-3 bg-white/10 backdrop-blur-sm border border-white/20 text-white font-semibold rounded-lg hover:bg-white/20 hover:border-white/30 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
             >
               Show All Projects
             </Link>
@@ -153,13 +152,18 @@ export default function HomePage({ teamName = 'Tech Operations', description = '
           <h2 className="text-4xl font-semibold text-white text-center">Head</h2>
           
           <div className="flex justify-center">
-            <Member 
-              name={members.find(m => m.title === "Head").name}
-              image={members.find(m => m.title === "Head").image}
-              linkedin={members.find(m => m.title === "Head").linkedin}
-              github={members.find(m => m.title === "Head").github}
-              profileLink={members.find(m => m.title === "Head").profileLink}
-            />
+            {(() => {
+              const head = members.find(m => m.title === "Head")
+              return head ? (
+                <Member 
+                  name={head.name}
+                  image={head.image}
+                  linkedin={head.linkedin}
+                  github={head.github}
+                  profileLink={`/member/${head.id}`}
+                />
+              ) : null
+            })()}
           </div>
 
           <div className="text-center">
@@ -174,7 +178,7 @@ export default function HomePage({ teamName = 'Tech Operations', description = '
                 image={coHead.image}
                 linkedin={coHead.linkedin}
                 github={coHead.github}
-                profileLink={coHead.profileLink}
+                profileLink={`/member/${coHead.id}`}
               />
             ))}
           </div>
@@ -192,7 +196,7 @@ export default function HomePage({ teamName = 'Tech Operations', description = '
                   image={performer.image}
                   linkedin={performer.linkedin}
                   github={performer.github}
-                  profileLink={performer.profileLink}
+                  profileLink={`/member/${performer.id}`}
                 />
               ))}
             </div>
