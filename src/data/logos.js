@@ -27,6 +27,7 @@ import {
   SiJavascript
 } from 'react-icons/si'
 
+// colors assignment
 const techStack = [
   { name: "ReactJS", icon: FaReact, color: "#61DAFB" },
   { name: "TypeScript", icon: SiTypescript, color: "#3178C6" },

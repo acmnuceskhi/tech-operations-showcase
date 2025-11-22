@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import React, { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import ProjectCard from '../components/ProjectCard'
@@ -116,12 +117,12 @@ export default function HomePage({ teamName = 'Tech Operations', description = '
             ))}
           </div>
           <div className="text-center mt-8">
-            <button 
-              className="px-8 py-3 bg-white/10 backdrop-blur-sm border border-white/20 text-white font-semibold rounded-lg hover:bg-white/20 hover:border-white/30 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
-              onClick={() => {}}
+            <Link
+              to="/projects"
+              className="inline-block px-8 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold rounded-lg hover:from-indigo-700 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
             >
               Show All Projects
-            </button>
+            </Link>
           </div>
         </section>
 
