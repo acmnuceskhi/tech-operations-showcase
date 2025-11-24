@@ -116,12 +116,12 @@ export default function HomePage({ teamName = 'Tech Operations', description = '
             ))}
           </div>
           <div className="text-center mt-8">
-            <Link
-              to="/projects"
+            <button 
               className="px-8 py-3 bg-white/10 backdrop-blur-sm border border-white/20 text-white font-semibold rounded-lg hover:bg-white/20 hover:border-white/30 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
+              onClick={() => navigate('/projects')}
             >
               Show All Projects
-            </Link>
+            </button>
           </div>
         </section>
 
