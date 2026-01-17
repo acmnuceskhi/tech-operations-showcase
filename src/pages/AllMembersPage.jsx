@@ -1,8 +1,11 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
+import { FaArrowLeft, FaHome } from 'react-icons/fa'
 import Member from '../components/Member'
 import members from '../data/members'
 
 export default function AllMembersPage() {
+  const navigate = useNavigate();
   const head = members.find(m => m.title === "Head")
   const coHeads = members.filter(m => m.title === "Co-Head")
   const regularMembers = members.filter(m => m.title === "Member")
@@ -10,6 +13,22 @@ export default function AllMembersPage() {
   return (
     <main className="min-h-screen w-full py-20 px-8">
       <div className="max-w-7xl mx-auto space-y-16">
+        
+        {/* Navigation buttons */}
+        <div className="flex gap-4">
+          <button 
+            onClick={() => navigate(-1)}
+            className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm border border-white/20 text-white font-semibold rounded-lg hover:bg-white/20 hover:border-white/30 transition-all duration-300"
+          >
+            <FaArrowLeft /> Back
+          </button>
+          <button 
+            onClick={() => navigate('/')}
+            className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm border border-white/20 text-white font-semibold rounded-lg hover:bg-white/20 hover:border-white/30 transition-all duration-300"
+          >
+            <FaHome /> Home
+          </button>
+        </div>
         
         <div className="text-center">
           <h1 className="text-5xl font-bold text-white mb-4">Our Team</h1>

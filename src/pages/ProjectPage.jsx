@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-import { useTransition } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function ProjectPage() {
+  const navigate = useNavigate();
+  
   const project = {
     Title: "SUPER MARKET",
     Description: "hi everyone bye. Regarding quiz 5, Mam informed us that Quiz 5 will offer a chance to improve our scores. If we score higher in this quiz, it will replace our lowest-scoring quiz. This means that only the top 4 quizzes for each student will be counted towards the final result. It's a great opportunity to increase your quiz marks, especially if you were absent in previous quizzes or want to improve your scores and for preparation mam has send me some pictures I have forwarded abovbhdbqieg hjegqifbkadhsbxiugwfbeadvxhkjncb rfvesdgtyhxzjkcrhsdbjxczm nbghujkmcdsn ebwvgfyadshujzxkncdb gfvryehwjasklnzbgfwvlj4tgaidzhc",
@@ -195,6 +197,42 @@ export default function ProjectPage() {
 
   return (
     <div style={style.container}>
+      {/* Navigation buttons */}
+      <div style={{ position: 'absolute', top: '20px', left: '20px', zIndex: 10, display: 'flex', gap: '12px' }}>
+        <button 
+          onClick={() => navigate(-1)}
+          style={{ 
+            padding: '10px 20px', 
+            backgroundColor: 'rgba(255,255,255,0.1)', 
+            backdropFilter: 'blur(10px)',
+            border: '1px solid rgba(255,255,255,0.2)', 
+            color: 'white', 
+            borderRadius: '8px', 
+            cursor: 'pointer',
+            fontSize: '0.9rem',
+            transition: 'all 0.3s ease'
+          }}
+        >
+          ← Back
+        </button>
+        <button 
+          onClick={() => navigate('/')}
+          style={{ 
+            padding: '10px 20px', 
+            backgroundColor: 'rgba(255,255,255,0.1)', 
+            backdropFilter: 'blur(10px)',
+            border: '1px solid rgba(255,255,255,0.2)', 
+            color: 'white', 
+            borderRadius: '8px', 
+            cursor: 'pointer',
+            fontSize: '0.9rem',
+            transition: 'all 0.3s ease'
+          }}
+        >
+          🏠 Home
+        </button>
+      </div>
+
       <h1 style={style.heading}>{project.Title}</h1>
       <p style={style.description}>{project.Description}</p>
       

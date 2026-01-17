@@ -31,16 +31,16 @@ export default function LineCanvas({ lines = [], color = 'white', lineWidth = 2 
     // Draw each line with variable width based on distance
     for (let i = 0; i < lines.length; i++) {
       const line = lines[i]
-      
+
       // Formula: maxWidth - (distance / threshold) * (maxWidth - minWidth)
       // changes width according to the distance
-      const minWidth = 2
-      const maxWidth = 10
+      const minWidth = 1
+      const maxWidth = 3
       const normalizedDistance = line.distance / LINE_DISTANCE_THRESHOLD
       const dynamicWidth = maxWidth - (normalizedDistance * (maxWidth - minWidth))
-      
+
       ctx.lineWidth = dynamicWidth
-      
+
       ctx.beginPath()
       ctx.moveTo(line.from.x, line.from.y)
       ctx.lineTo(line.to.x, line.to.y)

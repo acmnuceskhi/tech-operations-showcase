@@ -1,7 +1,6 @@
 .page {
   margin: 0;
   padding: 0;
-  background: #000;
   color: #fff;
   font-family: "Orbitron", sans-serif;
   text-align: center;
@@ -57,16 +56,30 @@
   animation: fadeRise 0.8s ease forwards;
 }
 
-.project-card:nth-child(1) { animation-delay: 0.1s; }
-.project-card:nth-child(2) { animation-delay: 0.2s; }
-.project-card:nth-child(3) { animation-delay: 0.3s; }
-.project-card:nth-child(4) { animation-delay: 0.4s; }
-.project-card:nth-child(5) { animation-delay: 0.5s; }
+.project-card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.project-card:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.project-card:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.project-card:nth-child(4) {
+  animation-delay: 0.4s;
+}
+
+.project-card:nth-child(5) {
+  animation-delay: 0.5s;
+}
 
 .project-card:hover {
   transform: translateY(-6px) scale(1.04);
   box-shadow: 0 8px 20px rgba(155, 89, 182, 0.3),
-              0 0 40px rgba(155, 89, 182, 0.2);
+    0 0 40px rgba(155, 89, 182, 0.2);
 }
 
 .project-image {
@@ -104,16 +117,45 @@
 }
 
 @keyframes flicker {
-  0%, 20%, 40%, 60%, 80%, 100% { opacity: 1; text-shadow: 0 0 6px #b0aaff55, 0 0 12px #b0aaff33, 0 0 24px #b0aaff22; }
-  10%, 30%, 50%, 70%, 90% { opacity: 0.9; text-shadow: 0 0 4px #b0aaff33, 0 0 8px #b0aaff22, 0 0 16px #b0aaff11; }
+
+  0%,
+  20%,
+  40%,
+  60%,
+  80%,
+  100% {
+    opacity: 1;
+    text-shadow: 0 0 6px #b0aaff55, 0 0 12px #b0aaff33, 0 0 24px #b0aaff22;
+  }
+
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    opacity: 0.9;
+    text-shadow: 0 0 4px #b0aaff33, 0 0 8px #b0aaff22, 0 0 16px #b0aaff11;
+  }
 }
 
 @keyframes softGlow {
-  0% { text-shadow: 0 0 5px rgba(255, 255, 255, 0.33), 0 0 10px rgba(255, 255, 255, 0.22); }
-  100% { text-shadow: 0 0 10px rgba(255, 255, 255, 0.66), 0 0 20px rgba(255, 255, 255, 0.44); }
+  0% {
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.33), 0 0 10px rgba(255, 255, 255, 0.22);
+  }
+
+  100% {
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.66), 0 0 20px rgba(255, 255, 255, 0.44);
+  }
 }
 
 @keyframes fadeRise {
-  0% { opacity: 0; transform: translateY(20px); }
-  100% { opacity: 1; transform: translateY(0); }
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

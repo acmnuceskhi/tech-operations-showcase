@@ -1,12 +1,11 @@
 import React from 'react'
-import { FaLinkedin, FaGithub, FaArrowLeft } from 'react-icons/fa'
+import { useNavigate } from 'react-router-dom'
+import { FaLinkedin, FaGithub, FaArrowLeft, FaHome } from 'react-icons/fa'
 import ContributionCard from '../components/ContributionCard'
 import members from '../data/members'
 
 export default function MemberProfilePage({ memberId }) {
-  const navigate = (path) => {
-    window.location.href = path
-  }
+  const navigate = useNavigate()
 
   const member = members.find(m => m.id === parseInt(memberId))
 
@@ -32,13 +31,23 @@ export default function MemberProfilePage({ memberId }) {
     <main className="min-h-screen w-full py-20 px-8">
       <div className="max-w-6xl mx-auto space-y-12">
         
-        <button 
-          onClick={() => navigate('/members')}
-          className="inline-flex items-center gap-2 text-slate-300 hover:text-white transition-colors group"
-        >
-          <FaArrowLeft className="group-hover:-translate-x-1 transition-transform" />
-          <span>Back to All Members</span>
-        </button>
+        {/* Navigation buttons */}
+        <div className="flex gap-4">
+          <button 
+            onClick={() => navigate('/members')}
+            className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm border border-white/20 text-white font-semibold rounded-lg hover:bg-white/20 hover:border-white/30 transition-all duration-300"
+          >
+            <FaArrowLeft />
+            <span>Back to Members</span>
+          </button>
+          <button 
+            onClick={() => navigate('/')}
+            className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm border border-white/20 text-white font-semibold rounded-lg hover:bg-white/20 hover:border-white/30 transition-all duration-300"
+          >
+            <FaHome />
+            <span>Home</span>
+          </button>
+        </div>
 
         <div className="bg-black/20 backdrop-blur-sm border border-white/10 rounded-2xl p-12">
           <div className="flex flex-col md:flex-row items-center md:items-start gap-8">

@@ -1,10 +1,10 @@
 // Circle Animation Utilities
 
-export const CIRCLE_SIZE_MIN = 15
-export const CIRCLE_SIZE_MAX = 35
-export const NUM_CIRCLES = 30
-export const SPEED_MIN = 1
-export const SPEED_MAX = 3
+export const CIRCLE_SIZE_MIN = 5
+export const CIRCLE_SIZE_MAX = 15
+export const NUM_CIRCLES = 60
+export const SPEED_MIN = 0.25
+export const SPEED_MAX = 0.5
 
 function getRandomSize(min, max) {
   return min + Math.random() * (max - min)
@@ -16,14 +16,14 @@ export function generateRandomCircles(count) {
     const size = getRandomSize(CIRCLE_SIZE_MIN, CIRCLE_SIZE_MAX)
     const radius = size / 2
     const margin = size / 2
-    
+
     const maxPosX = window.innerWidth - margin
     const maxPosY = window.innerHeight - margin
     const minPos = margin
-    
+
     const speed = SPEED_MIN + Math.random() * (SPEED_MAX - SPEED_MIN)
     const angle = Math.random() * Math.PI * 2
-    
+
     return {
       id: i,
       x: minPos + Math.random() * (maxPosX - minPos),

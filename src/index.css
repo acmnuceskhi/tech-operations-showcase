@@ -1,5 +1,14 @@
 @import "tailwindcss";
 
+/* Custom font - expects a TTF at /public/fonts/CustomFont.ttf */
+@font-face {
+  font-family: 'CustomFont';
+  src: url('/fonts/CustomFont.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -20,6 +29,7 @@ a {
   color: #646cff;
   text-decoration: inherit;
 }
+
 a:hover {
   color: #535bf2;
 }
@@ -50,6 +60,7 @@ button {
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -66,16 +77,12 @@ button {
 }
 
 
-/* Arcade/Pixel Font - White */
+/* Arcade/Pixel Font - White (prefer CustomFont, fall back to Press Start 2P) */
 .arcade-font-white {
-  font-family: 'Press Start 2P', monospace;
+  font-family: 'CustomFont', 'Press Start 2P', monospace;
   color: #ffffff;
   letter-spacing: 2px;
   text-transform: uppercase;
-  text-shadow: 
-    0 0 5px #ffffff,
-    0 0 10px #ffffff,
-    1px 1px 1px rgba(0, 0, 0, 0.7);
 }
 
 @media (prefers-color-scheme: light) {
@@ -83,9 +90,11 @@ button {
     color: #213547;
     background-color: #ffffff;
   }
+
   a:hover {
     color: #747bff;
   }
+
   button {
     background-color: #f9f9f9;
   }

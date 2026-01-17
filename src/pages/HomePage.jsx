@@ -7,20 +7,91 @@ import projects from '../data/projects'
 import techStack from '../data/logos'
 import members from '../data/members'
 
+// Glitch Text Component
+function GlitchText({ text, className = '' }) {
+  const [isHovered, setIsHovered] = useState(false)
+  const [glitchChars, setGlitchChars] = useState([])
+  const [glitchColors, setGlitchColors] = useState([])
+  const intervalRefs = useRef([])
+
+  useEffect(() => {
+    const chars = '0123456789!@#$%^&*-}{<   >:  '
+    const colors = [
+      '#999999',
+    ]
+
+    if (isHovered) {
+      // Start glitching each character
+      text.split('').forEach((char, index) => {
+        if (char === ' ') return // Skip spaces
+
+        const interval = setInterval(() => {
+          setGlitchChars(prev => {
+            const newChars = [...prev]
+            newChars[index] = chars[Math.floor(Math.random() * chars.length)]
+            return newChars
+          })
+          setGlitchColors(prev => {
+            const newColors = [...prev]
+            newColors[index] = colors[Math.floor(Math.random() * colors.length)]
+            return newColors
+          })
+        }, 50) // Change character every 50ms
+
+        intervalRefs.current[index] = interval
+      })
+    } else {
+      // Clear all intervals and reset to original text
+      intervalRefs.current.forEach(interval => clearInterval(interval))
+      intervalRefs.current = []
+      setGlitchChars([])
+      setGlitchColors([])
+    }
+
+    return () => {
+      intervalRefs.current.forEach(interval => clearInterval(interval))
+    }
+  }, [isHovered, text])
+
+  return (
+    <h1
+      className={className}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      {text.split('').map((char, index) => {
+        const displayChar = glitchChars[index] || (char === ' ' ? '\u00A0' : char)
+        return (
+          <span
+            key={index}
+            style={{
+              display: 'inline-block',
+              color: glitchColors[index] || 'inherit',
+              whiteSpace: 'pre'
+            }}
+          >
+            {displayChar}
+          </span>
+        )
+      })}
+    </h1>
+  )
+}
+
 export default function HomePage({ teamName = 'Tech Operations', description = 'We make what you see', topN = 3 }) {
   const navigate = useNavigate()
-  
+
   // choosing only the top 3 projects from projects
   const topProjects = projects.slice(0, topN)
-  
+
   // State for scroll animations
   const [visibleSections, setVisibleSections] = useState(new Set())
-  const [overlayOpacity, setOverlayOpacity] = useState(0.5)
+  const [overlayOpacity, setOverlayOpacity] = useState(0.8)
   const sectionRefs = useRef([])
 
   useEffect(() => {
     const observers = []
-    
+
     sectionRefs.current.forEach((ref, index) => {
       if (ref) {
         const observer = new IntersectionObserver(
@@ -48,19 +119,19 @@ export default function HomePage({ teamName = 'Tech Operations', description = '
     const handleScroll = () => {
       const scrollPosition = window.scrollY || window.pageYOffset || document.documentElement.scrollTop
       const viewportHeight = window.innerHeight
-      
+
       // Fade from 0.5 opacity (50% opaque) to 0 as user scrolls through first viewport
       const fadeProgress = Math.min(scrollPosition / viewportHeight, 1)
       const newOpacity = 0.5 * (1 - fadeProgress)
-      
+
       setOverlayOpacity(newOpacity)
     }
 
     // Set initial state
     handleScroll()
-    
+
     window.addEventListener('scroll', handleScroll, { passive: true })
-    
+
     return () => {
       window.removeEventListener('scroll', handleScroll)
     }
@@ -75,10 +146,11 @@ export default function HomePage({ teamName = 'Tech Operations', description = '
   return (
     <main className="min-h-screen w-full">
       {/* Black Overlay - Fades on scroll */}
-      <div 
+      <div
         className="fixed inset-0 bg-black pointer-events-none"
-        style={{ 
+        style={{
           opacity: overlayOpacity,
+          // opacity: 0,
           zIndex: 5,
           transition: 'opacity 0.1s linear'
         }}
@@ -87,11 +159,17 @@ export default function HomePage({ teamName = 'Tech Operations', description = '
       {/* Hero Section - Full Viewport */}
       <section className="min-h-screen w-full flex items-center justify-center px-8 relative" style={{ zIndex: 10 }}>
         <div className="text-center space-y-8">
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold animate-fade-in leading-tight arcade-font-white">
-            TECH OPERATIONS
-          </h1>
-          <p className="text-lg md:text-xl lg:text-2xl max-w-4xl mx-auto animate-fade-in-delayed leading-relaxed arcade-font-white">
-            WE MAKE WHAT YOU SEE
+          <GlitchText
+            text="ACM PRESENTS"
+            className="text-5xl animate-fade-in md:text-6xl lg:text-2xl font-bold leading-tight arcade-font-white"
+          />
+
+          <GlitchText
+            text="Tech Operations"
+            className="text-5xl animate-fade-in md:text-6xl lg:text-7xl font-bold leading-tight arcade-font-white"
+          />
+          <p className="text-lg h-20 md:text-xl lg:text-2xl max-w-4xl mx-auto animate-fade-in-delayed leading-relaxed arcade-font-white">
+            {/* ACM PRESENTS */}
           </p>
         </div>
       </section>
@@ -99,13 +177,12 @@ export default function HomePage({ teamName = 'Tech Operations', description = '
       {/* Scrollable Content */}
       <div className="max-w-7xl mx-auto space-y-12 py-12 px-8 sm:px-12 lg:px-16 xl:px-20 relative" style={{ zIndex: 10 }}>
 
-        <section 
+        <section
           ref={addToRefs}
-          className={`space-y-8 transition-all duration-700 ${
-            visibleSections.has(0) 
-              ? 'opacity-100 translate-y-0' 
-              : 'opacity-0 translate-y-10'
-          }`}
+          className={`space-y-8 transition-all duration-700 ${visibleSections.has(0)
+            ? 'opacity-100 translate-y-0'
+            : 'opacity-0 translate-y-10'
+            }`}
         >
           <div className="text-center">
             <h2 className="text-4xl text-white font-semibold inline-block">Our Projects</h2>
@@ -116,7 +193,7 @@ export default function HomePage({ teamName = 'Tech Operations', description = '
             ))}
           </div>
           <div className="text-center mt-8">
-            <button 
+            <button
               className="px-8 py-3 bg-white/10 backdrop-blur-sm border border-white/20 text-white font-semibold rounded-lg hover:bg-white/20 hover:border-white/30 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
               onClick={() => navigate('/projects')}
             >
@@ -125,13 +202,12 @@ export default function HomePage({ teamName = 'Tech Operations', description = '
           </div>
         </section>
 
-        <section 
+        <section
           ref={addToRefs}
-          className={`space-y-8 transition-all duration-700 ${
-            visibleSections.has(1) 
-              ? 'opacity-100 translate-y-0' 
-              : 'opacity-0 translate-y-10'
-          }`}
+          className={`space-y-8 transition-all duration-700 ${visibleSections.has(1)
+            ? 'opacity-100 translate-y-0'
+            : 'opacity-0 translate-y-10'
+            }`}
         >
           <h3 className="text-4xl font-semibold text-white text-center">Tech Stack</h3>
           <div className="flex flex-wrap justify-center gap-x-3 gap-y-6 max-w-6xl mx-auto">
@@ -141,21 +217,20 @@ export default function HomePage({ teamName = 'Tech Operations', description = '
           </div>
         </section>
 
-        <section 
+        <section
           ref={addToRefs}
-          className={`space-y-12 py-8 transition-all duration-700 ${
-            visibleSections.has(2) 
-              ? 'opacity-100 translate-y-0' 
-              : 'opacity-0 translate-y-10'
-          }`}
+          className={`space-y-12 py-8 transition-all duration-700 ${visibleSections.has(2)
+            ? 'opacity-100 translate-y-0'
+            : 'opacity-0 translate-y-10'
+            }`}
         >
           <h2 className="text-4xl font-semibold text-white text-center">Head</h2>
-          
+
           <div className="flex justify-center">
             {(() => {
               const head = members.find(m => m.title === "Head")
               return head ? (
-                <Member 
+                <Member
                   name={head.name}
                   image={head.image}
                   linkedin={head.linkedin}
@@ -172,7 +247,7 @@ export default function HomePage({ teamName = 'Tech Operations', description = '
 
           <div className="flex justify-center gap-16 flex-wrap">
             {members.filter(m => m.title === "Co-Head").map((coHead) => (
-              <Member 
+              <Member
                 key={coHead.id}
                 name={coHead.name}
                 image={coHead.image}
@@ -190,7 +265,7 @@ export default function HomePage({ teamName = 'Tech Operations', description = '
           {members.filter(m => m.starPerformer === true).length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 max-w-6xl mx-auto">
               {members.filter(m => m.starPerformer === true).map((performer) => (
-                <Member 
+                <Member
                   key={performer.id}
                   name={performer.name}
                   image={performer.image}
@@ -207,7 +282,7 @@ export default function HomePage({ teamName = 'Tech Operations', description = '
           )}
 
           <div className="text-center mt-8">
-            <button 
+            <button
               className="px-8 py-3 bg-white/10 backdrop-blur-sm border border-white/20 text-white font-semibold rounded-lg hover:bg-white/20 hover:border-white/30 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
               onClick={() => navigate('/members')}
             >
