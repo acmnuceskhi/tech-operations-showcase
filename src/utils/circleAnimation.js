@@ -1,9 +1,9 @@
 // Circle Animation Utilities
 
-export const CIRCLE_SIZE_MIN = 5
-export const CIRCLE_SIZE_MAX = 15
-export const NUM_CIRCLES = 60
-export const SPEED_MIN = 0.25
+export const CIRCLE_SIZE_MIN = 15
+export const CIRCLE_SIZE_MAX = 30
+export const NUM_CIRCLES = 30
+export const SPEED_MIN = 0.1
 export const SPEED_MAX = 0.5
 
 function getRandomSize(min, max) {

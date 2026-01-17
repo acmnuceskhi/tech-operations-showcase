@@ -11,22 +11,33 @@ export default function Background() {
   const circlesRef = useRef([])
   const animationFrameRef = useRef(null)
 
+  // Retro effect: lower values = more pixelated (e.g., 0.25 = 25% resolution)
+  const RESOLUTION_SCALE = 0.4
+
   useEffect(() => {
     const canvas = canvasRef.current
     if (!canvas) return
 
-    const ctx = canvas.getContext('2d')
-    const dpr = window.devicePixelRatio || 1
+    const ctx = canvas.getContext('2d', {
+      alpha: false,
+      willReadFrequently: false
+    })
+
+    // Disable all anti-aliasing for hard-edged pixel art
+    ctx.imageSmoothingEnabled = false
 
     // Initialize canvas size
     function resizeCanvas() {
       const width = window.innerWidth
       const height = window.innerHeight
-      canvas.width = Math.round(width * dpr)
-      canvas.height = Math.round(height * dpr)
+      canvas.width = Math.round(width * RESOLUTION_SCALE)
+      canvas.height = Math.round(height * RESOLUTION_SCALE)
       canvas.style.width = `${width}px`
       canvas.style.height = `${height}px`
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
+      ctx.setTransform(RESOLUTION_SCALE, 0, 0, RESOLUTION_SCALE, 0, 0)
+
+      // Re-disable anti-aliasing after resize
+      ctx.imageSmoothingEnabled = false
     }
 
     resizeCanvas()
@@ -40,8 +51,10 @@ export default function Background() {
       circlesRef.current = updateAllCircles(circlesRef.current)
       const lines = calculateLines(circlesRef.current)
 
-      // Clear canvas
-      ctx.clearRect(0, 0, canvas.width, canvas.height)
+      // Clear canvas (use scaled dimensions)
+      const width = window.innerWidth
+      const height = window.innerHeight
+      ctx.clearRect(0, 0, width, height)
 
       // Track distances for each circle
       const connectionDistances = new Map()
@@ -64,7 +77,7 @@ export default function Background() {
 
         // Variable line width based on distance
         const minWidth = 1
-        const maxWidth = 5
+        const maxWidth = 20
         const normalizedDistance = line.distance / LINE_DISTANCE_THRESHOLD
         const dynamicWidth = maxWidth - (normalizedDistance * (maxWidth - minWidth))
 
@@ -76,8 +89,7 @@ export default function Background() {
       }
 
       // Draw circles with variable stroke width based on closeness
-      ctx.fillStyle = 'black'
-      ctx.strokeStyle = 'white'
+      ctx.fillStyle = 'white'
 
       for (let i = 0; i < circlesRef.current.length; i++) {
         const circle = circlesRef.current[i]
@@ -102,8 +114,8 @@ export default function Background() {
         // ensure radius stays positive and scales with closeness
         const effectiveRadius = Math.max(1, circle.radius + Math.abs(circle.radius * normalizedCloseness) / 2)
         ctx.arc(circle.x, circle.y, effectiveRadius, 0, Math.PI * 2)
-        ctx.fill()
         ctx.stroke()
+        ctx.fill();
       }
 
       animationFrameRef.current = requestAnimationFrame(animate)
@@ -124,7 +136,13 @@ export default function Background() {
       <canvas
         ref={canvasRef}
         className="w-full h-full"
-        style={{ display: 'block' }}
+        style={{
+          display: 'block',
+          imageRendering: 'pixelated',
+          // imageRendering: '-moz-crisp-edges',
+          // imageRendering: 'crisp-edges'
+
+        }}
       />
     </div>
   )
