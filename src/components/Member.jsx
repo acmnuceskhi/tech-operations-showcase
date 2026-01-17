@@ -21,7 +21,7 @@ export default function Member({ name, image, linkedin, github, profileLink }) {
     <div className="flex flex-col items-center group">
       <div
         onClick={handleCardClick}
-        className="bg-black/20 backdrop-blur-sm border border-white/10 rounded-2xl p-10 w-[360px] h-[360px] group-hover:bg-black/30 group-hover:border-white/20 transition-all duration-300 group-hover:shadow-2xl group-hover:shadow-black/50 flex flex-col items-center justify-center hover:scale-105 cursor-pointer"
+        className="bg-black/20 backdrop-blur-sm border border-white/10 rounded-2xl p-8 w-[360px] group-hover:bg-black/30 group-hover:border-white/20 transition-all duration-300 group-hover:shadow-2xl group-hover:shadow-black/50 flex flex-col items-center justify-center hover:scale-105 cursor-pointer"
       >
 
         <div className="relative mb-8">

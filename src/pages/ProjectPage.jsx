@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { FaChevronRight, FaChevronLeft } from "react-icons/fa6";
 import { useNavigate, useParams } from "react-router-dom";
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import Sidebar from '../components/Sidebar';
@@ -45,17 +46,17 @@ export default function ProjectPage() {
   return (
     <>
       <Sidebar />
-      <div className="min-h-screen w-full text-center overflow-x-hidden py-20 px-8 text-white"
+      <div className="min-h-screen w-full text-center overflow-x-hidden py-16 sm:py-20 px-4 sm:px-8 text-white"
         style={{
           background: "radial-gradient(circle at 20% 20%, rgba(128,0,255,0.15), transparent 60%), radial-gradient(circle at 80% 40%, rgba(0,128,255,0.1), transparent 60%), radial-gradient(circle at 50% 80%, rgba(255, 50, 149, 0.14), transparent 60%), #000"
         }}>
 
-        <div className="max-w-6xl mx-auto space-y-12">
+        <div className="max-w-6xl mx-auto space-y-10 sm:space-y-12">
 
           {/* Project Header */}
-          <div className="bg-black/20 backdrop-blur-sm border border-white/10 rounded-2xl p-12">
-            <div className="flex items-center justify-between mb-8">
-              <h1 className="text-5xl font-bold text-white tracking-wider uppercase">
+          <div className="bg-black/20 backdrop-blur-sm border border-white/10 rounded-2xl p-6 sm:p-12">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6 mb-6 sm:mb-8">
+              <h1 className="text-3xl sm:text-5xl font-bold text-white tracking-wider arcade-font-white">
                 {project.title}
               </h1>
               {project.githubUrl && (
@@ -63,7 +64,7 @@ export default function ProjectPage() {
                   href={project.githubUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-gray-800 hover:bg-gray-700 text-white rounded-lg transition-all duration-300"
+                  className="inline-flex items-center justify-center gap-2 px-5 py-2.5 sm:px-6 sm:py-3 bg-white/10 backdrop-blur-sm border border-white/20 text-white font-semibold rounded-lg hover:bg-white/20 hover:border-white/30 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
                 >
                   <FaGithub className="text-xl" />
                   <span>View Code</span>
@@ -71,30 +72,30 @@ export default function ProjectPage() {
               )}
             </div>
 
-            <p className="text-slate-300 text-lg max-w-4xl mx-auto">
+            <p className="text-slate-300 text-base sm:text-lg max-w-4xl mx-auto">
               {project.fullDescription || project.desc}
             </p>
           </div>
 
           {/* Image Gallery */}
           {images.length > 0 && (
-            <div className="bg-black/20 backdrop-blur-sm border border-white/10 rounded-2xl p-8">
-              <h2 className="text-3xl font-bold text-white mb-8">Project Gallery</h2>
-              <div className="flex items-center justify-center gap-8">
+            <div className="bg-black/20 backdrop-blur-sm border border-white/10 rounded-2xl p-6 sm:p-8">
+              <h2 className="text-2xl sm:text-3xl font-bold text-white mb-6 sm:mb-8 arcade-font-white">Project Gallery</h2>
+              <div className="flex items-center justify-center gap-4 sm:gap-8">
                 {images.length > 1 && (
                   <button
                     onClick={prevImage}
-                    className="bg-white text-red-900 border-none px-4 py-2.5 text-2xl rounded-full cursor-pointer hover:bg-slate-200 transition-colors shrink-0"
+                    className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-white flex items-center justify-center transition-all duration-300 hover:scale-110 shrink-0"
                   >
-                    ◀
+                    <FaChevronLeft className="text-xl sm:text-2xl" />
                   </button>
                 )}
 
                 <div className="flex-1 max-w-4xl overflow-hidden">
                   <div
-                    className="flex gap-5 transition-transform duration-500"
+                    className="flex transition-transform duration-500"
                     style={{
-                      transform: `translateX(-${(currentIndex % images.length) * (100 / images.length)}%)`
+                      transform: `translateX(-${currentIndex * 100}%)`
                     }}
                   >
                     {images.map((img, i) => (
@@ -102,7 +103,7 @@ export default function ProjectPage() {
                         key={i}
                         src={img}
                         alt={`${project.title} - Image ${i + 1}`}
-                        className="w-full h-96 object-cover rounded-xl shrink-0"
+                        className="w-full h-64 sm:h-96 object-cover rounded-xl shrink-0"
                       />
                     ))}
                   </div>
@@ -111,9 +112,9 @@ export default function ProjectPage() {
                 {images.length > 1 && (
                   <button
                     onClick={nextImage}
-                    className="bg-white text-red-900 border-none px-4 py-2.5 text-2xl rounded-full cursor-pointer hover:bg-slate-200 transition-colors shrink-0"
+                    className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-white flex items-center justify-center transition-all duration-300 hover:scale-110 shrink-0"
                   >
-                    ▶
+                    <FaChevronRight className="text-xl sm:text-2xl" />
                   </button>
                 )}
               </div>
@@ -122,18 +123,18 @@ export default function ProjectPage() {
 
           {/* Contributors */}
           {contributors.length > 0 && (
-            <div className="bg-black/20 backdrop-blur-sm border border-white/10 rounded-2xl p-12">
-              <h2 className="text-3xl font-bold text-white mb-8">Contributors</h2>
-              <div className="flex justify-center items-center gap-8 flex-wrap">
+            <div className="bg-black/20 backdrop-blur-sm border border-white/10 rounded-2xl p-6 sm:p-12">
+              <h2 className="text-2xl sm:text-3xl font-bold text-white mb-6 sm:mb-8 arcade-font-white">Contributors</h2>
+              <div className="flex justify-center items-center gap-6 sm:gap-8 flex-wrap">
                 {contributors.map((member) => (
                   <div
                     key={member.id}
-                    className="relative inline-block cursor-pointer group"
+                    className="relative inline-block cursor-pointer group w-40 sm:w-auto"
                     onMouseEnter={() => setHoveredMember(member.id)}
                     onMouseLeave={() => setHoveredMember(null)}
                     onClick={() => navigate(member.profileLink)}
                   >
-                    <div className="relative w-32 h-32 rounded-full bg-linear-to-br from-gray-400 via-white to-gray-500 p-[3px]">
+                    <div className="relative w-24 h-24 sm:w-32 sm:h-32 rounded-full bg-linear-to-br from-gray-400 via-white to-gray-500 p-[3px]">
                       <div className="w-full h-full rounded-full overflow-hidden bg-black/40">
                         <img
                           src={member.image}
@@ -169,8 +170,8 @@ export default function ProjectPage() {
                         </a>
                       )}
                     </div>
-                    <p className="mt-3 text-base text-white font-semibold">{member.name}</p>
-                    <p className="text-sm text-slate-400">{member.title}</p>
+                    <p className="mt-3 text-sm sm:text-base text-white font-semibold">{member.name}</p>
+                    <p className="text-xs sm:text-sm text-slate-400">{member.title}</p>
                   </div>
                 ))}
               </div>

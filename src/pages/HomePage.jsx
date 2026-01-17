@@ -167,7 +167,12 @@ export default function HomePage({ teamName = 'Tech Operations', description = '
   return (
     <>
       <Sidebar />
-      <main className="min-h-screen w-full">
+      <main
+        className="min-h-screen w-full"
+        style={{
+          background: "radial-gradient(circle at 20% 20%, rgba(128,0,255,0.15), transparent 60%), radial-gradient(circle at 80% 40%, rgba(0,128,255,0.1), transparent 60%), radial-gradient(circle at 50% 80%, rgba(255, 50, 149, 0.14), transparent 60%), #000"
+        }}
+      >
         {/* Black Overlay - Fades on scroll */}
         <div
           className="fixed inset-0 bg-black pointer-events-none"
@@ -180,20 +185,20 @@ export default function HomePage({ teamName = 'Tech Operations', description = '
         />
 
         {/* Hero Section - Full Viewport */}
-        <section className="min-h-screen w-full flex items-center justify-center px-8 relative" style={{ zIndex: 10 }}>
+        <section className="min-h-screen w-full flex items-center justify-center px-4 sm:px-8 relative" style={{ zIndex: 10 }}>
           <div className="text-center space-y-8">
 
             <div className='h-10' />
 
             <div
-              className="text-7xl animate-fade-in font-bold leading-tight arcade-font-white"
+              className="text-4xl sm:text-7xl animate-fade-in font-bold leading-tight arcade-font-white"
             >
               Tech Operations
             </div>
 
             <GlitchText
               text="Replacing recycled tech projects with pure magic."
-              className="text-sm px-[10%] mt-10 wrap-normal animate-fade-in font-bold leading-tight arcade-font-white"
+              className="text-xs sm:text-sm px-[6%] sm:px-[10%] mt-6 sm:mt-10 wrap-normal animate-fade-in font-bold leading-tight arcade-font-white"
             />
 
             <p className="text-lg h-20 md:text-xl lg:text-2xl max-w-4xl mx-auto animate-fade-in-delayed leading-relaxed arcade-font-white">
@@ -232,7 +237,7 @@ export default function HomePage({ teamName = 'Tech Operations', description = '
         </section>
 
         {/* Scrollable Content */}
-        <div className="space-y-12 flex-col justify-center content-center items-center" style={{ zIndex: 10 }}>
+        <div className="space-y-12 flex-col justify-center content-center items-center px-4 sm:px-0" style={{ zIndex: 10 }}>
 
           <section
             ref={addToRefs}
@@ -242,11 +247,11 @@ export default function HomePage({ teamName = 'Tech Operations', description = '
               }`}
           >
 
-            <div className='px-[10%]'>
+            <div className='px-0 sm:px-[10%]'>
 
-              <h2 className="text-left text-4xl py-3 w-max mb-5 text-white font-semibold arcade-font-white inline-block">Projects</h2>
+              <h2 className="text-left text-2xl sm:text-4xl py-3 w-max mb-5 text-white font-semibold arcade-font-white inline-block">Projects</h2>
 
-              <div className="grid grid-cols-4 gap-5 ">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
                 {topProjects.map((p) => (
                   <ProjectCard key={p.id} title={p.title} desc={p.desc} image={p.image} link={p.link} />
                 ))}
@@ -269,7 +274,7 @@ export default function HomePage({ teamName = 'Tech Operations', description = '
               : 'opacity-0 translate-y-10'
               }`}
           >
-            <h3 className="text-4xl font-semibold text-white text-center">Tech Stack</h3>
+            <h3 className="text-3xl sm:text-4xl font-semibold text-white text-center arcade-font-white">Tech Stack</h3>
             <div className="flex flex-wrap justify-center gap-x-3 gap-y-6 max-w-6xl mx-auto">
               {techStack.map((t) => (
                 <TechChip key={t.name} icon={t.icon} color={t.color}>{t.name}</TechChip>
@@ -284,7 +289,7 @@ export default function HomePage({ teamName = 'Tech Operations', description = '
               : 'opacity-0 translate-y-10'
               }`}
           >
-            <h2 className="text-4xl font-semibold text-white text-center">Head</h2>
+            <h2 className="text-3xl sm:text-4xl font-semibold text-white text-center arcade-font-white">Head</h2>
 
             <div className="flex justify-center">
               {(() => {
@@ -302,10 +307,10 @@ export default function HomePage({ teamName = 'Tech Operations', description = '
             </div>
 
             <div className="text-center">
-              <h3 className="text-3xl font-semibold text-slate-300">Co-Heads</h3>
+              <h3 className="text-2xl sm:text-3xl font-semibold text-slate-300 arcade-font-white">Co-Heads</h3>
             </div>
 
-            <div className="flex justify-center gap-16 flex-wrap">
+            <div className="flex justify-center gap-6 sm:gap-16 flex-wrap">
               {members.filter(m => m.title === "Co-Head").map((coHead) => (
                 <Member
                   key={coHead.id}
@@ -319,11 +324,11 @@ export default function HomePage({ teamName = 'Tech Operations', description = '
             </div>
 
             <div className="text-center pt-8">
-              <h3 className="text-3xl font-semibold text-slate-300">Star Performers</h3>
+              <h3 className="text-2xl sm:text-3xl font-semibold text-slate-300 arcade-font-white">Star Performers</h3>
             </div>
 
             {members.filter(m => m.starPerformer === true).length > 0 ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 max-w-6xl mx-auto">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-12 max-w-6xl mx-auto">
                 {members.filter(m => m.starPerformer === true).map((performer) => (
                   <Member
                     key={performer.id}
