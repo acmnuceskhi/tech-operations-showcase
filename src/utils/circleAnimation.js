@@ -1,13 +1,18 @@
 // Circle Animation Utilities
 
-export const CIRCLE_SIZE_MIN = 15
-export const CIRCLE_SIZE_MAX = 30
-export const NUM_CIRCLES = 30
+export const CIRCLE_SIZE_MIN = 10
+export const CIRCLE_SIZE_MAX = 10
+export const NUM_CIRCLES = 60
 export const SPEED_MIN = 0.1
 export const SPEED_MAX = 0.5
 
 function getRandomSize(min, max) {
-  return min + Math.random() * (max - min)
+  // Use power curve to bias towards smaller circles
+  // Higher power = more small circles, fewer large circles
+  const power = 2
+  const random = Math.random()
+  const curved = Math.pow(random, power)
+  return min + curved * (max - min)
 }
 
 // generates random circles with positions, velocities, and sizes

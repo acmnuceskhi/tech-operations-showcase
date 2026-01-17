@@ -12,7 +12,7 @@ export default function Background() {
   const animationFrameRef = useRef(null)
 
   // Retro effect: lower values = more pixelated (e.g., 0.25 = 25% resolution)
-  const RESOLUTION_SCALE = 0.4
+  const RESOLUTION_SCALE = 0.2
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -41,7 +41,20 @@ export default function Background() {
     }
 
     resizeCanvas()
-    window.addEventListener('resize', resizeCanvas)
+
+    // Throttle resize handler for better performance
+    let resizeTicking = false
+    const throttledResize = () => {
+      if (!resizeTicking) {
+        window.requestAnimationFrame(() => {
+          resizeCanvas()
+          resizeTicking = false
+        })
+        resizeTicking = true
+      }
+    }
+
+    window.addEventListener('resize', throttledResize)
 
     // Initialize circles
     circlesRef.current = generateRandomCircles(NUM_CIRCLES)
@@ -88,33 +101,30 @@ export default function Background() {
         ctx.stroke()
       }
 
-      // Draw circles with variable stroke width based on closeness
+      // Draw circles with radius based on sum of closeness values
       ctx.fillStyle = 'white'
 
       for (let i = 0; i < circlesRef.current.length; i++) {
         const circle = circlesRef.current[i]
         const distances = connectionDistances.get(circle.id)
 
-        // Calculate stroke width based on average closeness of connections
-        let strokeWidth = 1
-        // initialize and clamp normalizedCloseness to avoid undefined/negative values
-        let normalizedCloseness = 0
+        // Calculate sum of closeness values (not average) for smooth transitions
+        let closenessSum = 0
         if (distances.length > 0) {
-          const avgDistance = distances.reduce((sum, d) => sum + d, 0) / distances.length
-          normalizedCloseness = 1 - (avgDistance / LINE_DISTANCE_THRESHOLD)
-          // clamp to [0, 1]
-          normalizedCloseness = Math.min(1, Math.max(0, normalizedCloseness))
-          const minStroke = 1
-          const maxStroke = 4
-          strokeWidth = minStroke + (normalizedCloseness * (maxStroke - minStroke))
+          distances.forEach(dist => {
+            // Closeness = 1 - (distance / threshold), clamped to [0, 1]
+            const closeness = Math.max(0, Math.min(1, 1 - (dist / LINE_DISTANCE_THRESHOLD)))
+            closenessSum += closeness
+          })
         }
 
-        ctx.lineWidth = strokeWidth
+        // Scale radius based on sum of closeness
+        // Base radius + bonus from connections
+        const radiusBonus = closenessSum * 10 // Adjust multiplier to control size growth
+        const effectiveRadius = Math.max(1, circle.radius + radiusBonus)
+
         ctx.beginPath()
-        // ensure radius stays positive and scales with closeness
-        const effectiveRadius = Math.max(1, circle.radius + Math.abs(circle.radius * normalizedCloseness) / 2)
         ctx.arc(circle.x, circle.y, effectiveRadius, 0, Math.PI * 2)
-        ctx.stroke()
         ctx.fill();
       }
 
@@ -124,7 +134,7 @@ export default function Background() {
     animate()
 
     return () => {
-      window.removeEventListener('resize', resizeCanvas)
+      window.removeEventListener('resize', throttledResize)
       if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current)
       }

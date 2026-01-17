@@ -21,25 +21,29 @@ function GlitchText({ text, className = '' }) {
     ]
 
     if (isHovered) {
-      // Start glitching each character
-      text.split('').forEach((char, index) => {
-        if (char === ' ') return // Skip spaces
-
-        const interval = setInterval(() => {
-          setGlitchChars(prev => {
-            const newChars = [...prev]
-            newChars[index] = chars[Math.floor(Math.random() * chars.length)]
-            return newChars
+      // Use single interval for all characters - more efficient
+      const interval = setInterval(() => {
+        setGlitchChars(prev => {
+          const newChars = [...prev]
+          text.split('').forEach((char, index) => {
+            if (char !== ' ') {
+              newChars[index] = chars[Math.floor(Math.random() * chars.length)]
+            }
           })
-          setGlitchColors(prev => {
-            const newColors = [...prev]
-            newColors[index] = colors[Math.floor(Math.random() * colors.length)]
-            return newColors
+          return newChars
+        })
+        setGlitchColors(prev => {
+          const newColors = [...prev]
+          text.split('').forEach((char, index) => {
+            if (char !== ' ') {
+              newColors[index] = colors[Math.floor(Math.random() * colors.length)]
+            }
           })
-        }, 50) // Change character every 50ms
+          return newColors
+        })
+      }, 80) // Reduced frequency for better performance
 
-        intervalRefs.current[index] = interval
-      })
+      intervalRefs.current = [interval]
     } else {
       // Clear all intervals and reset to original text
       intervalRefs.current.forEach(interval => clearInterval(interval))
@@ -90,41 +94,52 @@ export default function HomePage({ teamName = 'Tech Operations', description = '
   const sectionRefs = useRef([])
 
   useEffect(() => {
-    const observers = []
+    // Use single observer for all sections - more efficient
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const index = sectionRefs.current.indexOf(entry.target)
+            if (index !== -1) {
+              setVisibleSections((prev) => new Set([...prev, index]))
+            }
+          }
+        })
+      },
+      { threshold: 0.1 }
+    )
 
-    sectionRefs.current.forEach((ref, index) => {
+    // Observe all sections with single observer
+    sectionRefs.current.forEach((ref) => {
       if (ref) {
-        const observer = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                setVisibleSections((prev) => new Set([...prev, index]))
-              }
-            })
-          },
-          { threshold: 0.1 }
-        )
         observer.observe(ref)
-        observers.push(observer)
       }
     })
 
     return () => {
-      observers.forEach((observer) => observer.disconnect())
+      observer.disconnect()
     }
   }, [])
 
   // Scroll effect for overlay fade
   useEffect(() => {
+    let ticking = false
+
     const handleScroll = () => {
-      const scrollPosition = window.scrollY || window.pageYOffset || document.documentElement.scrollTop
-      const viewportHeight = window.innerHeight
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const scrollPosition = window.scrollY || window.pageYOffset || document.documentElement.scrollTop
+          const viewportHeight = window.innerHeight
 
-      // Fade from 0.5 opacity (50% opaque) to 0 as user scrolls through first viewport
-      const fadeProgress = Math.min(scrollPosition / viewportHeight, 1)
-      const newOpacity = 0.5 * (1 - fadeProgress)
+          // Fade from 0.5 opacity (50% opaque) to 0 as user scrolls through first viewport
+          const fadeProgress = Math.min(scrollPosition / viewportHeight, 1)
+          const newOpacity = 0.8 * (1 - fadeProgress)
 
-      setOverlayOpacity(newOpacity)
+          setOverlayOpacity(newOpacity)
+          ticking = false
+        })
+        ticking = true
+      }
     }
 
     // Set initial state
