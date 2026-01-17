@@ -1,6 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import { FaArrowLeft, FaHome } from 'react-icons/fa'
+import Sidebar from '../components/Sidebar'
 import Member from '../components/Member'
 import members from '../data/members'
 
@@ -11,75 +11,62 @@ export default function AllMembersPage() {
   const regularMembers = members.filter(m => m.title === "Member")
 
   return (
-    <main className="min-h-screen w-full py-20 px-8">
-      <div className="max-w-7xl mx-auto space-y-16">
-        
-        {/* Navigation buttons */}
-        <div className="flex gap-4">
-          <button 
-            onClick={() => navigate(-1)}
-            className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm border border-white/20 text-white font-semibold rounded-lg hover:bg-white/20 hover:border-white/30 transition-all duration-300"
-          >
-            <FaArrowLeft /> Back
-          </button>
-          <button 
-            onClick={() => navigate('/')}
-            className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm border border-white/20 text-white font-semibold rounded-lg hover:bg-white/20 hover:border-white/30 transition-all duration-300"
-          >
-            <FaHome /> Home
-          </button>
-        </div>
-        
-        <div className="text-center">
-          <h1 className="text-5xl font-bold text-white mb-4">Our Team</h1>
-          <p className="text-xl text-slate-300">Meet the amazing people behind Tech Operations</p>
-        </div>
+    <>
+      <Sidebar />
+      <main className="min-h-screen w-full py-20 px-8">
+        <div className="max-w-7xl mx-auto space-y-16">
 
-        <section className="space-y-12">
-          <h2 className="text-4xl font-semibold text-white text-center">Head</h2>
-          <div className="flex justify-center">
-            <Member 
-              name={head.name}
-              image={head.image}
-              linkedin={head.linkedin}
-              github={head.github}
-              profileLink={`/member/${head.id}`}
-            />
+          <div className="text-center">
+            <h1 className="text-5xl font-bold text-white mb-4">Our Team</h1>
+            <p className="text-xl text-slate-300">Meet the amazing people behind Tech Operations</p>
           </div>
-        </section>
 
-        <section className="space-y-12">
-          <h2 className="text-3xl font-semibold text-slate-300 text-center">Co-Heads</h2>
-          <div className="flex justify-center gap-16 flex-wrap">
-            {coHeads.map((coHead) => (
-              <Member 
-                key={coHead.id}
-                name={coHead.name}
-                image={coHead.image}
-                linkedin={coHead.linkedin}
-                github={coHead.github}
-                profileLink={`/member/${coHead.id}`}
+          <section className="space-y-12">
+            <h2 className="text-4xl font-semibold text-white text-center">Head</h2>
+            <div className="flex justify-center">
+              <Member
+                name={head.name}
+                image={head.image}
+                linkedin={head.linkedin}
+                github={head.github}
+                profileLink={`/member/${head.id}`}
               />
-            ))}
-          </div>
-        </section>
+            </div>
+          </section>
 
-        <section className="space-y-12">
-          <h2 className="text-3xl font-semibold text-slate-300 text-center">Members</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 max-w-6xl mx-auto">
-            {regularMembers.map((member) => (
-              <Member 
-                key={member.id}
-                name={member.name}
-                image={member.image}
-                linkedin={member.linkedin}
-                github={member.github}
-                profileLink={`/member/${member.id}`}
-              />
-            ))}
-          </div>
-        </section>
-      </div>
-    </main>
+          <section className="space-y-12">
+            <h2 className="text-3xl font-semibold text-slate-300 text-center">Co-Heads</h2>
+            <div className="flex justify-center gap-16 flex-wrap">
+              {coHeads.map((coHead) => (
+                <Member
+                  key={coHead.id}
+                  name={coHead.name}
+                  image={coHead.image}
+                  linkedin={coHead.linkedin}
+                  github={coHead.github}
+                  profileLink={`/member/${coHead.id}`}
+                />
+              ))}
+            </div>
+          </section>
+
+          <section className="space-y-12">
+            <h2 className="text-3xl font-semibold text-slate-300 text-center">Members</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 max-w-6xl mx-auto">
+              {regularMembers.map((member) => (
+                <Member
+                  key={member.id}
+                  name={member.name}
+                  image={member.image}
+                  linkedin={member.linkedin}
+                  github={member.github}
+                  profileLink={`/member/${member.id}`}
+                />
+              ))}
+            </div>
+          </section>
+        </div>
+      </main>
+    </>
   )
 }

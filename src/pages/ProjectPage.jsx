@@ -1,295 +1,184 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { FaGithub, FaLinkedin } from 'react-icons/fa';
+import Sidebar from '../components/Sidebar';
+import projects from '../data/projects';
+import members from '../data/members';
 
 export default function ProjectPage() {
   const navigate = useNavigate();
-
-  const project = {
-    Title: "SUPER MARKET",
-    Description: "hi everyone bye. Regarding quiz 5, Mam informed us that Quiz 5 will offer a chance to improve our scores. If we score higher in this quiz, it will replace our lowest-scoring quiz. This means that only the top 4 quizzes for each student will be counted towards the final result. It's a great opportunity to increase your quiz marks, especially if you were absent in previous quizzes or want to improve your scores and for preparation mam has send me some pictures I have forwarded abovbhdbqieg hjegqifbkadhsbxiugwfbeadvxhkjncb rfvesdgtyhxzjkcrhsdbjxczm nbghujkmcdsn ebwvgfyadshujzxkncdb gfvryehwjasklnzbgfwvlj4tgaidzhc",
-
-    Images: [" https://tse4.mm.bing.net/th/id/OIP.vI1BpnAQ23p0p3pjJaMFjgHaHa?cb=ucfimg2ucfimg=1&rs=1&pid=ImgDetMain&o=7&rm=3", " https://th.bing.com/th/id/R.6a229c0b44e287eaf176e3cada7e77c9?rik=GcfOV4DbnIrLng&riu=http%3a%2f%2fimages4.fanpop.com%2fimage%2fphotos%2f17500000%2fcool-backgrounds-random-17514354-1024-640.jpg&ehk=8B8sq4kQfHiVfA3V8hKZRrzLHQ8SoE%2f73FMP4iCz6DU%3d&risl=&pid=ImgRaw&r=0", "https://tse3.mm.bing.net/th/id/OIP.ke2E7-1sPKrp7B5hDjU0qAHaGG?cb=ucfimg2ucfimg=1&w=710&h=585&rs=1&pid=ImgDetMain&o=7&rm=3", "https://tse4.mm.bing.net/th/id/OIP.0MDI4C27d7_8TkC08Su-wgHaHa?cb=ucfimg2ucfimg=1&rs=1&pid=ImgDetMain&o=7&rm=3", "https://tse1.explicit.bing.net/th/id/OIP.LitbJh02F5nvZ7l_uCGUfgHaHx?cb=ucfimg2ucfimg=1&w=750&h=787&rs=1&pid=ImgDetMain&o=7&rm=3", "https://i.pinimg.com/474x/8a/e3/0e/8ae30e36c18ec64ee450dead0ec9ff83.jpg?nii=t", "https://tse3.mm.bing.net/th/id/OIP.4PuCP9tL2T7laqVntAW4iQAAAA?cb=ucfimg2ucfimg=1&w=460&h=460&rs=1&pid=ImgDetMain&o=7&rm=3", "https://media1.tenor.com/m/QEBosU0qSGUAAAAC/cool-cat-thug-life-glasses.gif"],
-    Members: [
-      { name: "Amna", img: "https://tse3.mm.bing.net/th/id/OIP.PjVYkxU9_jpaHMtD1ZU2NwHaHW?cb=ucfimg2ucfimg=1&rs=1&pid=ImgDetMain&o=7&rm=3", linkdin: " ", github: " " },
-      { name: "hasnain", img: "https://i.pinimg.com/736x/cb/4c/fb/cb4cfb27792fec45830871a9823167ba.jpg", linkdin: " ", github: " " },
-    ],
-  };
+  const { projectId } = useParams();
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [hoveredMember, setHoveredMember] = useState(null);
+
+  const project = projects.find(p => p.id === projectId);
+
+  if (!project) {
+    return (
+      <main className="min-h-screen w-full flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-4xl font-bold text-white mb-4">Project Not Found</h1>
+          <button
+            onClick={() => navigate('/projects')}
+            className="text-slate-300 hover:text-white"
+          >
+            Go back to projects
+          </button>
+        </div>
+      </main>
+    );
+  }
+
+  const contributors = project.contributors ? project.contributors.map(id => members.find(m => m.id === id)).filter(Boolean) : [];
+
+  const images = project.images || [project.image];
+
   const nextImage = () => {
-    setCurrentIndex((prev) => (prev + 1) % project.Images.length);
+    setCurrentIndex((prev) => (prev + 1) % images.length);
   };
 
   const prevImage = () => {
-    setCurrentIndex((prev) => (prev - 1 + project.Images.length) % project.Images.length);
-  };
-
-  const style = {
-    container: {
-      fontFamily: "Arial, sans-serif",
-      background: "   radial-gradient(circle at 20% 20%, rgba(128,0,255,0.15), transparent 60%), radial-gradient(circle at 80% 40%, rgba(0,128,255,0.1), transparent 60%), radial-gradient(circle at 50% 80%, rgba(255, 50, 149, 0.14), transparent 60%),#000",
-      backgroundSize: "cover",
-      Animation: "drift 20s ease infinite",
-      minHeight: "100vh",
-      padding: "40px 20px",
-      textAlign: "center",
-      width: "100vw",
-      margin: "0",
-      color: "#fff",
-
-
-    },
-    heading: {
-      color: "#fff",
-      fontSize: "2.8rem",
-      marginBottom: "30px",
-      fontWeight: "700",
-      letterSpacing: "2px",
-      borderBottom: "2px solid #ff4ee223",
-      display: "in-line block",
-      paddingBottom: "5px",
-      fontFamily: "'verdana', sans-serif",
-      textTransform: "uppercase",
-    },
-    description: {
-      color: "#ddd",
-      fontSize: "1.1rem",
-      maxWidth: "700px",
-      margin: "0 auto 80px",
-    },
-    gallerycontainer: {
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      gap: "60px",
-      width: "100%",
-      marginBottom: "80px",
-    },
-    image: {
-      width: "600px",
-      height: "400px",
-      objectFit: "cover",
-      borderRadius: "10px",
-      boxShadow: "0 4px 10px rgba(0,0,0,0.3)",
-    },
-    button: {
-      backgroundColor: "#fff",
-      color: "#470404ff",
-      border: "none",
-      padding: "10px 15px",
-      fontSize: "1.5 rem",
-      borderRadius: "50%",
-      cursor: "pointer",
-    },
-
-    memberssection: {
-      marginTop: "40px",
-    },
-    MembersTitle: {
-      color: "#fff",
-      fontSize: "1.5rem",
-      marginBottom: "20px",
-    },
-    Memberscontainer: {
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-      gap: "30px",
-      flexWrap: "wrap",
-
-    },
-    memberImage: {
-      width: "100px",
-      height: "100px",
-      borderRadius: "50%",
-      objectFit: "cover",
-      boxShadow: "0 2px 6px rgba(0,0,0,0.3)",
-      border: "2px solid white",
-    },
-    membername: {
-      marginTop: "10px",
-      fontSize: "1rem",
-      color: "#fff",
-    },
-
-    githubButton: {
-      position: "absolute",
-      top: "20px",
-      right: "20px",
-      backgroundColor: "#24292e",
-      color: "#fff",
-      padding: "12px 20px",
-      fontSize: "0.9rem",
-      border: "none",
-      borderRadius: "5px",
-      cursor: "pointer",
-      textDecoration: "none",
-      display: "inline-block",
-      marginTop: "20px",
-      transition: "all 0.3s ease",
-      zindex: 10,
-    },
-
-    memberWrapper: {
-      position: "relative",
-      display: "inline-block",
-      cursonr: "pointer",
-    },
-
-    memberOverlay: {
-      position: "absolute",
-      bottom: "0",
-      left: "0",
-      width: "100%",
-      hieght: "30%",
-      backgroundColor: "rgba(0,0,0,0.6)",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      gap: "10px",
-      opacity: 0,
-      transition: "opacity 0.3 ease",
-      borderRadius: "50%",
-
-    },
-
-    overlayIcon: {
-      width: "30px",
-      hieght: "30px",
-      color: "#fff",
-      backgroundColor: "#24292e",
-      borderRadius: "50%",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "centre",
-      textDecoration: "none",
-      fontSize: "1rem",
-      transition: "all 0.3 ease",
-    },
-
-    overlayIconHover: {
-      transform: "scale(1.1)",
-    },
-
-    imageStripContainer: {
-      width: "80%",
-      overflow: "hidden",
-      margin: "0 auto",
-    },
-
-    imageStrip: {
-      display: "flex",
-      gap: "20px",
-      transition: "transform 0.4 ease",
-    },
-
-    stripImage: {
-      width: "250px",
-      hieght: "180px",
-      objectFit: "cover",
-      borderRadius: "10px",
-      flexshrink: 0,
-    },
-
-
-
+    setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
   };
 
   return (
-    <div style={style.container}>
-      {/* Navigation buttons */}
-      <div style={{ position: 'absolute', top: '20px', left: '20px', zIndex: 10, display: 'flex', gap: '12px' }}>
-        <button
-          onClick={() => navigate(-1)}
-          style={{
-            padding: '10px 20px',
-            backgroundColor: 'rgba(255,255,255,0.1)',
-            backdropFilter: 'blur(10px)',
-            border: '1px solid rgba(255,255,255,0.2)',
-            color: 'white',
-            borderRadius: '8px',
-            cursor: 'pointer',
-            fontSize: '0.9rem',
-            transition: 'all 0.3s ease'
-          }}
-        >
-          ← Back
-        </button>
-        <button
-          onClick={() => navigate('/')}
-          style={{
-            padding: '10px 20px',
-            backgroundColor: 'rgba(255,255,255,0.1)',
-            backdropFilter: 'blur(10px)',
-            border: '1px solid rgba(255,255,255,0.2)',
-            color: 'white',
-            borderRadius: '8px',
-            cursor: 'pointer',
-            fontSize: '0.9rem',
-            transition: 'all 0.3s ease'
-          }}
-        >
-          🏠 Home
-        </button>
-      </div>
+    <>
+      <Sidebar />
+      <div className="min-h-screen w-full text-center overflow-x-hidden py-20 px-8 text-white"
+        style={{
+          background: "radial-gradient(circle at 20% 20%, rgba(128,0,255,0.15), transparent 60%), radial-gradient(circle at 80% 40%, rgba(0,128,255,0.1), transparent 60%), radial-gradient(circle at 50% 80%, rgba(255, 50, 149, 0.14), transparent 60%), #000"
+        }}>
 
-      <h1 style={style.heading}>{project.Title}</h1>
-      <p style={style.description}>{project.Description}</p>
+        <div className="max-w-6xl mx-auto space-y-12">
 
-      <a
-        href=""
-        target="_blank"
-        rel="noopener noreferrer"
-        style={style.githubButton}
-      > view GitHub code</a>
-
-
-      <div style={style.gallerycontainer}>
-        <button onClick={prevImage} style={style.button}>
-          ◀
-        </button>
-        <div style={style.imageStripContainer}>
-          <div style={{
-            ...style.imageStrip,
-            transform: `translateX(-${(currentIndex % project.Images.length) * 270}px) `//250px image +20px gap
-          }}>
-            {[...project.Images, ...project.Images].map((img, i) => (
-              <img key={i} src={img} style={style.stripImage} />
-            ))}
-          </div>
-        </div>
-
-
-        <button onClick={nextImage} style={style.button}>
-          ▶
-        </button>
-      </div>
-
-
-
-      <div style={style.memberssection}>
-        <h2 style={style.MembersTitle}>Team Members</h2>
-        <div style={style.Memberscontainer}>
-          {project.Members.map((member, i) => (
-            <div key={i} style={style.memberWrapper}
-              onMouseEnter={() => setHoveredMember(i)}
-              onMouseLeave={() => setHoveredMember(null)}
-            >
-              <img
-                src={member.img}
-                alt={member.name}
-                style={style.memberImage}
-              />
-              <div style={{ ...style.memberOverlay, opacity: hoveredMember === i ? 1 : 0 }} className="member-overlay">
-                <a href="member.linkdin" target="_blank" rel="noopener noreferrer" style={style.overlayIcon}> 🔗 </a>
-                <a href="member.github" target="_blank" rel="noopener noreferrer" style={style.overlayIcon}> 🐱</a>
-              </div>
-              <p style={style.membername}>{member.name}</p>
+          {/* Project Header */}
+          <div className="bg-black/20 backdrop-blur-sm border border-white/10 rounded-2xl p-12">
+            <div className="flex items-center justify-between mb-8">
+              <h1 className="text-5xl font-bold text-white tracking-wider uppercase">
+                {project.title}
+              </h1>
+              {project.githubUrl && (
+                <a
+                  href={project.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-gray-800 hover:bg-gray-700 text-white rounded-lg transition-all duration-300"
+                >
+                  <FaGithub className="text-xl" />
+                  <span>View Code</span>
+                </a>
+              )}
             </div>
-          ))}
+
+            <p className="text-slate-300 text-lg max-w-4xl mx-auto">
+              {project.fullDescription || project.desc}
+            </p>
+          </div>
+
+          {/* Image Gallery */}
+          {images.length > 0 && (
+            <div className="bg-black/20 backdrop-blur-sm border border-white/10 rounded-2xl p-8">
+              <h2 className="text-3xl font-bold text-white mb-8">Project Gallery</h2>
+              <div className="flex items-center justify-center gap-8">
+                {images.length > 1 && (
+                  <button
+                    onClick={prevImage}
+                    className="bg-white text-red-900 border-none px-4 py-2.5 text-2xl rounded-full cursor-pointer hover:bg-slate-200 transition-colors shrink-0"
+                  >
+                    ◀
+                  </button>
+                )}
+
+                <div className="flex-1 max-w-4xl overflow-hidden">
+                  <div
+                    className="flex gap-5 transition-transform duration-500"
+                    style={{
+                      transform: `translateX(-${(currentIndex % images.length) * (100 / images.length)}%)`
+                    }}
+                  >
+                    {images.map((img, i) => (
+                      <img
+                        key={i}
+                        src={img}
+                        alt={`${project.title} - Image ${i + 1}`}
+                        className="w-full h-96 object-cover rounded-xl shrink-0"
+                      />
+                    ))}
+                  </div>
+                </div>
+
+                {images.length > 1 && (
+                  <button
+                    onClick={nextImage}
+                    className="bg-white text-red-900 border-none px-4 py-2.5 text-2xl rounded-full cursor-pointer hover:bg-slate-200 transition-colors shrink-0"
+                  >
+                    ▶
+                  </button>
+                )}
+              </div>
+            </div>
+          )}
+
+          {/* Contributors */}
+          {contributors.length > 0 && (
+            <div className="bg-black/20 backdrop-blur-sm border border-white/10 rounded-2xl p-12">
+              <h2 className="text-3xl font-bold text-white mb-8">Contributors</h2>
+              <div className="flex justify-center items-center gap-8 flex-wrap">
+                {contributors.map((member) => (
+                  <div
+                    key={member.id}
+                    className="relative inline-block cursor-pointer group"
+                    onMouseEnter={() => setHoveredMember(member.id)}
+                    onMouseLeave={() => setHoveredMember(null)}
+                    onClick={() => navigate(member.profileLink)}
+                  >
+                    <div className="relative w-32 h-32 rounded-full bg-linear-to-br from-gray-400 via-white to-gray-500 p-[3px]">
+                      <div className="w-full h-full rounded-full overflow-hidden bg-black/40">
+                        <img
+                          src={member.image}
+                          alt={member.name}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                    </div>
+                    <div
+                      className="absolute bottom-0 left-0 w-full h-1/3 bg-black/80 flex items-center justify-center gap-2.5 rounded-full transition-opacity duration-300"
+                      style={{ opacity: hoveredMember === member.id ? 1 : 0 }}
+                    >
+                      {member.linkedin && (
+                        <a
+                          href={member.linkedin}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={(e) => e.stopPropagation()}
+                          className="w-8 h-8 text-white bg-gray-700 hover:bg-gray-600 rounded-full flex items-center justify-center no-underline text-base transition-all duration-300 hover:scale-110"
+                        >
+                          <FaLinkedin />
+                        </a>
+                      )}
+                      {member.github && (
+                        <a
+                          href={member.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={(e) => e.stopPropagation()}
+                          className="w-8 h-8 text-white bg-gray-700 hover:bg-gray-600 rounded-full flex items-center justify-center no-underline text-base transition-all duration-300 hover:scale-110"
+                        >
+                          <FaGithub />
+                        </a>
+                      )}
+                    </div>
+                    <p className="mt-3 text-base text-white font-semibold">{member.name}</p>
+                    <p className="text-sm text-slate-400">{member.title}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </div>
-    </div>
+    </>
   );
 }
+

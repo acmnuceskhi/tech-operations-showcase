@@ -2,16 +2,15 @@ import React from 'react'
 
 export default function ProjectCard({ title, desc, image, link }) {
   return (
-    <a 
-      href={link} 
-      target="_blank" 
+    <a
+      href={link}
       rel="noopener noreferrer"
       className="group relative bg-black/20 backdrop-blur-sm border border-white/10 rounded-lg overflow-hidden hover:border-white/30 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-black/50 flex flex-col"
     >
       {image && (
         <div className="w-full h-48 overflow-hidden">
-          <img 
-            src={image} 
+          <img
+            src={image}
             alt={title}
             className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
           />
