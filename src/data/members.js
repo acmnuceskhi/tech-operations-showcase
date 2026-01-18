@@ -10,7 +10,6 @@
  * @property {string} linkedin - LinkedIn profile URL
  * @property {string} github - GitHub profile URL
  * @property {string} profileLink - Internal link to member's profile page
- * @property {string[]} projects - Array of project names the member has worked on
  */
 
 /**
@@ -27,8 +26,7 @@ const members = [
     image: "https://res.cloudinary.com/dlkt7gfbc/image/upload/v1762773185/Screenshot_2025-11-10_at_16.12.46_ifmgrl.png",
     linkedin: "https://www.linkedin.com/in/sarim-ahmed-89412a19a/",
     github: "https://github.com/C41f0N",
-    profileLink: "/member/1",
-    projects: ["Scoreboard", "Scoreboard"]
+    profileLink: "/member/1"
   },
   {
     id: 2,
@@ -40,8 +38,7 @@ const members = [
     image: "https://res.cloudinary.com/dlkt7gfbc/image/upload/v1763988440/me_-_k230691_Abdullah_Azhar_Khan_fyjjme.jpg",
     linkedin: "https://www.linkedin.com/in/abbbdullah",
     github: "https://github.com/abdullahazharkhan",
-    profileLink: "/member/2",
-    projects: ["Scoreboard", "Scoreboard"]
+    profileLink: "/member/2"
   },
   {
     id: 3,
@@ -53,8 +50,7 @@ const members = [
     image: "https://res.cloudinary.com/dlkt7gfbc/image/upload/v1763990476/Screenshot_2025-11-24_at_18.20.52_gplvyo.png",
     linkedin: "https://www.linkedin.com/in/raahimirfan100/",
     github: "https://github.com/raahimirfan100",
-    profileLink: "/member/3",
-    projects: ["Scoreboard"]
+    profileLink: "/member/3"
   },
   {
     id: 4,
@@ -66,8 +62,7 @@ const members = [
     image: "/src/assets/rayyan.jpg",
     linkedin: "https://www.linkedin.com/in/muhammad-rayyan-2501492ab/",
     github: "https://github.com/rayyanm86",
-    profileLink: "/member/4",
-    projects: ["Scoreboard"]
+    profileLink: "/member/4"
   },
   {
     id: 5,
@@ -79,8 +74,7 @@ const members = [
     image: "https://res.cloudinary.com/dlkt7gfbc/image/upload/v1763990835/Screenshot_2025-11-24_at_18.22.29_s4wts0.png",
     linkedin: "https://www.linkedin.com/in/syed-haider-murtaza",
     github: "https://github.com/syed-haider-murtaza",
-    profileLink: "/member/5",
-    projects: ["Scoreboard"]
+    profileLink: "/member/5"
   },
   {
     id: 6,
@@ -92,8 +86,7 @@ const members = [
     image: "https://res.cloudinary.com/dlkt7gfbc/image/upload/v1763988441/IMG_8619_-_k230715_Muhammad_Mujtaba_Kamran_fyt8qe.jpg",
     linkedin: "https://www.linkedin.com/in/mujtaba-kamran",
     github: "https://github.com/Mujtaba-Kamran",
-    profileLink: "/member/6",
-    projects: ["Scoreboard"]
+    profileLink: "/member/6"
   },
   {
     id: 7,
@@ -105,8 +98,7 @@ const members = [
     image: "https://res.cloudinary.com/dlkt7gfbc/image/upload/v1763990835/Screenshot_2025-11-24_at_18.22.29_s4wts0.png",
     linkedin: "https://www.linkedin.com/in/muhib",
     github: "https://github.com/muhib",
-    profileLink: "/member/7",
-    projects: ["Scoreboard"]
+    profileLink: "/member/7"
   },
   {
     id: 8,
@@ -118,8 +110,7 @@ const members = [
     image: "https://res.cloudinary.com/dlkt7gfbc/image/upload/v1763988604/Screenshot_2025-11-12_at_16.07.15_b1jnfa.png",
     linkedin: "https://www.linkedin.com/in/zohairshamsi",
     github: "https://github.com/Zohair10",
-    profileLink: "/member/8",
-    projects: ["Scoreboard"]
+    profileLink: "/member/8"
   },
   {
     id: 9,
@@ -131,8 +122,7 @@ const members = [
     image: "https://res.cloudinary.com/dlkt7gfbc/image/upload/v1763990835/Screenshot_2025-11-24_at_18.22.29_s4wts0.png",
     linkedin: "https://www.linkedin.com/in/usaid-sajid",
     github: "https://github.com/usaid-sajid",
-    profileLink: "/member/9",
-    projects: ["Scoreboard"]
+    profileLink: "/member/9"
   }
   ,
   {
@@ -145,8 +135,7 @@ const members = [
     image: "https://res.cloudinary.com/dlkt7gfbc/image/upload/v1763988440/IMG-20250404-WA0024_-_Abdul_Basit_cxfmsl.jpg",
     linkedin: "https://www.linkedin.com/in/connect-abdulbasit",
     github: "https://github.com/connect-abdulbasit",
-    profileLink: "/member/10",
-    projects: ["Scoreboard"]
+    profileLink: "/member/10"
   },
   {
     id: 11,
@@ -158,8 +147,7 @@ const members = [
     image: "https://res.cloudinary.com/dlkt7gfbc/image/upload/v1763990835/Screenshot_2025-11-24_at_18.22.29_s4wts0.png",
     linkedin: "https://www.linkedin.com/in/jayesha-yamin",
     github: "https://github.com/jayeshayamin",
-    profileLink: "/member/11",
-    projects: ["Scoreboard"]
+    profileLink: "/member/11"
   },
   {
     id: 12,
@@ -171,8 +159,7 @@ const members = [
     image: "https://res.cloudinary.com/dlkt7gfbc/image/upload/v1763990122/Screenshot_2025-11-24_at_18.14.58_avqncz.png",
     linkedin: "https://www.linkedin.com/in/kinza-afzal7-",
     github: "https://github.com/kinza7124",
-    profileLink: "/member/12",
-    projects: ["Scoreboard"]
+    profileLink: "/member/12"
   },
   {
     id: 13,
@@ -184,8 +171,7 @@ const members = [
     image: "https://res.cloudinary.com/dlkt7gfbc/image/upload/v1763988443/picaden_-_K250828_Aden_Hussain_sbcqcp.jpg",
     linkedin: "https://www.linkedin.com/in/aden-hussain",
     github: "https://github.com/adenhussain",
-    profileLink: "/member/13",
-    projects: ["Scoreboard"]
+    profileLink: "/member/13"
   },
   {
     id: 14,
@@ -197,8 +183,7 @@ const members = [
     image: "https://res.cloudinary.com/dlkt7gfbc/image/upload/v1763988439/Arwa_Mansoor_-_k240930_Arwa_Mansoor_hb6inv.jpg",
     linkedin: "https://www.linkedin.com/in/arwa-mansoor",
     github: "https://github.com/arwa-mansoor",
-    profileLink: "/member/14",
-    projects: ["Scoreboard"]
+    profileLink: "/member/14"
   },
   {
     id: 15,
@@ -210,21 +195,19 @@ const members = [
     image: "https://res.cloudinary.com/dlkt7gfbc/image/upload/v1763988439/IMG_20251123_162401_-_k242027_Syed_Muhammad_Rohaan_Zaidi_z174fh.jpg",
     linkedin: "https://www.linkedin.com/in/rohaan-zaidi-55453a263",
     github: "https://github.com/RohaanZaidi",
-    profileLink: "/member/15",
-    projects: ["Scoreboard"]
+    profileLink: "/member/15"
   },
   {
     id: 16,
     name: "Hatim Mustafa",
     nickname: "Bug Hunter",
-    title: "Member",
+    title: "Executive",
     description: "QA engineer focused on testing and bug resolution to ensure high-quality software delivery.",
-    starPerformer: false,
+    starPerformer: true,
     image: "https://res.cloudinary.com/dlkt7gfbc/image/upload/v1763988440/Screenshot_20250206-155316_1_-_k240673_Hatim_Mustafa_xly55y.jpg",
     linkedin: "https://www.linkedin.com/in/hatim-mustafa-8116ba277",
     github: "https://github.com/Hatim-Mustafa",
-    profileLink: "/member/16",
-    projects: ["Scoreboard"]
+    profileLink: "/member/16"
   }
 ];
 

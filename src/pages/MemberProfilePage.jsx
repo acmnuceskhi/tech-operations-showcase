@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { FaLinkedin, FaGithub } from 'react-icons/fa'
 import Sidebar from '../components/Sidebar'
 import members from '../data/members'
+import projects from '../data/projects'
 
 export default function MemberProfilePage({ memberId }) {
   const navigate = useNavigate()
@@ -25,7 +26,10 @@ export default function MemberProfilePage({ memberId }) {
     )
   }
 
-  const projects = member.projects || []
+  // Filter projects where this member is a contributor
+  const memberProjects = projects.filter(project => 
+    project.contributors && project.contributors.includes(member.id)
+  )
 
   return (
     <>
@@ -96,25 +100,41 @@ export default function MemberProfilePage({ memberId }) {
           </div>
 
           <section className="space-y-6 sm:space-y-8">
-            {projects.length > 0 && (
+            {memberProjects.length > 0 && (
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
-                <h2 className="text-2xl sm:text-3xl font-semibold text-white arcade-font-white">Contributed to</h2>
-                <span className="text-slate-400 text-sm sm:text-lg">{projects.length} {projects.length === 1 ? 'project' : 'projects'}</span>
+                <h2 className="text-2xl sm:text-3xl relative font-semibold text-white">Contributed to</h2>
+                <span className="text-slate-400 text-sm sm:text-lg">{memberProjects.length} {memberProjects.length === 1 ? 'project' : 'projects'}</span>
               </div>
             )}
 
-            {projects.length === 0 ? (
+            {memberProjects.length === 0 ? (
               <div className="text-center py-10 sm:py-16 bg-black/10 rounded-xl border border-white/10">
                 <p className="text-slate-400 text-base sm:text-lg">No projects yet</p>
               </div>
             ) : (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
-                {projects.map((projectName, index) => (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                {memberProjects.map((project, index) => (
                   <div
-                    key={index}
-                    className="bg-black/20 backdrop-blur-sm border border-white/10 rounded-xl p-5 sm:p-6 hover:border-white/30 transition-all duration-300"
+                    key={project.id}
+                    className="group bg-black/20 backdrop-blur-sm border border-white/10 rounded-xl p-6 sm:p-8 hover:bg-black/30 hover:border-white/30 hover:scale-105 transition-all duration-300 hover:shadow-xl hover:shadow-black/30 cursor-pointer relative overflow-hidden"
                   >
-                    <h3 className="text-lg sm:text-xl font-semibold text-white">{projectName}</h3>
+                    {/* Accent gradient on hover */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-transparent to-pink-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+                    <a href={project.link}>
+                      <div className="relative z-10">
+                        <h3 className="text-xl sm:text-2xl font-bold text-white mb-2 group-hover:text-slate-100 transition-colors">
+                          {project.title}
+                        </h3>
+                        <div className="flex items-center gap-2 text-slate-400 group-hover:text-slate-300 transition-colors">
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                          </svg>
+                          <span className="text-sm font-medium">View Project</span>
+                        </div>
+                      </div>
+                    </a>
+
                   </div>
                 ))}
               </div>

@@ -15,7 +15,7 @@
   color: #ffffff;
   letter-spacing: 2px;
   text-transform: uppercase;
-  text-shadow: 20px 20px 40px rgba(0, 0, 0, 0.8), 0 0 8px rgba(0, 0, 0, 0.6);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 8px rgba(0, 0, 0, 0.6);
 }
 
 /* Hero Section Animations */

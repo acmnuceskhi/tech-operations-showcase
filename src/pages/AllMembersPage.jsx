@@ -8,7 +8,7 @@ export default function AllMembersPage() {
   const navigate = useNavigate();
   const head = members.find(m => m.title === "Head")
   const coHeads = members.filter(m => m.title === "Co-Head")
-  const regularMembers = members.filter(m => m.title === "Member")
+  const regularMembers = members.filter(m => m.title !== "Head" && m.title !== "Co-Head");
 
   return (
     <>
@@ -32,16 +32,16 @@ export default function AllMembersPage() {
           </header>
 
           {/* Leadership Section */}
-          <section className="space-y-12 sm:space-y-14">
-            <div className="text-center space-y-2">
+          <section className="space-y-12 sm:space-y-14 relative z-10">
+            <div className="text-center space-y-3 relative z-20">
               <h2 className="text-3xl sm:text-4xl font-semibold text-white arcade-font-white">Lead</h2>
-              <p className="text-slate-400 text-sm sm:text-base max-w-2xl mx-auto">
+              <p className="text-slate-300 text-base sm:text-lg max-w-2xl mx-auto relative z-20">
                 Guiding the vision and leading the charge
               </p>
             </div>
 
             {/* Head */}
-            <div className="flex justify-center">
+            <div className="flex justify-center relative z-0">
               {head && (
                 <Member
                   name={head.name}
@@ -75,14 +75,14 @@ export default function AllMembersPage() {
           </section>
 
           {/* Team Members Section */}
-          <section className="space-y-12 sm:space-y-14 pt-6">
-            <div className="text-center space-y-2">
+          <section className="space-y-12 sm:space-y-14 pt-6 relative z-10">
+            <div className="text-center space-y-3 relative z-20">
               <h2 className="text-3xl sm:text-4xl font-semibold text-white arcade-font-white">Members</h2>
-              <p className="text-slate-400 text-sm sm:text-base max-w-2xl mx-auto">
+              <p className="text-slate-300 text-base sm:text-lg max-w-2xl mx-auto relative z-20">
                 The talented individuals bringing ideas to life
               </p>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 lg:gap-12 max-w-6xl mx-auto">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 lg:gap-12 max-w-6xl mx-auto relative z-0">
               {regularMembers.map((member) => (
                 <Member
                   key={member.id}
