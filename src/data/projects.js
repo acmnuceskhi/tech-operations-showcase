@@ -1,5 +1,19 @@
-// includes project details at the home page
-// each project link should take it to the seperate project page.
+/**
+ * @typedef {Object} Project
+ * @property {string} id - Unique identifier for the project
+ * @property {string} title - Project title
+ * @property {string} desc - Short description for project cards
+ * @property {string} image - Main project image URL
+ * @property {string} link - Internal link to project detail page
+ * @property {string} fullDescription - Detailed description for project page
+ * @property {string[]} images - Array of project gallery image URLs
+ * @property {string} githubUrl - GitHub repository URL
+ * @property {number[]} contributors - Array of member IDs who contributed
+ */
+
+/**
+ * @type {Project[]}
+ */
 const projects = [
   {
     id: 'p1',

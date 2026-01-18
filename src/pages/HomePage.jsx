@@ -1,11 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import Sidebar from '../components/Sidebar'
-import ProjectCard from '../components/ProjectCard'
-import TechChip from '../components/TechChip'
+import FeaturedProjectCard from '../components/FeaturedProjectCard'
+import InterstitialText from '../components/InterstitialText'
 import Member from '../components/Member'
 import projects from '../data/projects'
-import techStack from '../data/logos'
 import members from '../data/members'
 
 // Glitch Text Component
@@ -83,11 +82,14 @@ function GlitchText({ text, className = '' }) {
   )
 }
 
-export default function HomePage({ teamName = 'Tech Operations', description = 'We make what you see', topN = 8 }) {
+export default function HomePage({ teamName = 'Tech Operations', description = 'We make what you see' }) {
   const navigate = useNavigate()
 
-  // choosing only the top 3 projects from projects
-  const topProjects = projects.slice(0, topN)
+  // Get featured projects (first 4)
+  const featuredProjects = projects.slice(0, 4)
+
+  // Get star performers
+  const starPerformers = members.filter(m => m.starPerformer === true).slice(0, 6)
 
   // State for scroll animations
   const [visibleSections, setVisibleSections] = useState(new Set())
@@ -197,12 +199,12 @@ export default function HomePage({ teamName = 'Tech Operations', description = '
             </div>
 
             <GlitchText
-              text="Replacing recycled tech projects with pure magic."
+              text="ACM's creative tech team. We build the cool stuff."
               className="text-xs sm:text-sm px-[6%] sm:px-[10%] mt-6 sm:mt-10 wrap-normal animate-fade-in font-bold leading-tight arcade-font-white"
             />
 
-            <p className="text-lg h-20 md:text-xl lg:text-2xl max-w-4xl mx-auto animate-fade-in-delayed leading-relaxed arcade-font-white">
-              {/* ACM PRESENTS */}
+            <p className="text-base sm:text-lg md:text-xl max-w-3xl mx-auto animate-fade-in-delayed leading-relaxed text-slate-300 px-4">
+              Scoreboards, minigames, and innovative projects that showcase what tech can really do.
             </p>
           </div>
 
@@ -237,122 +239,178 @@ export default function HomePage({ teamName = 'Tech Operations', description = '
         </section>
 
         {/* Scrollable Content */}
-        <div className="space-y-12 flex-col justify-center content-center items-center px-4 sm:px-0" style={{ zIndex: 10 }}>
+        <div className="space-y-0 flex-col justify-center content-center items-center" style={{ zIndex: 10 }}>
 
+          {/* Interstitial - Building Real Solutions */}
           <section
             ref={addToRefs}
-            className={`space-y-8 transition-all flex-col content-center items-center justify-center duration-700 ${visibleSections.has(0)
+            className={`transition-all duration-700 ${visibleSections.has(0)
               ? 'opacity-100 translate-y-0'
               : 'opacity-0 translate-y-10'
               }`}
           >
-
-            <div className='px-0 sm:px-[10%]'>
-
-              <h2 className="text-left text-2xl sm:text-4xl py-3 w-max mb-5 text-white font-semibold arcade-font-white inline-block">Projects</h2>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-                {topProjects.map((p) => (
-                  <ProjectCard key={p.id} title={p.title} desc={p.desc} image={p.image} link={p.link} />
-                ))}
-              </div>
-              <div className="text-center mt-8">
-                <button
-                  className="px-8 py-3 bg-white/10 backdrop-blur-sm border border-white/20 text-white font-semibold rounded-lg hover:bg-white/20 hover:border-white/30 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
-                  onClick={() => navigate('/projects')}
-                >
-                  Show All Projects
-                </button>
-              </div>
-            </div>
+            <InterstitialText
+              text="Beyond Basic Development"
+              subtext="We create projects that turn heads and make tech exciting."
+            />
           </section>
 
+          {/* Featured Projects Section */}
           <section
             ref={addToRefs}
-            className={`space-y-8 transition-all duration-700 ${visibleSections.has(1)
+            className={`space-y-16 sm:space-y-20 px-4 sm:px-8 lg:px-16 max-w-7xl mx-auto py-12 transition-all duration-700 ${visibleSections.has(1)
               ? 'opacity-100 translate-y-0'
               : 'opacity-0 translate-y-10'
               }`}
           >
-            <h3 className="text-3xl sm:text-4xl font-semibold text-white text-center arcade-font-white">Tech Stack</h3>
-            <div className="flex flex-wrap justify-center gap-x-3 gap-y-6 max-w-6xl mx-auto">
-              {techStack.map((t) => (
-                <TechChip key={t.name} icon={t.icon} color={t.color}>{t.name}</TechChip>
-              ))}
-            </div>
-          </section>
-
-          <section
-            ref={addToRefs}
-            className={`space-y-12 py-8 transition-all duration-700 ${visibleSections.has(2)
-              ? 'opacity-100 translate-y-0'
-              : 'opacity-0 translate-y-10'
-              }`}
-          >
-            <h2 className="text-3xl sm:text-4xl font-semibold text-white text-center arcade-font-white">Head</h2>
-
-            <div className="flex justify-center">
-              {(() => {
-                const head = members.find(m => m.title === "Head")
-                return head ? (
-                  <Member
-                    name={head.name}
-                    image={head.image}
-                    linkedin={head.linkedin}
-                    github={head.github}
-                    profileLink={`/member/${head.id}`}
-                  />
-                ) : null
-              })()}
-            </div>
-
-            <div className="text-center">
-              <h3 className="text-2xl sm:text-3xl font-semibold text-slate-300 arcade-font-white">Co-Heads</h3>
-            </div>
-
-            <div className="flex justify-center gap-6 sm:gap-16 flex-wrap">
-              {members.filter(m => m.title === "Co-Head").map((coHead) => (
-                <Member
-                  key={coHead.id}
-                  name={coHead.name}
-                  image={coHead.image}
-                  linkedin={coHead.linkedin}
-                  github={coHead.github}
-                  profileLink={`/member/${coHead.id}`}
-                />
-              ))}
-            </div>
+            {featuredProjects.map((project, index) => (
+              <div
+                key={project.id}
+                ref={addToRefs}
+                className={`transition-all duration-700 ${visibleSections.has(2 + index)
+                  ? 'opacity-100 translate-y-0'
+                  : 'opacity-0 translate-y-10'
+                  }`}
+              >
+                <FeaturedProjectCard project={project} index={index} />
+              </div>
+            ))}
 
             <div className="text-center pt-8">
-              <h3 className="text-2xl sm:text-3xl font-semibold text-slate-300 arcade-font-white">Star Performers</h3>
+              <button
+                className="px-8 py-4 bg-white/10 backdrop-blur-sm border-2 border-white/20 text-white font-semibold rounded-lg hover:bg-white/20 hover:border-white/30 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
+                onClick={() => navigate('/projects')}
+              >
+                View All Projects
+              </button>
             </div>
+          </section>
 
-            {members.filter(m => m.starPerformer === true).length > 0 ? (
+          {/* Interstitial - Community Driven */}
+          <section
+            ref={addToRefs}
+            className={`transition-all duration-700 ${visibleSections.has(6)
+              ? 'opacity-100 translate-y-0'
+              : 'opacity-0 translate-y-10'
+              }`}
+          >
+            <InterstitialText
+              text="Where Creativity Meets Code"
+              subtext="Pushing boundaries, learning together, and having fun while we're at it."
+            />
+          </section>
+
+          {/* Star Performers Section */}
+          {starPerformers.length > 0 && (
+            <section
+              ref={addToRefs}
+              className={`space-y-8 py-12 px-4 sm:px-8 transition-all duration-700 ${visibleSections.has(7)
+                ? 'opacity-100 translate-y-0'
+                : 'opacity-0 translate-y-10'
+                }`}
+            >
+              <h2 className="text-3xl sm:text-4xl font-semibold text-white text-center arcade-font-white">
+                Star Performers
+              </h2>
+
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-12 max-w-6xl mx-auto">
-                {members.filter(m => m.starPerformer === true).map((performer) => (
+                {starPerformers.map((performer) => (
                   <Member
                     key={performer.id}
                     name={performer.name}
+                    nickname={performer.nickname}
+                    title={performer.title}
                     image={performer.image}
                     linkedin={performer.linkedin}
                     github={performer.github}
                     profileLink={`/member/${performer.id}`}
+                    starPerformer={performer.starPerformer}
                   />
                 ))}
               </div>
-            ) : (
-              <div className="text-center py-12 bg-black/10 rounded-xl border border-white/10 max-w-2xl mx-auto">
-                <p className="text-slate-400 text-lg">No star performers yet. Stay tuned!</p>
-              </div>
-            )}
 
-            <div className="text-center mt-8">
-              <button
-                className="px-8 py-3 bg-white/10 backdrop-blur-sm border border-white/20 text-white font-semibold rounded-lg hover:bg-white/20 hover:border-white/30 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
-                onClick={() => navigate('/members')}
-              >
-                View All Members
-              </button>
+              <div className="text-center mt-8">
+                <button
+                  className="px-8 py-3 bg-white/10 backdrop-blur-sm border border-white/20 text-white font-semibold rounded-lg hover:bg-white/20 hover:border-white/30 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
+                  onClick={() => navigate('/members')}
+                >
+                  View All Members
+                </button>
+              </div>
+            </section>
+          )}
+
+          {/* Join Us Section */}
+          <section
+            ref={addToRefs}
+            className={`space-y-8 py-12 transition-all duration-700 ${visibleSections.has(8)
+              ? 'opacity-100 translate-y-0'
+              : 'opacity-0 translate-y-10'
+              }`}
+          >
+            <div className="max-w-4xl mx-auto text-center px-4">
+              <div className="bg-black/30 backdrop-blur-sm border-2 border-white/20 rounded-2xl p-8 sm:p-12 hover:border-white/30 hover:bg-black/40 transition-all duration-300 shadow-2xl">
+                <h3 className="text-3xl sm:text-4xl font-semibold text-white mb-4 arcade-font-white">Join Us</h3>
+                <p className="text-slate-300 text-base sm:text-lg mb-2 leading-relaxed">
+                  Want to build projects that stand out? Be part of ACM's most creative tech team.
+                </p>
+                <p className="text-slate-400 text-sm sm:text-base mb-8">
+                  Learn, create, and showcase your skills through innovative projects. No experience required—just passion.
+                </p>
+                <a
+                  href="https://example.com/join"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block px-8 py-4 bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white font-semibold rounded-lg hover:bg-white/20 hover:border-white/50 transition-all duration-300 shadow-lg hover:shadow-2xl transform hover:scale-105"
+                >
+                  Join the Community
+                </a>
+              </div>
+            </div>
+          </section>
+
+          {/* Get in Touch Section */}
+          <section
+            ref={addToRefs}
+            className={`py-12 pb-20 transition-all duration-700 ${visibleSections.has(9)
+              ? 'opacity-100 translate-y-0'
+              : 'opacity-0 translate-y-10'
+              }`}
+          >
+            <div className="max-w-4xl mx-auto text-center px-4">
+              <div className="bg-black/30 backdrop-blur-sm border border-white/20 rounded-2xl p-8 sm:p-12">
+                <h2 className="text-3xl sm:text-4xl font-semibold text-white mb-6 arcade-font-white">Get in Touch</h2>
+                <p className="text-slate-300 text-base sm:text-lg mb-8 leading-relaxed">
+                  Got an idea? Want to collaborate? Let's build something amazing together.
+                </p>
+
+                <div className="space-y-6">
+                  {/* Contact Information */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div className="bg-black/20 backdrop-blur-sm border border-white/10 rounded-xl p-6 hover:border-white/20 transition-all duration-300">
+                      <h3 className="text-white font-semibold text-lg mb-2">Email</h3>
+                      <a
+                        href="mailto:techops@example.com"
+                        className="text-slate-300 hover:text-white transition-colors"
+                      >
+                        techops@example.com
+                      </a>
+                    </div>
+
+                    <div className="bg-black/20 backdrop-blur-sm border border-white/10 rounded-xl p-6 hover:border-white/20 transition-all duration-300">
+                      <h3 className="text-white font-semibold text-lg mb-2">WhatsApp</h3>
+                      <a
+                        href="https://wa.me/1234567890"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-slate-300 hover:text-white transition-colors"
+                      >
+                        +1 (234) 567-890
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </section>
         </div>

@@ -2,7 +2,7 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { FaLinkedin, FaGithub } from 'react-icons/fa'
 
-export default function Member({ name, image, linkedin, github, profileLink }) {
+export default function Member({ name, nickname, title, image, linkedin, github, profileLink, starPerformer }) {
   const navigate = useNavigate()
 
   const handleCardClick = () => {
@@ -21,8 +21,14 @@ export default function Member({ name, image, linkedin, github, profileLink }) {
     <div className="flex flex-col items-center group">
       <div
         onClick={handleCardClick}
-        className="bg-black/20 backdrop-blur-sm border border-white/10 rounded-2xl p-8 w-[360px] group-hover:bg-black/30 group-hover:border-white/20 transition-all duration-300 group-hover:shadow-2xl group-hover:shadow-black/50 flex flex-col items-center justify-center hover:scale-105 cursor-pointer"
+        className="bg-black/20 backdrop-blur-sm border border-white/10 rounded-2xl p-8 w-[360px] group-hover:bg-black/30 group-hover:border-white/20 transition-all duration-300 group-hover:shadow-2xl group-hover:shadow-black/50 flex flex-col items-center justify-center hover:scale-105 cursor-pointer relative"
       >
+        {/* View Profile Indicator */}
+        <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <span className="text-xs text-slate-400 group-hover:text-slate-300">
+            View Profile →
+          </span>
+        </div>
 
         <div className="relative mb-8">
           {/* Gradient border wrapper */}
@@ -37,9 +43,28 @@ export default function Member({ name, image, linkedin, github, profileLink }) {
           </div>
         </div>
 
-        <h3 className="text-2xl font-bold text-white text-center mb-6 group-hover:text-slate-200 transition-all duration-300">
+        <h3 className="text-2xl font-bold text-white text-center mb-1 group-hover:text-slate-200 transition-all duration-300">
           {name}
         </h3>
+
+        {nickname && (
+          <p className="text-xs text-slate-400 text-center mb-3 font-medium italic">
+            {nickname}
+          </p>
+        )}
+
+        <div className="flex items-center justify-center gap-2 mb-6">
+          {title && (
+            <p className="text-sm text-slate-400 text-center font-medium">
+              {title}
+            </p>
+          )}
+          {starPerformer && (
+            <span className="px-2 py-1 bg-slate-700/50 border border-slate-600/50 text-slate-300 text-xs font-medium rounded-full">
+              ★ Star Performer
+            </span>
+          )}
+        </div>
 
         <div className="flex justify-center gap-4">
           {linkedin && (
