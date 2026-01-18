@@ -1,4 +1,4 @@
-# Tech Operations Showcase
+# Tech Operations Showcase 2025 - 2026
 
 A modern, interactive showcase website for the Tech Operations team featuring animated particle backgrounds, project highlights, and team member profiles.
 
