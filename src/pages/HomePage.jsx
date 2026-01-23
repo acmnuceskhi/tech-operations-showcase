@@ -96,28 +96,11 @@ export default function HomePage({ teamName = 'Tech Operations', description = '
   const loading = projectsLoading || membersLoading;
   const error = projectsError || membersError;
 
-  // Debug logging
-  console.log('HomePage Debug:', {
-    projectsLoading,
-    membersLoading,
-    projectsError,
-    membersError,
-    projectsCount: projects?.length,
-    membersCount: members?.length,
-    loading,
-    error
-  });
-
   // Get featured projects (first 4)
   const featuredProjects = projects ? projects.slice(0, 4) : [];
 
   // Get star performers
   const starPerformers = members ? members.filter(m => m.starPerformer === true).slice(0, 6) : [];
-
-  console.log('Derived data:', {
-    featuredProjectsCount: featuredProjects.length,
-    starPerformersCount: starPerformers.length
-  });
 
   useEffect(() => {
     // Use single observer for all sections - more efficient
@@ -319,7 +302,7 @@ export default function HomePage({ teamName = 'Tech Operations', description = '
                   : 'opacity-0 translate-y-10'
                   }`}
               >
-                <FeaturedProjectCard project={project} index={index} />
+                <FeaturedProjectCard project={project} index={index} members={members} />
               </div>
             ))}
 

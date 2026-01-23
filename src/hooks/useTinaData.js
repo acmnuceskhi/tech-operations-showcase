@@ -23,16 +23,12 @@ export function useMembers() {
         setLoading(true)
         const result = await client.queries.membersConnection()
 
-        console.log('Members raw result:', result)
-
         if (result.data?.membersConnection?.edges) {
           const membersData = result.data.membersConnection.edges.map(edge => {
             const member = edge.node
-            console.log('Processing member:', member)
             // Extract numeric ID from file path (e.g., "content/members/1.json" -> 1)
             const idMatch = member.id.match(/\/(\d+)\.json$/)
             const numericId = idMatch ? parseInt(idMatch[1], 10) : null
-            console.log('ID extraction:', { originalId: member.id, idMatch, numericId })
 
             // Add computed fields with numeric ID
             return {
@@ -41,10 +37,7 @@ export function useMembers() {
               profileLink: `/member/${numericId}`
             }
           })
-          console.log('Final members data:', membersData)
           setMembers(membersData)
-        } else {
-          console.log('No members data in result')
         }
       } catch (err) {
         console.error('Error fetching members:', err)
@@ -75,16 +68,12 @@ export function useProjects() {
         setLoading(true)
         const result = await client.queries.projectsConnection()
 
-        console.log('Projects raw result:', result)
-
         if (result.data?.projectsConnection?.edges) {
           const projectsData = result.data.projectsConnection.edges.map(edge => {
             const project = edge.node
-            console.log('Processing project:', project)
             // Extract numeric ID from file path (e.g., "content/projects/1.json" -> 1)
             const idMatch = project.id.match(/\/(\d+)\.json$/)
             const numericId = idMatch ? parseInt(idMatch[1], 10) : null
-            console.log('ID extraction:', { originalId: project.id, idMatch, numericId })
 
             // Convert contributors from strings back to numbers
             const contributors = (project.contributors || []).map(id => parseInt(id, 10))
@@ -97,10 +86,7 @@ export function useProjects() {
               link: `/project/${numericId}`
             }
           })
-          console.log('Final projects data:', projectsData)
           setProjects(projectsData)
-        } else {
-          console.log('No projects data in result')
         }
       } catch (err) {
         console.error('Error fetching projects:', err)
