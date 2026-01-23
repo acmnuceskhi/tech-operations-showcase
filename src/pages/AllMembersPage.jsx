@@ -2,10 +2,37 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import Sidebar from '../components/Sidebar'
 import Member from '../components/Member'
-import members from '../data/members'
+import { useMembers } from '../hooks/useTinaData'
 
 export default function AllMembersPage() {
   const navigate = useNavigate();
+  const { members, loading, error } = useMembers();
+
+  if (loading) {
+    return (
+      <>
+        <Sidebar />
+        <div className="min-h-screen flex items-center justify-center">
+          <div className="text-white text-xl arcade-font-white">Loading...</div>
+        </div>
+      </>
+    );
+  }
+
+  if (error) {
+    return (
+      <>
+        <Sidebar />
+        <div className="min-h-screen flex items-center justify-center">
+          <div className="text-center">
+            <h1 className="text-2xl text-white mb-4">Error Loading Data</h1>
+            <p className="text-slate-300">{error.message}</p>
+          </div>
+        </div>
+      </>
+    );
+  }
+
   const head = members.find(m => m.title === "Head")
   const coHeads = members.filter(m => m.title === "Co-Head")
   const regularMembers = members.filter(m => m.title !== "Head" && m.title !== "Co-Head");
