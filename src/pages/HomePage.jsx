@@ -103,6 +103,9 @@ export default function HomePage({ teamName = 'Tech Operations', description = '
   const starPerformers = members ? members.filter(m => m.starPerformer === true).slice(0, 6) : [];
 
   useEffect(() => {
+    // Only set up observer after data has loaded
+    if (loading) return;
+
     // Use single observer for all sections - more efficient
     const observer = new IntersectionObserver(
       (entries) => {
@@ -128,7 +131,7 @@ export default function HomePage({ teamName = 'Tech Operations', description = '
     return () => {
       observer.disconnect()
     }
-  }, [])
+  }, [loading])
 
   // Scroll effect for overlay fade
   useEffect(() => {
