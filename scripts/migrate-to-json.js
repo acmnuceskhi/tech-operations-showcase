@@ -74,7 +74,11 @@ function transformMember(member) {
  */
 function transformProject(project) {
   const { link, ...rest } = project
-  return rest
+  // Convert contributors array to string array (Tina requires string for list fields)
+  return {
+    ...rest,
+    contributors: rest.contributors.map(id => String(id))
+  }
 }
 
 /**
