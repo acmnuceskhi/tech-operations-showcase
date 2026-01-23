@@ -1,92 +1,31 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
-import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa'
-import { useMembers } from '../hooks/useTinaData'
 
-export default function FeaturedProjectCard({ project, index }) {
-    const navigate = useNavigate()
-    const { members } = useMembers()
+export default function FeaturedProjectCard({ project, index = 0 }) {
     const isEven = index % 2 === 0
 
-    // Get contributor details
-    const contributors = project.contributors
-        ? project.contributors.map(id => {
-            const memberId = typeof id === 'string' ? parseInt(id, 10) : id
-            return members.find(m => m.id === memberId)
-          }).filter(Boolean)
-        : []
-
     return (
-        <div
-            className={`flex flex-col ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-8 lg:gap-12 items-center bg-black/20 backdrop-blur-sm border border-white/10 rounded-2xl p-6 sm:p-8 lg:p-10 hover:border-white/20 hover:bg-black/30 transition-all duration-500 group`}
+        <a
+            href={project.link}
+            rel="noopener noreferrer"
+            className={`group relative bg-black/20 backdrop-blur-sm border border-white/10 rounded-2xl overflow-hidden hover:border-white/30 transition-all duration-300 hover:shadow-2xl hover:shadow-black/50 flex flex-col ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'}`}
         >
-            {/* Project Image */}
-            <div className="w-full lg:w-1/2 relative overflow-hidden rounded-xl">
-                <div className="aspect-video bg-black/40 rounded-xl overflow-hidden group-hover:scale-105 transition-transform duration-500">
+            {project.image && (
+                <div className="w-full md:w-1/2 h-64 md:h-96 overflow-hidden">
                     <img
                         src={project.image}
                         alt={project.title}
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                     />
                 </div>
+            )}
+            <div className="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center">
+                <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 md:mb-6 text-white group-hover:text-slate-200 transition-colors arcade-font-white">
+                    {project.title}
+                </h3>
+                <p className="text-sm md:text-base lg:text-lg text-slate-300 leading-relaxed">
+                    {project.fullDescription || project.desc}
+                </p>
             </div>
-
-            {/* Project Details */}
-            <div className="w-full lg:w-1/2 space-y-4 sm:space-y-6">
-                <div>
-                    <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-3 group-hover:text-slate-200 transition-colors arcade-font-white">
-                        {project.title}
-                    </h3>
-                    <p className="text-slate-300 text-base sm:text-lg leading-relaxed">
-                        {project.fullDescription || project.desc}
-                    </p>
-                </div>
-
-                {/* Contributors */}
-                {contributors.length > 0 && (
-                    <div className="space-y-3">
-                        <h4 className="text-sm font-semibold text-slate-400 uppercase tracking-wider">Contributors</h4>
-                        <div className="flex flex-wrap gap-3">
-                            {contributors.map((contributor) => (
-                                <div
-                                    key={contributor.id}
-                                    onClick={() => navigate(`/member/${contributor.id}`)}
-                                    className="flex items-center gap-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-full px-3 py-1.5 cursor-pointer transition-all duration-300 hover:scale-105"
-                                >
-                                    <img
-                                        src={contributor.image}
-                                        alt={contributor.name}
-                                        className="w-6 h-6 rounded-full object-cover"
-                                    />
-                                    <span className="text-xs sm:text-sm text-slate-300">{contributor.name}</span>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                )}
-
-                {/* Action Buttons */}
-                <div className="flex flex-wrap gap-3 pt-2">
-                    <button
-                        onClick={() => navigate(project.link)}
-                        className="flex items-center gap-2 px-6 py-3 bg-white/10 hover:bg-white/20 border border-white/20 hover:border-white/30 text-white font-semibold rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
-                    >
-                        View Details
-                        <FaExternalLinkAlt className="text-sm" />
-                    </button>
-                    {project.githubUrl && (
-                        <a
-                            href={project.githubUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="flex items-center gap-2 px-6 py-3 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 text-slate-300 hover:text-white font-semibold rounded-lg transition-all duration-300"
-                        >
-                            <FaGithub className="text-lg" />
-                            GitHub
-                        </a>
-                    )}
-                </div>
-            </div>
-        </div>
+        </a>
     )
 }

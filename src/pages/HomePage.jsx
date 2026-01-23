@@ -99,11 +99,6 @@ export default function HomePage({ teamName = 'Tech Operations', description = '
   const [showScrollIndicator, setShowScrollIndicator] = useState(true)
   const sectionRefs = useRef([])
 
-  // Show loading spinner while critical data is being fetched
-  if (projectsLoading || membersLoading) {
-    return <LoadingSpinner message="Loading home page..." />
-  }
-
   useEffect(() => {
     // Use single observer for all sections - more efficient
     const observer = new IntersectionObserver(
@@ -171,6 +166,11 @@ export default function HomePage({ teamName = 'Tech Operations', description = '
     if (el && !sectionRefs.current.includes(el)) {
       sectionRefs.current.push(el)
     }
+  }
+
+  // Show loading spinner while critical data is being fetched
+  if (projectsLoading || membersLoading) {
+    return <LoadingSpinner message="Loading home page..." />
   }
 
   return (
