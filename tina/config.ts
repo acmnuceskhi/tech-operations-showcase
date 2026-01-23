@@ -35,12 +35,6 @@ export default defineConfig({
         format: "json",
         fields: [
           {
-            type: "number",
-            name: "id",
-            label: "ID",
-            required: true,
-          },
-          {
             type: "string",
             name: "name",
             label: "Name",
@@ -100,12 +94,6 @@ export default defineConfig({
         path: "content/projects",
         format: "json",
         fields: [
-          {
-            type: "string",
-            name: "id",
-            label: "ID",
-            required: true,
-          },
           {
             type: "string",
             name: "title",
