@@ -1,12 +1,9 @@
 /**
  * Tina CMS Client
  *
- * Provides a configured client for fetching content from Tina CMS.
- * Uses static JSON files for data, avoiding the need for TinaCloud or GraphQL server.
+ * Provides a configured client for fetching content from Tina Cloud.
+ * Uses the auto-generated client based on your schema.
  */
 
-import { client as staticClient } from './static-client'
-
-export const client = staticClient
-
-export default client
+export { client } from '../tina/__generated__/client'
+export { client as default } from '../tina/__generated__/client'

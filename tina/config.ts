@@ -10,13 +10,9 @@ const branch =
 export default defineConfig({
   branch,
 
-  // Get this from tina.io (using Vite env variables)
-  // Only used in production - local dev doesn't need these
-  // Only set if environment variables are available
-  ...(process.env.VITE_TINA_CLIENT_ID && process.env.VITE_TINA_TOKEN ? {
-    clientId: process.env.VITE_TINA_CLIENT_ID,
-    token: process.env.VITE_TINA_TOKEN,
-  } : {}),
+  // Tina Cloud configuration
+  clientId: process.env.VITE_TINA_CLIENT_ID,
+  token: process.env.VITE_TINA_TOKEN,
 
   build: {
     outputFolder: "admin",
