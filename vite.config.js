@@ -8,4 +8,14 @@ export default defineConfig({
     react(),
     tailwindcss(),
   ],
+  server: {
+    fs: {
+      // Allow Tina admin files to be served
+      allow: ['..']
+    }
+  },
+  optimizeDeps: {
+    // Pre-bundle Tina CMS for better performance
+    include: ['tinacms']
+  }
 })
