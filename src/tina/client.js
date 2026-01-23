@@ -6,13 +6,8 @@
  * In production, connects to Tina Cloud.
  */
 
-import { createClient } from 'tinacms/dist/client'
+import { client as generatedClient } from '../../tina/__generated__/client'
 
-export const client = createClient({
-  url: import.meta.env.DEV
-    ? 'http://localhost:4001/graphql'
-    : `https://content.tinajs.io/content/${import.meta.env.VITE_TINA_CLIENT_ID}/github/${import.meta.env.VITE_TINA_BRANCH}`,
-  token: import.meta.env.VITE_TINA_TOKEN
-})
+export const client = generatedClient
 
 export default client

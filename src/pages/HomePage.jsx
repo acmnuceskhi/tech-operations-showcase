@@ -5,7 +5,7 @@ import FeaturedProjectCard from '../components/FeaturedProjectCard'
 import InterstitialText from '../components/InterstitialText'
 import Member from '../components/Member'
 import LoadingSpinner from '../components/LoadingSpinner'
-import { useMembers, useProjects } from '../hooks/useTinaData'
+import { useProjects, useMembers } from '../hooks/useTinaData'
 
 // Glitch Text Component
 function GlitchText({ text, className = '' }) {
@@ -84,10 +84,8 @@ function GlitchText({ text, className = '' }) {
 
 export default function HomePage({ teamName = 'Tech Operations', description = 'We make what you see' }) {
   const navigate = useNavigate()
-
-  // Fetch data from Tina CMS
-  const { members, loading: membersLoading } = useMembers()
   const { projects, loading: projectsLoading } = useProjects()
+  const { members, loading: membersLoading } = useMembers()
 
   // Get featured projects (first 4)
   const featuredProjects = projects.slice(0, 4)
@@ -95,16 +93,16 @@ export default function HomePage({ teamName = 'Tech Operations', description = '
   // Get star performers
   const starPerformers = members.filter(m => m.starPerformer === true).slice(0, 6)
 
-  // Show loading spinner while data is being fetched
-  if (membersLoading || projectsLoading) {
-    return <LoadingSpinner message="Loading content..." />
-  }
-
   // State for scroll animations
   const [visibleSections, setVisibleSections] = useState(new Set())
   const [overlayOpacity, setOverlayOpacity] = useState(0.8)
   const [showScrollIndicator, setShowScrollIndicator] = useState(true)
   const sectionRefs = useRef([])
+
+  // Show loading spinner while critical data is being fetched
+  if (projectsLoading || membersLoading) {
+    return <LoadingSpinner message="Loading home page..." />
+  }
 
   useEffect(() => {
     // Use single observer for all sections - more efficient
