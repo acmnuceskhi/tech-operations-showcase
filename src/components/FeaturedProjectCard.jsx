@@ -1,15 +1,19 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa'
-import members from '../data/members'
+import { useMembers } from '../hooks/useTinaData'
 
 export default function FeaturedProjectCard({ project, index }) {
     const navigate = useNavigate()
+    const { members } = useMembers()
     const isEven = index % 2 === 0
 
     // Get contributor details
     const contributors = project.contributors
-        ? project.contributors.map(id => members.find(m => m.id === id)).filter(Boolean)
+        ? project.contributors.map(id => {
+            const memberId = typeof id === 'string' ? parseInt(id, 10) : id
+            return members.find(m => m.id === memberId)
+          }).filter(Boolean)
         : []
 
     return (
