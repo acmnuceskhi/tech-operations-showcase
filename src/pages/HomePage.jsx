@@ -87,6 +87,12 @@ export default function HomePage({ teamName = 'Tech Operations', description = '
   const { projects, loading: projectsLoading, error: projectsError } = useProjects();
   const { members, loading: membersLoading, error: membersError } = useMembers();
 
+  // State for scroll animations
+  const [visibleSections, setVisibleSections] = useState(new Set())
+  const [overlayOpacity, setOverlayOpacity] = useState(0.8)
+  const [showScrollIndicator, setShowScrollIndicator] = useState(true)
+  const sectionRefs = useRef([])
+
   const loading = projectsLoading || membersLoading;
   const error = projectsError || membersError;
 
@@ -95,37 +101,6 @@ export default function HomePage({ teamName = 'Tech Operations', description = '
 
   // Get star performers
   const starPerformers = members ? members.filter(m => m.starPerformer === true).slice(0, 6) : [];
-
-  // State for scroll animations
-  const [visibleSections, setVisibleSections] = useState(new Set())
-  const [overlayOpacity, setOverlayOpacity] = useState(0.8)
-  const [showScrollIndicator, setShowScrollIndicator] = useState(true)
-  const sectionRefs = useRef([])
-
-  if (loading) {
-    return (
-      <>
-        <Sidebar />
-        <div className="min-h-screen flex items-center justify-center">
-          <div className="text-white text-xl arcade-font-white">Loading...</div>
-        </div>
-      </>
-    );
-  }
-
-  if (error) {
-    return (
-      <>
-        <Sidebar />
-        <div className="min-h-screen flex items-center justify-center">
-          <div className="text-center">
-            <h1 className="text-2xl text-white mb-4">Error Loading Data</h1>
-            <p className="text-slate-300">{error.message}</p>
-          </div>
-        </div>
-      </>
-    );
-  }
 
   useEffect(() => {
     // Use single observer for all sections - more efficient
@@ -194,6 +169,31 @@ export default function HomePage({ teamName = 'Tech Operations', description = '
     if (el && !sectionRefs.current.includes(el)) {
       sectionRefs.current.push(el)
     }
+  }
+
+  if (loading) {
+    return (
+      <>
+        <Sidebar />
+        <div className="min-h-screen flex items-center justify-center">
+          <div className="text-white text-xl arcade-font-white">Loading...</div>
+        </div>
+      </>
+    );
+  }
+
+  if (error) {
+    return (
+      <>
+        <Sidebar />
+        <div className="min-h-screen flex items-center justify-center">
+          <div className="text-center">
+            <h1 className="text-2xl text-white mb-4">Error Loading Data</h1>
+            <p className="text-slate-300">{error.message}</p>
+          </div>
+        </div>
+      </>
+    );
   }
 
   return (
