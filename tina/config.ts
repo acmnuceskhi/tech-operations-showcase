@@ -12,9 +12,11 @@ export default defineConfig({
 
   // Get this from tina.io (using Vite env variables)
   // Only used in production - local dev doesn't need these
-  clientId: process.env.VITE_TINA_CLIENT_ID,
-  // Get this from tina.io
-  token: process.env.VITE_TINA_TOKEN,
+  // Only set if environment variables are available
+  ...(process.env.VITE_TINA_CLIENT_ID && process.env.VITE_TINA_TOKEN ? {
+    clientId: process.env.VITE_TINA_CLIENT_ID,
+    token: process.env.VITE_TINA_TOKEN,
+  } : {}),
 
   build: {
     outputFolder: "admin",

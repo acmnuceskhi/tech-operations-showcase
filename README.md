@@ -19,6 +19,7 @@ A modern, interactive showcase website for the Tech Operations team featuring an
 - **Tailwind CSS 4** - Utility-first styling
 - **React Icons** - Icon library
 - **Canvas API** - Particle animation system
+- **TinaCMS** - Content management system
 
 ## 📦 Installation
 
