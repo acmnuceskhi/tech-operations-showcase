@@ -2,11 +2,41 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { FaLinkedin, FaGithub } from 'react-icons/fa'
 import Sidebar from '../components/Sidebar'
-import members from '../data/members'
-import projects from '../data/projects'
+import { useMembers, useProjects } from '../hooks/useTinaData'
 
 export default function MemberProfilePage({ memberId }) {
   const navigate = useNavigate()
+
+  const { members, loading: membersLoading, error: membersError } = useMembers();
+  const { projects, loading: projectsLoading, error: projectsError } = useProjects();
+
+  const loading = membersLoading || projectsLoading;
+  const error = membersError || projectsError;
+
+  if (loading) {
+    return (
+      <>
+        <Sidebar />
+        <div className="min-h-screen flex items-center justify-center">
+          <div className="text-white text-xl arcade-font-white">Loading...</div>
+        </div>
+      </>
+    );
+  }
+
+  if (error) {
+    return (
+      <>
+        <Sidebar />
+        <div className="min-h-screen flex items-center justify-center">
+          <div className="text-center">
+            <h1 className="text-2xl text-white mb-4">Error Loading Data</h1>
+            <p className="text-slate-300">{error.message}</p>
+          </div>
+        </div>
+      </>
+    );
+  }
 
   const member = members.find(m => m.id === parseInt(memberId))
 
