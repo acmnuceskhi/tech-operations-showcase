@@ -1,0 +1,11 @@
+{
+  "id": 4,
+  "name": "Muhammad Rayyan",
+  "nickname": "QA Guardian",
+  "title": "Member",
+  "description": "Dedicated to quality assurance and testing frameworks. Ensuring robust and reliable software delivery.",
+  "starPerformer": true,
+  "image": "/src/assets/rayyan.jpg",
+  "linkedin": "https://www.linkedin.com/in/muhammad-rayyan-2501492ab/",
+  "github": "https://github.com/rayyanm86"
+}

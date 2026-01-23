@@ -4,8 +4,7 @@ import Sidebar from '../components/Sidebar'
 import FeaturedProjectCard from '../components/FeaturedProjectCard'
 import InterstitialText from '../components/InterstitialText'
 import Member from '../components/Member'
-import projects from '../data/projects'
-import members from '../data/members'
+import { useProjects, useMembers } from '../hooks/useTinaData'
 
 // Glitch Text Component
 function GlitchText({ text, className = '' }) {
@@ -85,11 +84,8 @@ function GlitchText({ text, className = '' }) {
 export default function HomePage({ teamName = 'Tech Operations', description = 'We make what you see' }) {
   const navigate = useNavigate()
 
-  // Get featured projects (first 4)
-  const featuredProjects = projects.slice(0, 4)
-
-  // Get star performers
-  const starPerformers = members.filter(m => m.starPerformer === true).slice(0, 6)
+  const { projects, loading: projectsLoading, error: projectsError } = useProjects();
+  const { members, loading: membersLoading, error: membersError } = useMembers();
 
   // State for scroll animations
   const [visibleSections, setVisibleSections] = useState(new Set())
@@ -97,7 +93,19 @@ export default function HomePage({ teamName = 'Tech Operations', description = '
   const [showScrollIndicator, setShowScrollIndicator] = useState(true)
   const sectionRefs = useRef([])
 
+  const loading = projectsLoading || membersLoading;
+  const error = projectsError || membersError;
+
+  // Get featured projects (first 4)
+  const featuredProjects = projects ? projects.slice(0, 4) : [];
+
+  // Get star performers
+  const starPerformers = members ? members.filter(m => m.starPerformer === true).slice(0, 6) : [];
+
   useEffect(() => {
+    // Only set up observer after data has loaded
+    if (loading) return;
+
     // Use single observer for all sections - more efficient
     const observer = new IntersectionObserver(
       (entries) => {
@@ -123,7 +131,7 @@ export default function HomePage({ teamName = 'Tech Operations', description = '
     return () => {
       observer.disconnect()
     }
-  }, [])
+  }, [loading])
 
   // Scroll effect for overlay fade
   useEffect(() => {
@@ -164,6 +172,31 @@ export default function HomePage({ teamName = 'Tech Operations', description = '
     if (el && !sectionRefs.current.includes(el)) {
       sectionRefs.current.push(el)
     }
+  }
+
+  if (loading) {
+    return (
+      <>
+        <Sidebar />
+        <div className="min-h-screen flex items-center justify-center">
+          <div className="text-white text-xl arcade-font-white">Loading...</div>
+        </div>
+      </>
+    );
+  }
+
+  if (error) {
+    return (
+      <>
+        <Sidebar />
+        <div className="min-h-screen flex items-center justify-center">
+          <div className="text-center">
+            <h1 className="text-2xl text-white mb-4">Error Loading Data</h1>
+            <p className="text-slate-300">{error.message}</p>
+          </div>
+        </div>
+      </>
+    );
   }
 
   return (
@@ -272,7 +305,7 @@ export default function HomePage({ teamName = 'Tech Operations', description = '
                   : 'opacity-0 translate-y-10'
                   }`}
               >
-                <FeaturedProjectCard project={project} index={index} />
+                <FeaturedProjectCard project={project} index={index} members={members} />
               </div>
             ))}
 

@@ -30,4 +30,3 @@ function MemberProfilePageWrapper() {
   const { memberId } = useParams()
   return <MemberProfilePage memberId={memberId} />
 }
-

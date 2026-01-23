@@ -1,14 +1,13 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa'
-import members from '../data/members'
 
-export default function FeaturedProjectCard({ project, index }) {
+export default function FeaturedProjectCard({ project, index, members = [] }) {
     const navigate = useNavigate()
     const isEven = index % 2 === 0
 
     // Get contributor details
-    const contributors = project.contributors
+    const contributors = project.contributors && members
         ? project.contributors.map(id => members.find(m => m.id === id)).filter(Boolean)
         : []
 

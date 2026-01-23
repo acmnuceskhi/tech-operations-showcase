@@ -1,9 +1,36 @@
 import React from "react";
 import Sidebar from '../components/Sidebar';
 import ProjectCard from '../components/ProjectCard';
-import projects from '../data/projects';
+import { useProjects } from '../hooks/useTinaData';
 
 export default function ProjectsPage() {
+  const { projects, loading, error } = useProjects();
+
+  if (loading) {
+    return (
+      <>
+        <Sidebar />
+        <div className="min-h-screen flex items-center justify-center">
+          <div className="text-white text-xl arcade-font-white">Loading...</div>
+        </div>
+      </>
+    );
+  }
+
+  if (error) {
+    return (
+      <>
+        <Sidebar />
+        <div className="min-h-screen flex items-center justify-center">
+          <div className="text-center">
+            <h1 className="text-2xl text-white mb-4">Error Loading Data</h1>
+            <p className="text-slate-300">{error.message}</p>
+          </div>
+        </div>
+      </>
+    );
+  }
+
   return (
     <>
       <Sidebar />
