@@ -3,17 +3,47 @@ import { FaChevronRight, FaChevronLeft } from "react-icons/fa6";
 import { useNavigate, useParams } from "react-router-dom";
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import Sidebar from '../components/Sidebar';
-import projects from '../data/projects';
-import members from '../data/members';
+import { useProjects, useMembers } from '../hooks/useTinaData';
 
 export default function ProjectPage() {
   const navigate = useNavigate();
   const { projectId } = useParams();
 
+  const { projects, loading: projectsLoading, error: projectsError } = useProjects();
+  const { members, loading: membersLoading, error: membersError } = useMembers();
+
+  const loading = projectsLoading || membersLoading;
+  const error = projectsError || membersError;
+
   const [currentIndex, setCurrentIndex] = useState(0);
   const [hoveredMember, setHoveredMember] = useState(null);
 
-  const project = projects.find(p => p.id === projectId);
+  if (loading) {
+    return (
+      <>
+        <Sidebar />
+        <div className="min-h-screen flex items-center justify-center">
+          <div className="text-white text-xl arcade-font-white">Loading...</div>
+        </div>
+      </>
+    );
+  }
+
+  if (error) {
+    return (
+      <>
+        <Sidebar />
+        <div className="min-h-screen flex items-center justify-center">
+          <div className="text-center">
+            <h1 className="text-2xl text-white mb-4">Error Loading Data</h1>
+            <p className="text-slate-300">{error.message}</p>
+          </div>
+        </div>
+      </>
+    );
+  }
+
+  const project = projects.find(p => p.id === parseInt(projectId, 10));
 
   if (!project) {
     return (
