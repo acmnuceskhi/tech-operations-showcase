@@ -2,19 +2,11 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { FaLinkedin, FaGithub } from 'react-icons/fa'
 import Sidebar from '../components/Sidebar'
-import LoadingSpinner from '../components/LoadingSpinner'
-import { useMembers, useProjects } from '../hooks/useTinaData'
+import members from '../data/members'
+import projects from '../data/projects'
 
 export default function MemberProfilePage({ memberId }) {
   const navigate = useNavigate()
-
-  const { members, loading: membersLoading } = useMembers()
-  const { projects, loading: projectsLoading } = useProjects()
-
-  // Show loading spinner while data is being fetched
-  if (membersLoading || projectsLoading) {
-    return <LoadingSpinner message="Loading member profile..." />
-  }
 
   const member = members.find(m => m.id === parseInt(memberId))
 

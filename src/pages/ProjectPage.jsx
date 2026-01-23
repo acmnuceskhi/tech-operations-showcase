@@ -3,8 +3,8 @@ import { FaChevronRight, FaChevronLeft } from "react-icons/fa6";
 import { useNavigate, useParams } from "react-router-dom";
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import Sidebar from '../components/Sidebar';
-import LoadingSpinner from '../components/LoadingSpinner';
-import { useMembers, useProjects } from '../hooks/useTinaData';
+import projects from '../data/projects';
+import members from '../data/members';
 
 export default function ProjectPage() {
   const navigate = useNavigate();
@@ -12,14 +12,6 @@ export default function ProjectPage() {
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [hoveredMember, setHoveredMember] = useState(null);
-
-  const { members, loading: membersLoading } = useMembers()
-  const { projects, loading: projectsLoading } = useProjects()
-
-  // Show loading spinner while data is being fetched
-  if (membersLoading || projectsLoading) {
-    return <LoadingSpinner message="Loading project..." />
-  }
 
   const project = projects.find(p => p.id === projectId);
 

@@ -4,8 +4,8 @@ import Sidebar from '../components/Sidebar'
 import FeaturedProjectCard from '../components/FeaturedProjectCard'
 import InterstitialText from '../components/InterstitialText'
 import Member from '../components/Member'
-import LoadingSpinner from '../components/LoadingSpinner'
-import { useProjects, useMembers } from '../hooks/useTinaData'
+import projects from '../data/projects'
+import members from '../data/members'
 
 // Glitch Text Component
 function GlitchText({ text, className = '' }) {
@@ -84,8 +84,6 @@ function GlitchText({ text, className = '' }) {
 
 export default function HomePage({ teamName = 'Tech Operations', description = 'We make what you see' }) {
   const navigate = useNavigate()
-  const { projects, loading: projectsLoading } = useProjects()
-  const { members, loading: membersLoading } = useMembers()
 
   // Get featured projects (first 4)
   const featuredProjects = projects.slice(0, 4)
@@ -166,11 +164,6 @@ export default function HomePage({ teamName = 'Tech Operations', description = '
     if (el && !sectionRefs.current.includes(el)) {
       sectionRefs.current.push(el)
     }
-  }
-
-  // Show loading spinner while critical data is being fetched
-  if (projectsLoading || membersLoading) {
-    return <LoadingSpinner message="Loading home page..." />
   }
 
   return (
@@ -279,7 +272,7 @@ export default function HomePage({ teamName = 'Tech Operations', description = '
                   : 'opacity-0 translate-y-10'
                   }`}
               >
-                <FeaturedProjectCard project={project} index={index} members={members} />
+                <FeaturedProjectCard project={project} index={index} />
               </div>
             ))}
 

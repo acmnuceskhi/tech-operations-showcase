@@ -6,7 +6,6 @@ import ProjectsPage from './pages/ProjectsPage'
 import ProjectPage from './pages/ProjectPage'
 import AllMembersPage from './pages/AllMembersPage'
 import MemberProfilePage from './pages/MemberProfilePage'
-import TinaAdminPage from './pages/TinaAdminPage'
 
 export default function App() {
   return (
@@ -20,7 +19,6 @@ export default function App() {
             <Route path="/project/:projectId" element={<ProjectPage />} />
             <Route path="/members" element={<AllMembersPage />} />
             <Route path="/member/:memberId" element={<MemberProfilePageWrapper />} />
-            <Route path="/admin/*" element={<TinaAdminPage />} />
           </Routes>
         </div>
       </div>
@@ -32,4 +30,3 @@ function MemberProfilePageWrapper() {
   const { memberId } = useParams()
   return <MemberProfilePage memberId={memberId} />
 }
-
