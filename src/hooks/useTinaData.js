@@ -66,9 +66,12 @@ export function useProjects() {
         if (result.data?.projectsConnection?.edges) {
           const projectsData = result.data.projectsConnection.edges.map(edge => {
             const project = edge.node
+            // Convert contributors from strings back to numbers
+            const contributors = (project.contributors || []).map(id => parseInt(id, 10))
             // Add computed link field
             return {
               ...project,
+              contributors,
               link: `/project/${project.id}`
             }
           })
