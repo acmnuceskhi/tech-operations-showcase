@@ -10,10 +10,10 @@ const branch =
 export default defineConfig({
   branch,
 
+  // Get this from tina.io (using Vite env variables)
+  clientId: process.env.VITE_TINA_CLIENT_ID,
   // Get this from tina.io
-  clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID,
-  // Get this from tina.io
-  token: process.env.TINA_TOKEN,
+  token: process.env.VITE_TINA_TOKEN,
 
   build: {
     outputFolder: "admin",
@@ -29,10 +29,83 @@ export default defineConfig({
   schema: {
     collections: [
       {
-        name: "post",
-        label: "Posts",
-        path: "content/posts",
+        name: "members",
+        label: "Members",
+        path: "content/members",
+        format: "json",
         fields: [
+          {
+            type: "number",
+            name: "id",
+            label: "ID",
+            required: true,
+          },
+          {
+            type: "string",
+            name: "name",
+            label: "Name",
+            isTitle: true,
+            required: true,
+          },
+          {
+            type: "string",
+            name: "nickname",
+            label: "Nickname",
+            required: true,
+          },
+          {
+            type: "string",
+            name: "title",
+            label: "Title",
+            required: true,
+            options: ["Head", "Co-Head", "Member", "Executive"],
+          },
+          {
+            type: "string",
+            name: "description",
+            label: "Description",
+            required: true,
+            ui: {
+              component: "textarea",
+            },
+          },
+          {
+            type: "boolean",
+            name: "starPerformer",
+            label: "Star Performer",
+          },
+          {
+            type: "string",
+            name: "image",
+            label: "Image URL",
+            required: true,
+          },
+          {
+            type: "string",
+            name: "linkedin",
+            label: "LinkedIn URL",
+            required: true,
+          },
+          {
+            type: "string",
+            name: "github",
+            label: "GitHub URL",
+            required: true,
+          },
+        ],
+      },
+      {
+        name: "projects",
+        label: "Projects",
+        path: "content/projects",
+        format: "json",
+        fields: [
+          {
+            type: "string",
+            name: "id",
+            label: "ID",
+            required: true,
+          },
           {
             type: "string",
             name: "title",
@@ -41,10 +114,85 @@ export default defineConfig({
             required: true,
           },
           {
-            type: "rich-text",
-            name: "body",
-            label: "Body",
-            isBody: true,
+            type: "string",
+            name: "desc",
+            label: "Short Description",
+            required: true,
+            ui: {
+              component: "textarea",
+            },
+          },
+          {
+            type: "string",
+            name: "image",
+            label: "Main Image URL",
+            required: true,
+          },
+          {
+            type: "string",
+            name: "fullDescription",
+            label: "Full Description",
+            required: true,
+            ui: {
+              component: "textarea",
+            },
+          },
+          {
+            type: "string",
+            name: "images",
+            label: "Gallery Images",
+            required: true,
+            list: true,
+          },
+          {
+            type: "string",
+            name: "githubUrl",
+            label: "GitHub URL",
+            required: true,
+          },
+          {
+            type: "number",
+            name: "contributors",
+            label: "Contributors (Member IDs)",
+            required: true,
+            list: true,
+          },
+        ],
+      },
+      {
+        name: "techStack",
+        label: "Tech Stack",
+        path: "content/tech-stack",
+        format: "json",
+        fields: [
+          {
+            type: "string",
+            name: "name",
+            label: "Technology Name",
+            isTitle: true,
+            required: true,
+          },
+          {
+            type: "string",
+            name: "iconName",
+            label: "Icon Name",
+            required: true,
+            description: "React icon component name (e.g., FaReact, SiTypescript)",
+          },
+          {
+            type: "string",
+            name: "iconLibrary",
+            label: "Icon Library",
+            required: true,
+            options: ["fa", "si"],
+            description: "Icon library: 'fa' for Font Awesome, 'si' for Simple Icons",
+          },
+          {
+            type: "string",
+            name: "color",
+            label: "Color",
+            required: true,
+            description: "Hex color code (e.g., #61DAFB)",
           },
         ],
       },
