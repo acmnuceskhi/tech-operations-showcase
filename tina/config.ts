@@ -151,11 +151,12 @@ export default defineConfig({
             required: true,
           },
           {
-            type: "number",
+            type: "string",
             name: "contributors",
             label: "Contributors (Member IDs)",
             required: true,
             list: true,
+            description: "Enter member IDs (numbers) as comma-separated values or one per field",
           },
         ],
       },
