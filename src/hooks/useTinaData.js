@@ -26,10 +26,15 @@ export function useMembers() {
         if (result.data?.membersConnection?.edges) {
           const membersData = result.data.membersConnection.edges.map(edge => {
             const member = edge.node
-            // Add computed profileLink field
+            // Extract numeric ID from file path (e.g., "content/members/1.json" -> 1)
+            const idMatch = member.id.match(/\/(\d+)\.json$/)
+            const numericId = idMatch ? parseInt(idMatch[1], 10) : null
+
+            // Add computed fields with numeric ID
             return {
               ...member,
-              profileLink: `/member/${member.id}`
+              id: numericId,
+              profileLink: `/member/${numericId}`
             }
           })
           setMembers(membersData)
@@ -66,13 +71,19 @@ export function useProjects() {
         if (result.data?.projectsConnection?.edges) {
           const projectsData = result.data.projectsConnection.edges.map(edge => {
             const project = edge.node
+            // Extract numeric ID from file path (e.g., "content/projects/1.json" -> 1)
+            const idMatch = project.id.match(/\/(\d+)\.json$/)
+            const numericId = idMatch ? parseInt(idMatch[1], 10) : null
+
             // Convert contributors from strings back to numbers
             const contributors = (project.contributors || []).map(id => parseInt(id, 10))
-            // Add computed link field
+
+            // Add computed fields with numeric ID
             return {
               ...project,
+              id: numericId,
               contributors,
-              link: `/project/${project.id}`
+              link: `/project/${numericId}`
             }
           })
           setProjects(projectsData)
