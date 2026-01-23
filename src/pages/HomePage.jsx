@@ -279,7 +279,7 @@ export default function HomePage({ teamName = 'Tech Operations', description = '
                   : 'opacity-0 translate-y-10'
                   }`}
               >
-                <FeaturedProjectCard project={project} index={index} />
+                <FeaturedProjectCard project={project} index={index} members={members} />
               </div>
             ))}
 
