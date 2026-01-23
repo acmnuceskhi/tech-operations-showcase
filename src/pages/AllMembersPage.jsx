@@ -2,10 +2,18 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import Sidebar from '../components/Sidebar'
 import Member from '../components/Member'
-import members from '../data/members'
+import LoadingSpinner from '../components/LoadingSpinner'
+import { useMembers } from '../hooks/useTinaData'
 
 export default function AllMembersPage() {
   const navigate = useNavigate();
+  const { members, loading } = useMembers()
+
+  // Show loading spinner while data is being fetched
+  if (loading) {
+    return <LoadingSpinner message="Loading members..." />
+  }
+
   const head = members.find(m => m.title === "Head")
   const coHeads = members.filter(m => m.title === "Co-Head")
   const regularMembers = members.filter(m => m.title !== "Head" && m.title !== "Co-Head");

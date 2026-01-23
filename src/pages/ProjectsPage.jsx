@@ -1,9 +1,17 @@
 import React from "react";
 import Sidebar from '../components/Sidebar';
 import ProjectCard from '../components/ProjectCard';
-import projects from '../data/projects';
+import LoadingSpinner from '../components/LoadingSpinner';
+import { useProjects } from '../hooks/useTinaData';
 
 export default function ProjectsPage() {
+  const { projects, loading } = useProjects()
+
+  // Show loading spinner while data is being fetched
+  if (loading) {
+    return <LoadingSpinner message="Loading projects..." />
+  }
+
   return (
     <>
       <Sidebar />

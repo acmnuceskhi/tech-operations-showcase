@@ -4,8 +4,8 @@ import Sidebar from '../components/Sidebar'
 import FeaturedProjectCard from '../components/FeaturedProjectCard'
 import InterstitialText from '../components/InterstitialText'
 import Member from '../components/Member'
-import projects from '../data/projects'
-import members from '../data/members'
+import LoadingSpinner from '../components/LoadingSpinner'
+import { useMembers, useProjects } from '../hooks/useTinaData'
 
 // Glitch Text Component
 function GlitchText({ text, className = '' }) {
@@ -85,11 +85,20 @@ function GlitchText({ text, className = '' }) {
 export default function HomePage({ teamName = 'Tech Operations', description = 'We make what you see' }) {
   const navigate = useNavigate()
 
+  // Fetch data from Tina CMS
+  const { members, loading: membersLoading } = useMembers()
+  const { projects, loading: projectsLoading } = useProjects()
+
   // Get featured projects (first 4)
   const featuredProjects = projects.slice(0, 4)
 
   // Get star performers
   const starPerformers = members.filter(m => m.starPerformer === true).slice(0, 6)
+
+  // Show loading spinner while data is being fetched
+  if (membersLoading || projectsLoading) {
+    return <LoadingSpinner message="Loading content..." />
+  }
 
   // State for scroll animations
   const [visibleSections, setVisibleSections] = useState(new Set())
