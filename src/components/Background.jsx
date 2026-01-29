@@ -142,18 +142,41 @@ export default function Background() {
   }, [])
 
   return (
-    <div className="fixed inset-0 w-full h-full overflow-hidden bg-black" style={{ zIndex: 0 }}>
+    <div
+      className="fixed inset-0 w-full h-full overflow-hidden bg-black"
+      style={{ zIndex: 0 }}
+    >
+      {/* Canvas */}
       <canvas
         ref={canvasRef}
         className="w-full h-full"
         style={{
           display: 'block',
           imageRendering: 'pixelated',
-          // imageRendering: '-moz-crisp-edges',
-          // imageRendering: 'crisp-edges'
+          opacity: 0.85 // soften harsh whites
+        }}
+      />
 
+      {/* Blur + Dark Overlay */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            'radial-gradient(circle at center, rgba(15,23,42,0.35) 0%, rgba(2,6,23,0.75) 70%)',
+          backdropFilter: 'blur(6px)',
+          WebkitBackdropFilter: 'blur(6px)',
+        }}
+      />
+
+      {/* Subtle Noise / Grain */}
+      <div
+        className="absolute inset-0 pointer-events-none opacity-[0.05]"
+        style={{
+          backgroundImage:
+            'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'n\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.8\' numOctaves=\'4\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23n)\' opacity=\'0.4\'/%3E%3C/svg%3E")',
         }}
       />
     </div>
   )
+
 }

@@ -13,7 +13,7 @@ export default function FeaturedProjectCard({ project, index, members = [] }) {
 
     return (
         <div
-            className={`flex flex-col ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-8 lg:gap-12 items-center bg-black/20 backdrop-blur-sm border border-white/10 rounded-2xl p-6 sm:p-8 lg:p-10 hover:border-white/20 hover:bg-black/30 transition-all duration-500 group`}
+            className={`flex flex-col ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-8 lg:gap-12 items-center bg-black/45 backdrop-blur-md border border-white/20 rounded-2xl p-6 sm:p-8 lg:p-10 shadow-2xl shadow-black/60 hover:border-white/30 hover:bg-black/55 transition-all duration-500 group`}
         >
             {/* Project Image */}
             <div className="w-full lg:w-1/2 relative overflow-hidden rounded-xl">
@@ -32,7 +32,7 @@ export default function FeaturedProjectCard({ project, index, members = [] }) {
                     <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-3 group-hover:text-slate-200 transition-colors arcade-font-white">
                         {project.title}
                     </h3>
-                    <p className="text-slate-300 text-base sm:text-lg leading-relaxed">
+                    <p className="text-slate-200 text-base sm:text-lg leading-relaxed">
                         {project.fullDescription || project.desc}
                     </p>
                 </div>
@@ -46,14 +46,14 @@ export default function FeaturedProjectCard({ project, index, members = [] }) {
                                 <div
                                     key={contributor.id}
                                     onClick={() => navigate(`/member/${contributor.id}`)}
-                                    className="flex items-center gap-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-full px-3 py-1.5 cursor-pointer transition-all duration-300 hover:scale-105"
+                                    className="flex items-center gap-2 bg-white/10 hover:bg-white/15 border border-white/20 rounded-full px-3 py-1.5 cursor-pointer transition-all duration-300 hover:scale-105"
                                 >
                                     <img
                                         src={contributor.image}
                                         alt={contributor.name}
                                         className="w-6 h-6 rounded-full object-cover"
                                     />
-                                    <span className="text-xs sm:text-sm text-slate-300">{contributor.name}</span>
+                                    <span className="text-xs sm:text-sm text-slate-200">{contributor.name}</span>
                                 </div>
                             ))}
                         </div>
@@ -74,7 +74,7 @@ export default function FeaturedProjectCard({ project, index, members = [] }) {
                             href={project.githubUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="flex items-center gap-2 px-6 py-3 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 text-slate-300 hover:text-white font-semibold rounded-lg transition-all duration-300"
+                            className="flex items-center gap-2 px-6 py-3 bg-white/10 hover:bg-white/15 border border-white/20 hover:border-white/30 text-slate-200 hover:text-white font-semibold rounded-lg transition-all duration-300"
                         >
                             <FaGithub className="text-lg" />
                             GitHub
