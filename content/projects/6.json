@@ -1,9 +1,9 @@
 {
   "id": "p6",
-  "title": "Scoreboard",
-  "desc": "We developed an ultimate scoreboard for coderscup",
+  "title": "Legend of the Legendary Problemset",
+  "desc": "Comic-style puzzle game featuring Po the Panda on a quest for noodles",
   "image": "https://res.cloudinary.com/dlkt7gfbc/image/upload/v1762679722/coderscup_vvqybz.png",
-  "fullDescription": "We developed an ultimate scoreboard system for CodersCup 2025, featuring real-time updates, live rankings, and comprehensive analytics. The system handles multiple competitions simultaneously with a sleek, modern interface.",
+  "fullDescription": "A comic-style game where Po the Panda is on a quest for noodles, and has to solve interesting math/CS puzzles to get to his destination. Built in Flutter and Firebase with engaging gameplay mechanics.",
   "images": [
     "https://res.cloudinary.com/dlkt7gfbc/image/upload/v1762679722/coderscup_vvqybz.png",
     "https://res.cloudinary.com/dlkt7gfbc/image/upload/v1762679722/coderscup_vvqybz.png",
@@ -12,6 +12,7 @@
   "githubUrl": "https://github.com",
   "contributors": [
     "1",
-    "2"
+    "14",
+    "3"
   ]
 }

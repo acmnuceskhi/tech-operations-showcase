@@ -1,9 +1,9 @@
 {
   "id": "p8",
-  "title": "Scoreboard",
-  "desc": "We developed an ultimate scoreboard for coderscup",
+  "title": "Tech Trivia",
+  "desc": "Onsite quiz booth platform for interactive trivia activities",
   "image": "https://res.cloudinary.com/dlkt7gfbc/image/upload/v1762679722/coderscup_vvqybz.png",
-  "fullDescription": "We developed an ultimate scoreboard system for CodersCup 2025, featuring real-time updates, live rankings, and comprehensive analytics. The system handles multiple competitions simultaneously with a sleek, modern interface.",
+  "fullDescription": "An onsite quiz booth setup with a custom platform that is a branch of ACM Activities. Built by Sarim Ahmed in Flutter for engaging, interactive quiz experiences at events.",
   "images": [
     "https://res.cloudinary.com/dlkt7gfbc/image/upload/v1762679722/coderscup_vvqybz.png",
     "https://res.cloudinary.com/dlkt7gfbc/image/upload/v1762679722/coderscup_vvqybz.png",
@@ -11,7 +11,6 @@
   ],
   "githubUrl": "https://github.com",
   "contributors": [
-    "1",
-    "2"
+    "14"
   ]
 }

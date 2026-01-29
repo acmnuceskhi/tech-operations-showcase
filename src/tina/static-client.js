@@ -31,7 +31,6 @@ import project5 from '../../content/projects/5.json' with { type: 'json' };
 import project6 from '../../content/projects/6.json' with { type: 'json' };
 import project7 from '../../content/projects/7.json' with { type: 'json' };
 import project8 from '../../content/projects/8.json' with { type: 'json' };
-import project9 from '../../content/projects/9.json' with { type: 'json' };
 
 import techStack1 from '../../content/tech-stack/1.json' with { type: 'json' };
 import techStack2 from '../../content/tech-stack/2.json' with { type: 'json' };
@@ -64,7 +63,7 @@ const allMembers = [
   member10, member11, member12, member13, member14, member15, member16
 ];
 
-const allProjects = [project1, project2, project3, project4, project5, project6, project7, project8, project9];
+const allProjects = [project1, project2, project3, project4, project5, project6, project7, project8];
 
 const allTechStack = [
   techStack1, techStack2, techStack3, techStack4, techStack5, techStack6, techStack7, techStack8, techStack9,

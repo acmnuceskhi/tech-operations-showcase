@@ -1,9 +1,9 @@
 {
   "id": "p7",
-  "title": "Scoreboard",
-  "desc": "We developed an ultimate scoreboard for coderscup",
+  "title": "Pseudocode Checker",
+  "desc": "Research LLM project for checking pseudocode in programming competitions",
   "image": "https://res.cloudinary.com/dlkt7gfbc/image/upload/v1762679722/coderscup_vvqybz.png",
-  "fullDescription": "We developed an ultimate scoreboard system for CodersCup 2025, featuring real-time updates, live rankings, and comprehensive analytics. The system handles multiple competitions simultaneously with a sleek, modern interface.",
+  "fullDescription": "A research LLM Project, led by Usaid Sajid. The motive is to create an LLM pseudocode checker that can be used in a competition for freshers who are yet to learn how to code. Innovative AI-powered solution for educational competitions.",
   "images": [
     "https://res.cloudinary.com/dlkt7gfbc/image/upload/v1762679722/coderscup_vvqybz.png",
     "https://res.cloudinary.com/dlkt7gfbc/image/upload/v1762679722/coderscup_vvqybz.png",
@@ -11,7 +11,6 @@
   ],
   "githubUrl": "https://github.com",
   "contributors": [
-    "1",
-    "2"
+    "3"
   ]
 }

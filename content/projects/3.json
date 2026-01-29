@@ -1,9 +1,9 @@
 {
   "id": "p3",
-  "title": "Scoreboard",
-  "desc": "We developed an ultimate scoreboard for coderscup",
+  "title": "Coders Cup Bidding",
+  "desc": "Live bidding platform for house captains to bid on qualifying teams",
   "image": "https://res.cloudinary.com/dlkt7gfbc/image/upload/v1762679722/coderscup_vvqybz.png",
-  "fullDescription": "We developed an ultimate scoreboard system for CodersCup 2025, featuring real-time updates, live rankings, and comprehensive analytics. The system handles multiple competitions simultaneously with a sleek, modern interface.",
+  "fullDescription": "A live bidding platform that was built to host the bidding that takes place between house captains in order to obtain the qualifying teams. This was built in Next.js with real-time socket programming for seamless bidding experience.",
   "images": [
     "https://res.cloudinary.com/dlkt7gfbc/image/upload/v1762679722/coderscup_vvqybz.png",
     "https://res.cloudinary.com/dlkt7gfbc/image/upload/v1762679722/coderscup_vvqybz.png",
@@ -11,7 +11,12 @@
   ],
   "githubUrl": "https://github.com",
   "contributors": [
-    "1",
-    "2"
+    "6",
+    "8",
+    "10",
+    "13",
+    "5",
+    "16",
+    "14"
   ]
 }

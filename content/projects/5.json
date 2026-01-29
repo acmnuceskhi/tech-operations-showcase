@@ -1,9 +1,9 @@
 {
   "id": "p5",
-  "title": "Scoreboard",
-  "desc": "We developed an ultimate scoreboard for coderscup",
+  "title": "ACM Activities Platform",
+  "desc": "Multi-purpose platform for activity scoreboards and registrations",
   "image": "https://res.cloudinary.com/dlkt7gfbc/image/upload/v1762679722/coderscup_vvqybz.png",
-  "fullDescription": "We developed an ultimate scoreboard system for CodersCup 2025, featuring real-time updates, live rankings, and comprehensive analytics. The system handles multiple competitions simultaneously with a sleek, modern interface.",
+  "fullDescription": "A multi-purpose platform that hosts scoreboards and handles registrations for any custom activity that needs to be conducted. Built in Flutter and Firebase for seamless cross-platform experience.",
   "images": [
     "https://res.cloudinary.com/dlkt7gfbc/image/upload/v1762679722/coderscup_vvqybz.png",
     "https://res.cloudinary.com/dlkt7gfbc/image/upload/v1762679722/coderscup_vvqybz.png",
@@ -11,7 +11,7 @@
   ],
   "githubUrl": "https://github.com",
   "contributors": [
-    "1",
-    "2"
+    "14",
+    "1"
   ]
 }

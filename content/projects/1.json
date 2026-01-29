@@ -1,9 +1,9 @@
 {
   "id": "p1",
   "title": "Scoreboard",
-  "desc": "We developed an ultimate scoreboard for coderscup",
+  "desc": "A competitive programming scoreboard for Coders Cup 26 with Kung Fu Panda theme",
   "image": "https://res.cloudinary.com/dlkt7gfbc/image/upload/v1762679722/coderscup_vvqybz.png",
-  "fullDescription": "We developed an ultimate scoreboard system for CodersCup 2025, featuring real-time updates, live rankings, and comprehensive analytics. The system handles multiple competitions simultaneously with a sleek, modern interface.",
+  "fullDescription": "A competitive programming scoreboard that displayed rankings for the participating players in Coders Cup 26. It was Kung Fu Panda themed, like the rest of the event and it featured a news reel, different house rankings and animations on the scoreboard. Built in React and Node.",
   "images": [
     "https://res.cloudinary.com/dlkt7gfbc/image/upload/v1762679722/coderscup_vvqybz.png",
     "https://res.cloudinary.com/dlkt7gfbc/image/upload/v1762679722/coderscup_vvqybz.png",
@@ -11,7 +11,8 @@
   ],
   "githubUrl": "https://github.com",
   "contributors": [
-    "1",
+    "15",
+    "14",
     "2"
   ]
 }
