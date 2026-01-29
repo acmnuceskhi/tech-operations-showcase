@@ -1,11 +1,11 @@
 {
   "id": 3,
-  "name": "Raaahim Irfan",
-  "nickname": "Backend Maestro",
-  "title": "Co-Head",
-  "description": "Focusing on backend optimization and database management. Expert in performance tuning and scalable architectures.",
-  "starPerformer": false,
-  "image": "https://res.cloudinary.com/dlkt7gfbc/image/upload/v1763990476/Screenshot_2025-11-24_at_18.20.52_gplvyo.png",
-  "linkedin": "https://www.linkedin.com/in/raahimirfan100/",
-  "github": "https://github.com/raahimirfan100"
+  "name": "Usaid Sajid",
+  "nickname": "AI Specialist",
+  "title": "Deputy",
+  "description": "Advanced AI problem solver driving intelligent system development",
+  "starPerformer": true,
+  "image": "https://res.cloudinary.com/dlkt7gfbc/image/upload/v1763990835/Screenshot_2025-11-24_at_18.22.29_s4wts0.png",
+  "linkedin": "https://www.linkedin.com/in/usaid-sajid",
+  "github": ""
 }

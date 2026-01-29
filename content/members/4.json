@@ -1,11 +1,11 @@
 {
   "id": 4,
-  "name": "Muhammad Rayyan",
-  "nickname": "QA Guardian",
-  "title": "Member",
-  "description": "Dedicated to quality assurance and testing frameworks. Ensuring robust and reliable software delivery.",
+  "name": "Zohair Shamsi",
+  "nickname": "React Frontend Architect",
+  "title": "Deputy",
+  "description": "Highly skilled in React UI development with strong design sense",
   "starPerformer": true,
-  "image": "/src/assets/rayyan.jpg",
-  "linkedin": "https://www.linkedin.com/in/muhammad-rayyan-2501492ab/",
-  "github": "https://github.com/rayyanm86"
+  "image": "https://res.cloudinary.com/dlkt7gfbc/image/upload/v1763988604/Screenshot_2025-11-12_at_16.07.15_b1jnfa.png",
+  "linkedin": "https://www.linkedin.com/in/zohairshamsi",
+  "github": ""
 }

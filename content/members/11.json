@@ -1,11 +1,11 @@
 {
   "id": 11,
-  "name": "Jayesha Yamin",
-  "nickname": "Design Enthusiast",
+  "name": "Amna Murk",
+  "nickname": "React Rising Star",
   "title": "Member",
-  "description": "UI/UX designer creating beautiful and functional interfaces. Passionate about user-centered design.",
+  "description": "Enthusiastic learner growing steadily as a React developer",
   "starPerformer": false,
   "image": "https://res.cloudinary.com/dlkt7gfbc/image/upload/v1763990835/Screenshot_2025-11-24_at_18.22.29_s4wts0.png",
-  "linkedin": "https://www.linkedin.com/in/jayesha-yamin",
-  "github": "https://github.com/jayeshayamin"
+  "linkedin": "",
+  "github": ""
 }

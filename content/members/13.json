@@ -1,11 +1,11 @@
 {
   "id": 13,
-  "name": "Aden Hussain",
-  "nickname": "Backend Engineer",
+  "name": "Rohaan Zaidi",
+  "nickname": "React UI Specialist",
   "title": "Member",
-  "description": "Backend engineer specializing in API development and server-side architecture.",
+  "description": "Strong React UI developer with clean and efficient interfaces",
   "starPerformer": false,
-  "image": "https://res.cloudinary.com/dlkt7gfbc/image/upload/v1763988443/picaden_-_K250828_Aden_Hussain_sbcqcp.jpg",
-  "linkedin": "https://www.linkedin.com/in/aden-hussain",
-  "github": "https://github.com/adenhussain"
+  "image": "https://res.cloudinary.com/dlkt7gfbc/image/upload/v1763988439/IMG_20251123_162401_-_k242027_Syed_Muhammad_Rohaan_Zaidi_z174fh.jpg",
+  "linkedin": "https://www.linkedin.com/in/rohaan-zaidi-55453a263",
+  "github": ""
 }
