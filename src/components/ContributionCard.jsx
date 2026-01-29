@@ -22,7 +22,7 @@ export default function ContributionCard({ title, description, date, type = 'cod
   const colorClass = typeColors[type] || typeColors.default
 
   return (
-    <div className="group bg-black/20 backdrop-blur-sm border border-white/10 rounded-xl p-6 hover:bg-black/30 hover:border-white/20 transition-all duration-300 hover:shadow-xl hover:shadow-black/50 hover:scale-[1.02]">
+    <div className="group bg-black/45 backdrop-blur-md border border-white/20 rounded-xl p-6 shadow-xl shadow-black/60 hover:bg-black/55 hover:border-white/30 transition-all duration-300 hover:shadow-2xl hover:shadow-black/70 hover:scale-[1.02]">
       
       <div className="flex items-start gap-4">
         <div className={`w-12 h-12 rounded-lg bg-gradient-to-br ${colorClass} flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300`}>
@@ -47,7 +47,7 @@ export default function ContributionCard({ title, description, date, type = 'cod
             )}
           </div>
 
-          <p className="text-sm text-slate-300 mb-3 leading-relaxed">
+          <p className="text-sm text-slate-200 mb-3 leading-relaxed">
             {description}
           </p>
 
@@ -56,7 +56,7 @@ export default function ContributionCard({ title, description, date, type = 'cod
               {type}
             </span>
             {date && (
-              <span className="text-slate-400">
+              <span className="text-slate-300">
                 {new Date(date).toLocaleDateString('en-US', { 
                   month: 'short', 
                   day: 'numeric', 

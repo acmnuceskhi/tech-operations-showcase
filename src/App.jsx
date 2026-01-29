@@ -1,6 +1,7 @@
 import React from 'react'
 import { BrowserRouter as Router, Routes, Route, useParams } from 'react-router-dom'
 import Background from './components/Background'
+import Overlay from './components/Overlay'
 import HomePage from './pages/HomePage'
 import ProjectsPage from './pages/ProjectsPage'
 import ProjectPage from './pages/ProjectPage'
@@ -10,9 +11,10 @@ import MemberProfilePage from './pages/MemberProfilePage'
 export default function App() {
   return (
     <Router>
-      <div className="min-h-screen w-full">
+      <div className="min-h-screen w-full relative">
         <Background />
-        <div className="" style={{ zIndex: 10 }}>
+        {/* <Overlay /> */}
+        {/* <div className="relative" style={{ zIndex: 10 }}> */}
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/projects" element={<ProjectsPage />} />
@@ -21,7 +23,8 @@ export default function App() {
             <Route path="/member/:memberId" element={<MemberProfilePageWrapper />} />
           </Routes>
         </div>
-      </div>
+
+      {/* </div> */}
     </Router>
   )
 }

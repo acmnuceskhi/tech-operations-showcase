@@ -89,7 +89,6 @@ export default function HomePage({ teamName = 'Tech Operations', description = '
 
   // State for scroll animations
   const [visibleSections, setVisibleSections] = useState(new Set())
-  const [overlayOpacity, setOverlayOpacity] = useState(0.8)
   const [showScrollIndicator, setShowScrollIndicator] = useState(true)
   const sectionRefs = useRef([])
 
@@ -141,14 +140,6 @@ export default function HomePage({ teamName = 'Tech Operations', description = '
       if (!ticking) {
         window.requestAnimationFrame(() => {
           const scrollPosition = window.scrollY || window.pageYOffset || document.documentElement.scrollTop
-          const viewportHeight = window.innerHeight
-
-          // Fade from 0.5 opacity (50% opaque) to 0 as user scrolls through first viewport
-          const fadeProgress = Math.min(scrollPosition / viewportHeight, 1)
-          const newOpacity = 0.8 * (1 - fadeProgress)
-
-          setOverlayOpacity(newOpacity)
-
           // Hide scroll indicator after scrolling 100px
           setShowScrollIndicator(scrollPosition < 100)
 
@@ -208,17 +199,6 @@ export default function HomePage({ teamName = 'Tech Operations', description = '
           background: "radial-gradient(circle at 20% 20%, rgba(128,0,255,0.15), transparent 60%), radial-gradient(circle at 80% 40%, rgba(0,128,255,0.1), transparent 60%), radial-gradient(circle at 50% 80%, rgba(255, 50, 149, 0.14), transparent 60%), #000"
         }}
       >
-        {/* Black Overlay - Fades on scroll */}
-        <div
-          className="fixed inset-0 bg-black pointer-events-none"
-          style={{
-            opacity: overlayOpacity,
-            // opacity: 0,
-            zIndex: 5,
-            transition: 'opacity 0.1s linear'
-          }}
-        />
-
         {/* Hero Section - Full Viewport */}
         <section className="min-h-screen w-full flex items-center justify-center px-4 sm:px-8 relative" style={{ zIndex: 10 }}>
           <div className="text-center space-y-8">
@@ -291,19 +271,12 @@ export default function HomePage({ teamName = 'Tech Operations', description = '
           {/* Featured Projects Section */}
           <section
             ref={addToRefs}
-            className={`space-y-16 sm:space-y-20 px-4 sm:px-8 lg:px-16 max-w-7xl mx-auto py-12 transition-all duration-700 ${visibleSections.has(1)
-              ? 'opacity-100 translate-y-0'
-              : 'opacity-0 translate-y-10'
-              }`}
+            className="space-y-16 sm:space-y-20 px-4 sm:px-8 lg:px-16 max-w-7xl mx-auto py-12"
           >
             {featuredProjects.map((project, index) => (
               <div
                 key={project.id}
                 ref={addToRefs}
-                className={`transition-all duration-700 ${visibleSections.has(2 + index)
-                  ? 'opacity-100 translate-y-0'
-                  : 'opacity-0 translate-y-10'
-                  }`}
               >
                 <FeaturedProjectCard project={project} index={index} members={members} />
               </div>
