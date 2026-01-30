@@ -2,11 +2,11 @@
   "id": "p1",
   "title": "Scoreboard",
   "desc": "A competitive programming scoreboard for Coders Cup 26 with Kung Fu Panda theme",
-  "image": "https://res.cloudinary.com/dlkt7gfbc/image/upload/v1762679722/coderscup_vvqybz.png",
+  "image": "https://res.cloudinary.com/dlkt7gfbc/image/upload/v1769702083/1765550790414_vmtneo.jpg",
   "fullDescription": "A competitive programming scoreboard that displayed rankings for the participating players in Coders Cup 26. It was Kung Fu Panda themed, like the rest of the event and it featured a news reel, different house rankings and animations on the scoreboard. Built in React and Node.",
   "images": [
-    "https://res.cloudinary.com/dlkt7gfbc/image/upload/v1762679722/coderscup_vvqybz.png",
-    "https://res.cloudinary.com/dlkt7gfbc/image/upload/v1762679722/coderscup_vvqybz.png",
+    "https://res.cloudinary.com/dlkt7gfbc/image/upload/v1769702083/1765550790414_vmtneo.jpg",
+    "https://res.cloudinary.com/dlkt7gfbc/image/upload/v1769792354/houserank_tmmj2w.jpg",
     "https://res.cloudinary.com/dlkt7gfbc/image/upload/v1762679722/coderscup_vvqybz.png"
   ],
   "githubUrl": "https://github.com",

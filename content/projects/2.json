@@ -2,12 +2,12 @@
   "id": "p2",
   "title": "Tech Operations Showcase Website",
   "desc": "Showcase website displaying Tech Operations projects, members and team spirit",
-  "image": "https://res.cloudinary.com/dlkt7gfbc/image/upload/v1762679722/coderscup_vvqybz.png",
+  "image": "https://res.cloudinary.com/dlkt7gfbc/image/upload/v1769797207/Screenshot_2026-01-30_at_23.19.36_fyszgu.png",
   "fullDescription": "This showcase website is built to show the projects and members of Tech Operations, as well as display the Tech Operations spirit. This is built purely in React with a modern, engaging interface.",
   "images": [
-    "https://res.cloudinary.com/dlkt7gfbc/image/upload/v1762679722/coderscup_vvqybz.png",
-    "https://res.cloudinary.com/dlkt7gfbc/image/upload/v1762679722/coderscup_vvqybz.png",
-    "https://res.cloudinary.com/dlkt7gfbc/image/upload/v1762679722/coderscup_vvqybz.png"
+    "https://res.cloudinary.com/dlkt7gfbc/image/upload/v1769797207/Screenshot_2026-01-30_at_23.19.36_fyszgu.png",
+    "https://res.cloudinary.com/dlkt7gfbc/image/upload/v1769797656/Screenshot_2026-01-30_at_23.27.17_mf4np0.png",
+    "https://res.cloudinary.com/dlkt7gfbc/image/upload/v1769797752/Screenshot_2026-01-30_at_23.28.43_gt045q.png"
   ],
   "githubUrl": "https://github.com",
   "contributors": [
