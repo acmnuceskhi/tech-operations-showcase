@@ -44,7 +44,7 @@ export default function MemberProfilePage({ memberId }) {
     return (
       <main className="min-h-screen w-full flex items-center justify-center">
         <div className="text-center">
-          <h1 className="text-4xl font-bold text-white mb-4">Member Not Found</h1>
+          <h1 className="text-[clamp(2rem,6vw,3rem)] font-bold text-white mb-4 px-2">Member Not Found</h1>
           <button
             onClick={() => navigate('/members')}
             className="text-slate-300 hover:text-white"
@@ -90,15 +90,15 @@ export default function MemberProfilePage({ memberId }) {
 
               <div className="flex-1 text-center md:text-left space-y-4">
                 <div>
-                  <h1 className="text-3xl sm:text-4xl font-bold text-white mb-2 arcade-font-white">{member.name}</h1>
+                  <h1 className="text-[clamp(1.9rem,5vw,2.5rem)] font-bold text-white mb-2 arcade-font-white px-1">{member.name}</h1>
                   {member.nickname && (
                     <p className="text-sm sm:text-base text-slate-400 mb-2 italic">{member.nickname}</p>
                   )}
-                  <p className="text-base sm:text-xl text-slate-300 font-semibold">{member.title}</p>
+                  <p className="text-sm sm:text-lg text-slate-300 font-semibold">{member.title}</p>
                 </div>
 
                 {member.description && (
-                  <p className="text-slate-400 text-base sm:text-lg leading-relaxed">{member.description}</p>
+                  <p className="text-slate-400 text-sm sm:text-base leading-relaxed">{member.description}</p>
                 )}
 
                 <div className="flex justify-center md:justify-start gap-3 sm:gap-4 pt-4">
@@ -132,14 +132,14 @@ export default function MemberProfilePage({ memberId }) {
           <section className="space-y-6 sm:space-y-8">
             {memberProjects.length > 0 && (
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
-                <h2 className="text-2xl sm:text-3xl relative font-semibold text-white">Contributed to</h2>
-                <span className="text-slate-400 text-sm sm:text-lg">{memberProjects.length} {memberProjects.length === 1 ? 'project' : 'projects'}</span>
+                <h2 className="text-[clamp(1.5rem,4vw,2.1rem)] relative font-semibold text-white px-1">Contributed to</h2>
+                <span className="text-slate-400 text-xs sm:text-base">{memberProjects.length} {memberProjects.length === 1 ? 'project' : 'projects'}</span>
               </div>
             )}
 
             {memberProjects.length === 0 ? (
               <div className="text-center py-10 sm:py-16 bg-black/10 rounded-xl border border-white/10">
-                <p className="text-slate-400 text-base sm:text-lg">No projects yet</p>
+                <p className="text-slate-400 text-sm sm:text-base">No projects yet</p>
               </div>
             ) : (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
@@ -153,7 +153,7 @@ export default function MemberProfilePage({ memberId }) {
 
                     <a href={project.link}>
                       <div className="relative z-10">
-                        <h3 className="text-xl sm:text-2xl font-bold text-white mb-2 group-hover:text-slate-100 transition-colors">
+                        <h3 className="text-[clamp(1.1rem,3.2vw,1.5rem)] font-bold text-white mb-2 group-hover:text-slate-100 transition-colors">
                           {project.title}
                         </h3>
                         <div className="flex items-center gap-2 text-slate-400 group-hover:text-slate-300 transition-colors">

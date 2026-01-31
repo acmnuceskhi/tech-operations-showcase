@@ -206,17 +206,17 @@ export default function HomePage({ teamName = 'Tech Operations', description = '
             <div className='h-10' />
 
             <div
-              className="text-4xl sm:text-7xl animate-fade-in font-bold leading-tight arcade-font-white"
+              className="text-[clamp(2.25rem,7vw,4.5rem)] animate-fade-in font-bold leading-tight arcade-font-white px-2"
             >
               Tech Operations
             </div>
 
             <GlitchText
               text="ACM's creative tech team. We build the cool stuff."
-              className="text-xs sm:text-sm px-[6%] sm:px-[10%] mt-6 sm:mt-10 wrap-normal animate-fade-in font-bold leading-tight arcade-font-white"
+              className="text-[clamp(0.7rem,2.2vw,0.95rem)] px-[6%] sm:px-[10%] mt-6 sm:mt-10 wrap-normal animate-fade-in font-bold leading-tight arcade-font-white"
             />
 
-            <p className="text-base sm:text-lg md:text-xl max-w-3xl mx-auto animate-fade-in-delayed leading-relaxed text-slate-300 px-4">
+            <p className="text-sm sm:text-base md:text-lg max-w-3xl mx-auto animate-fade-in-delayed leading-relaxed text-slate-300 px-4">
               Scoreboards, minigames, and innovative projects that showcase what tech can really do.
             </p>
           </div>
@@ -315,7 +315,7 @@ export default function HomePage({ teamName = 'Tech Operations', description = '
                 : 'opacity-0 translate-y-10'
                 }`}
             >
-              <h2 className="text-3xl sm:text-4xl font-semibold text-white text-center arcade-font-white">
+              <h2 className="text-[clamp(1.75rem,4.5vw,2.25rem)] font-semibold text-white text-center arcade-font-white px-2">
                 Star Performers
               </h2>
 
@@ -356,7 +356,7 @@ export default function HomePage({ teamName = 'Tech Operations', description = '
           >
             <div className="max-w-4xl mx-auto text-center px-4">
               <div className="bg-black/30 backdrop-blur-sm border-2 border-white/20 rounded-2xl p-8 sm:p-12 hover:border-white/30 hover:bg-black/40 transition-all duration-300 shadow-2xl">
-                <h3 className="text-3xl sm:text-4xl font-semibold text-white mb-4 arcade-font-white">Join Us</h3>
+                <h3 className="text-[clamp(1.6rem,4vw,2.25rem)] font-semibold text-white mb-4 arcade-font-white px-1">Join Us</h3>
                 <p className="text-slate-300 text-base sm:text-lg mb-2 leading-relaxed">
                   Want to build projects that stand out? Be part of ACM's most creative tech team.
                 </p>
@@ -385,7 +385,7 @@ export default function HomePage({ teamName = 'Tech Operations', description = '
           >
             <div className="max-w-4xl mx-auto text-center px-4">
               <div className="bg-black/30 backdrop-blur-sm border border-white/20 rounded-2xl p-8 sm:p-12">
-                <h2 className="text-3xl sm:text-4xl font-semibold text-white mb-6 arcade-font-white">Get in Touch</h2>
+                <h2 className="text-[clamp(1.6rem,4vw,2.25rem)] font-semibold text-white mb-6 arcade-font-white px-1">Get in Touch</h2>
                 <p className="text-slate-300 text-base sm:text-lg mb-8 leading-relaxed">
                   Got an idea? Want to collaborate? Let's build something amazing together.
                 </p>

@@ -42,10 +42,10 @@ export default function ProjectsPage() {
       >
         <div className="max-w-7xl mx-auto space-y-12">
           <header className="mt-10 sm:mt-16 mb-10 sm:mb-14 pb-12 sm:pb-20 relative z-10">
-            <h1 className="text-4xl sm:text-7xl text-white mb-6 sm:mb-10 arcade-font-white">
+            <h1 className="text-[clamp(2.25rem,7vw,4.5rem)] text-white mb-6 sm:mb-10 arcade-font-white px-2">
               Team Projects
             </h1>
-            <p className="text-sm sm:text-xl text-white arcade-font-white">
+            <p className="text-xs sm:text-base text-white arcade-font-white px-1">
               We skilled like that.
             </p>
           </header>

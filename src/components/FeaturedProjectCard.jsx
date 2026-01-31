@@ -29,10 +29,10 @@ export default function FeaturedProjectCard({ project, index, members = [] }) {
             {/* Project Details */}
             <div className="w-full lg:w-1/2 space-y-4 sm:space-y-6">
                 <div>
-                    <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-3 group-hover:text-slate-200 transition-colors arcade-font-white">
+                    <h3 className="text-[clamp(1.5rem,4.5vw,2.5rem)] font-bold text-white mb-3 group-hover:text-slate-200 transition-colors arcade-font-white px-1">
                         {project.title}
                     </h3>
-                    <p className="text-slate-200 text-base sm:text-lg leading-relaxed">
+                    <p className="text-slate-200 text-sm sm:text-base leading-relaxed">
                         {project.fullDescription || project.desc}
                     </p>
                 </div>

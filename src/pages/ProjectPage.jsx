@@ -49,7 +49,7 @@ export default function ProjectPage() {
     return (
       <main className="min-h-screen w-full flex items-center justify-center">
         <div className="text-center">
-          <h1 className="text-4xl font-bold text-white mb-4">Project Not Found</h1>
+          <h1 className="text-[clamp(2rem,6vw,3rem)] font-bold text-white mb-4 px-2">Project Not Found</h1>
           <button
             onClick={() => navigate('/projects')}
             className="text-slate-300 hover:text-white"
@@ -86,7 +86,7 @@ export default function ProjectPage() {
           {/* Project Header */}
           <div className="bg-black/20 backdrop-blur-sm border border-white/10 rounded-2xl p-6 sm:p-12">
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6 mb-6 sm:mb-8">
-              <h1 className="text-3xl sm:text-5xl font-bold text-white tracking-wider arcade-font-white">
+              <h1 className="text-[clamp(2rem,6vw,3.25rem)] font-bold text-white tracking-wider arcade-font-white px-2">
                 {project.title}
               </h1>
               {project.githubUrl && (
@@ -110,7 +110,7 @@ export default function ProjectPage() {
           {/* Image Gallery */}
           {images.length > 0 && (
             <div className="bg-black/20 backdrop-blur-sm border border-white/10 rounded-2xl p-6 sm:p-8">
-              <h2 className="text-2xl sm:text-3xl font-bold text-white mb-6 sm:mb-8 arcade-font-white">Project Gallery</h2>
+              <h2 className="text-[clamp(1.6rem,4vw,2.25rem)] font-bold text-white mb-6 sm:mb-8 arcade-font-white px-1">Project Gallery</h2>
               <div className="flex items-center justify-center gap-4 sm:gap-8">
                 {images.length > 1 && (
                   <button
@@ -154,12 +154,12 @@ export default function ProjectPage() {
           {/* Contributors */}
           {contributors.length > 0 && (
             <div className="bg-black/20 backdrop-blur-sm border border-white/10 rounded-2xl p-6 sm:p-12">
-              <h2 className="text-2xl sm:text-3xl font-bold text-white mb-6 sm:mb-8 arcade-font-white">Contributors</h2>
+              <h2 className="text-[clamp(1.6rem,4vw,2.25rem)] font-bold text-white mb-6 sm:mb-8 arcade-font-white px-1">Contributors</h2>
               <div className="flex justify-center items-center gap-6 sm:gap-8 flex-wrap">
                 {contributors.map((member) => (
                   <div
                     key={member.id}
-                    className="relative inline-block cursor-pointer group w-40 sm:w-auto"
+                    className="relative inline-flex flex-col items-center text-center cursor-pointer group w-40 sm:w-auto"
                     onMouseEnter={() => setHoveredMember(member.id)}
                     onMouseLeave={() => setHoveredMember(null)}
                     onClick={() => navigate(member.profileLink)}

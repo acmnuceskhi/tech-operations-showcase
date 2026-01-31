@@ -21,11 +21,11 @@ export default function Member({ name, nickname, title, image, linkedin, github,
     <div className="flex flex-col items-center group">
       <div
         onClick={handleCardClick}
-        className="bg-black/45 backdrop-blur-md border border-white/20 rounded-2xl p-8 w-[360px] shadow-xl shadow-black/60 group-hover:bg-black/55 group-hover:border-white/30 transition-all duration-300 group-hover:shadow-2xl group-hover:shadow-black/70 flex flex-col items-center justify-center hover:scale-105 cursor-pointer relative"
+        className="bg-black/45 backdrop-blur-md border border-white/20 rounded-2xl p-6 sm:p-8 w-full max-w-[360px] shadow-xl shadow-black/60 group-hover:bg-black/55 group-hover:border-white/30 transition-all duration-300 group-hover:shadow-2xl group-hover:shadow-black/70 flex flex-col items-center justify-center hover:scale-105 cursor-pointer relative"
       >
         <div className="relative mb-8">
           {/* Gradient border wrapper */}
-          <div className="relative w-52 h-52 rounded-full bg-linear-to-br from-gray-400 via-white to-gray-500 p-[3px] group-hover:from-gray-300 group-hover:via-white group-hover:to-gray-400 transition-all duration-300">
+          <div className="relative w-32 h-32 sm:w-44 sm:h-44 lg:w-52 lg:h-52 rounded-full bg-linear-to-br from-gray-400 via-white to-gray-500 p-[3px] group-hover:from-gray-300 group-hover:via-white group-hover:to-gray-400 transition-all duration-300">
             <div className="w-full h-full rounded-full overflow-hidden bg-black/40">
               <img
                 src={image}
@@ -36,19 +36,19 @@ export default function Member({ name, nickname, title, image, linkedin, github,
           </div>
         </div>
 
-        <h3 className="text-2xl font-bold text-white text-center mb-1 group-hover:text-slate-200 transition-all duration-300">
+        <h3 className="text-xl sm:text-2xl font-bold text-white text-center mb-1 group-hover:text-slate-200 transition-all duration-300">
           {name}
         </h3>
 
         {nickname && (
-          <p className="text-xs text-slate-300 text-center mb-3 font-medium italic">
+          <p className="text-[0.7rem] sm:text-xs text-slate-300 text-center mb-3 font-medium italic">
             {nickname}
           </p>
         )}
 
         <div className="flex items-center justify-center gap-2 mb-6">
           {title && (
-            <p className="text-sm text-slate-300 text-center font-medium">
+            <p className="text-xs sm:text-sm text-slate-300 text-center font-medium">
               {title}
             </p>
           )}
@@ -66,7 +66,7 @@ export default function Member({ name, nickname, title, image, linkedin, github,
               target="_blank"
               rel="noopener noreferrer"
               onClick={(e) => e.stopPropagation()}
-              className="w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-black/50"
+              className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-black/50"
               aria-label={`${name}'s LinkedIn`}
             >
               <FaLinkedin className="text-slate-200 hover:text-white text-xl" />
@@ -78,7 +78,7 @@ export default function Member({ name, nickname, title, image, linkedin, github,
               target="_blank"
               rel="noopener noreferrer"
               onClick={(e) => e.stopPropagation()}
-              className="w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-black/50"
+              className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-black/50"
               aria-label={`${name}'s GitHub`}
             >
               <FaGithub className="text-slate-200 hover:text-white text-xl" />

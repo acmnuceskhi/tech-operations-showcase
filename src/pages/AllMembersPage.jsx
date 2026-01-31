@@ -50,10 +50,10 @@ export default function AllMembersPage() {
 
           {/* Header */}
           <header className="mt-8 sm:mt-12 mb-8 sm:mb-12 relative z-10 mx-auto text-center max-w-4xl">
-            <h1 className="text-5xl sm:text-7xl lg:text-8xl text-white mb-4 sm:mb-6 arcade-font-white">
+            <h1 className="text-[clamp(2.5rem,7vw,5rem)] text-white mb-4 sm:mb-6 arcade-font-white px-2">
               Our Team
             </h1>
-            <p className="text-base sm:text-xl text-slate-300 leading-relaxed px-4">
+            <p className="text-sm sm:text-lg text-slate-300 leading-relaxed px-4">
               The creative minds building ACM's most innovative tech projects
             </p>
           </header>
@@ -61,8 +61,8 @@ export default function AllMembersPage() {
           {/* Leadership Section */}
           <section className="space-y-12 sm:space-y-14 relative z-10">
             <div className="text-center space-y-3 relative z-20">
-              <h2 className="text-3xl sm:text-4xl font-semibold text-white arcade-font-white">Lead</h2>
-              <p className="text-slate-300 text-base sm:text-lg max-w-2xl mx-auto relative z-20">
+              <h2 className="text-[clamp(1.7rem,4.5vw,2.25rem)] font-semibold text-white arcade-font-white px-1">Lead</h2>
+              <p className="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto relative z-20">
                 Guiding the vision and leading the charge
               </p>
             </div>
@@ -104,8 +104,8 @@ export default function AllMembersPage() {
           {/* Team Members Section */}
           <section className="space-y-12 sm:space-y-14 pt-6 relative z-10">
             <div className="text-center space-y-3 relative z-20">
-              <h2 className="text-3xl sm:text-4xl font-semibold text-white arcade-font-white">Members</h2>
-              <p className="text-slate-300 text-base sm:text-lg max-w-2xl mx-auto relative z-20">
+              <h2 className="text-[clamp(1.7rem,4.5vw,2.25rem)] font-semibold text-white arcade-font-white px-1">Members</h2>
+              <p className="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto relative z-20">
                 The talented individuals bringing ideas to life
               </p>
             </div>
