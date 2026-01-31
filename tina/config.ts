@@ -139,6 +139,13 @@ export default defineConfig({
           },
           {
             type: "string",
+            name: "url",
+            label: "Deployed URL",
+            required: false,
+            description: "Link to the live/deployed project",
+          },
+          {
+            type: "string",
             name: "contributors",
             label: "Contributors (Member IDs)",
             required: true,

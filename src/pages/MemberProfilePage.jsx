@@ -1,6 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import { FaLinkedin, FaGithub } from 'react-icons/fa'
+import { FaLinkedin, FaGithub, FaExternalLinkAlt } from 'react-icons/fa'
 import Sidebar from '../components/Sidebar'
 import { useMembers, useProjects } from '../hooks/useTinaData'
 
@@ -146,25 +146,77 @@ export default function MemberProfilePage({ memberId }) {
                 {memberProjects.map((project, index) => (
                   <div
                     key={project.id}
-                    className="group bg-black/20 backdrop-blur-sm border border-white/10 rounded-xl p-6 sm:p-8 hover:bg-black/30 hover:border-white/30 hover:scale-105 transition-all duration-300 hover:shadow-xl hover:shadow-black/30 cursor-pointer relative overflow-hidden"
+                    className="group bg-black/20 backdrop-blur-sm border border-white/10 rounded-xl overflow-hidden hover:bg-black/30 hover:border-white/30 hover:scale-105 transition-all duration-300 hover:shadow-xl hover:shadow-black/30 flex flex-col"
                   >
-                    {/* Accent gradient on hover */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-transparent to-pink-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    {/* Project Image */}
+                    {project.image && (
+                      <div className="w-full h-48 overflow-hidden">
+                        <img
+                          src={project.image}
+                          alt={project.title}
+                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                        />
+                      </div>
+                    )}
 
-                    <a href={project.link}>
-                      <div className="relative z-10">
-                        <h3 className="text-xl sm:text-2xl font-bold text-white mb-2 group-hover:text-slate-100 transition-colors">
+                    {/* Content */}
+                    <div className="p-5 flex-1 flex flex-col relative">
+                      {/* Accent gradient on hover */}
+                      <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-transparent to-pink-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+                      <div className="relative z-10 flex-1 flex flex-col">
+                        <h3 className="text-lg sm:text-xl font-bold text-white mb-2 group-hover:text-slate-100 transition-colors">
                           {project.title}
                         </h3>
-                        <div className="flex items-center gap-2 text-slate-400 group-hover:text-slate-300 transition-colors">
-                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                          </svg>
-                          <span className="text-sm font-medium">View Project</span>
+                        <p className="text-xs sm:text-sm text-slate-300 leading-relaxed mb-4 flex-1">
+                          {project.desc}
+                        </p>
+
+                        {/* Buttons */}
+                        <div className="flex flex-col gap-2 mt-auto">
+                          <a
+                            href={project.link}
+                            className="flex items-center justify-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/20 border border-white/20 hover:border-white/30 text-white text-sm font-semibold rounded-lg transition-all duration-300"
+                          >
+                            View Details
+                            <FaExternalLinkAlt className="text-xs" />
+                          </a>
+
+                          <div className="flex gap-2">
+                            {project.url && (
+                              <a
+                                href={project.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                onClick={(e) => e.stopPropagation()}
+                                className="flex-1 flex items-center justify-center gap-1.5 px-3 py-2 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 text-slate-300 hover:text-white text-xs font-semibold rounded-lg transition-all duration-300"
+                              >
+                                <FaExternalLinkAlt className="text-xs" />
+                                Live
+                              </a>
+                            )}
+
+                            {project.githubUrl ? (
+                              <a
+                                href={project.githubUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                onClick={(e) => e.stopPropagation()}
+                                className="flex-1 flex items-center justify-center gap-1.5 px-3 py-2 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 text-slate-300 hover:text-white text-xs font-semibold rounded-lg transition-all duration-300"
+                              >
+                                <FaGithub className="text-sm" />
+                                Code
+                              </a>
+                            ) : (
+                              <div className="flex-1 flex items-center justify-center gap-1.5 px-3 py-2 bg-white/5 border border-white/10 text-slate-500 text-xs font-semibold rounded-lg cursor-not-allowed">
+                                <FaGithub className="text-sm" />
+                                Private
+                              </div>
+                            )}
+                          </div>
                         </div>
                       </div>
-                    </a>
-
+                    </div>
                   </div>
                 ))}
               </div>
