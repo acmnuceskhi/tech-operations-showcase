@@ -95,8 +95,11 @@ export default function HomePage({ teamName = 'Tech Operations', description = '
   const loading = projectsLoading || membersLoading;
   const error = projectsError || membersError;
 
-  // Get featured projects (first 4)
-  const featuredProjects = projects ? projects.slice(0, 4) : [];
+  // Get featured projects (hardcoded specific projects)
+  const featuredProjectIds = [6, 8, 1, 3]; // Legend of Legendary, Tech Trivia, Scoreboard, Coders Cup Bidding
+  const featuredProjects = projects
+    ? featuredProjectIds.map(id => projects.find(p => p.id === id)).filter(Boolean)
+    : [];
 
   // Get star performers
   const starPerformers = members ? members.filter(m => m.starPerformer === true).slice(0, 6) : [];
@@ -295,10 +298,7 @@ export default function HomePage({ teamName = 'Tech Operations', description = '
           {/* Interstitial - Community Driven */}
           <section
             ref={addToRefs}
-            className={`transition-all duration-700 ${visibleSections.has(6)
-              ? 'opacity-100 translate-y-0'
-              : 'opacity-0 translate-y-10'
-              }`}
+            className="transition-all duration-700 opacity-100 translate-y-0 animate-fade-in"
           >
             <InterstitialText
               text="Where Creativity Meets Code"
@@ -310,10 +310,7 @@ export default function HomePage({ teamName = 'Tech Operations', description = '
           {starPerformers.length > 0 && (
             <section
               ref={addToRefs}
-              className={`space-y-8 py-12 px-4 sm:px-8 transition-all duration-700 ${visibleSections.has(7)
-                ? 'opacity-100 translate-y-0'
-                : 'opacity-0 translate-y-10'
-                }`}
+              className="space-y-8 py-12 px-4 sm:px-8 transition-all duration-700 opacity-100 translate-y-0 animate-fade-in"
             >
               <h2 className="text-3xl sm:text-4xl font-semibold text-white text-center arcade-font-white">
                 Star Performers
@@ -349,10 +346,7 @@ export default function HomePage({ teamName = 'Tech Operations', description = '
           {/* Join Us Section */}
           <section
             ref={addToRefs}
-            className={`space-y-8 py-12 transition-all duration-700 ${visibleSections.has(8)
-              ? 'opacity-100 translate-y-0'
-              : 'opacity-0 translate-y-10'
-              }`}
+            className="space-y-8 py-12 transition-all duration-700 opacity-100 translate-y-0 animate-fade-in"
           >
             <div className="max-w-4xl mx-auto text-center px-4">
               <div className="bg-black/30 backdrop-blur-sm border-2 border-white/20 rounded-2xl p-8 sm:p-12 hover:border-white/30 hover:bg-black/40 transition-all duration-300 shadow-2xl">
@@ -378,10 +372,7 @@ export default function HomePage({ teamName = 'Tech Operations', description = '
           {/* Get in Touch Section */}
           <section
             ref={addToRefs}
-            className={`py-12 pb-20 transition-all duration-700 ${visibleSections.has(9)
-              ? 'opacity-100 translate-y-0'
-              : 'opacity-0 translate-y-10'
-              }`}
+            className="py-12 pb-20 transition-all duration-700 opacity-100 translate-y-0 animate-fade-in"
           >
             <div className="max-w-4xl mx-auto text-center px-4">
               <div className="bg-black/30 backdrop-blur-sm border border-white/20 rounded-2xl p-8 sm:p-12">
