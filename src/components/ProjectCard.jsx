@@ -20,7 +20,7 @@ export default function ProjectCard({ title, desc, image, link, url, githubUrl }
         <p className="text-xs text-slate-200 leading-relaxed flex-1 mb-4">
           {desc}
         </p>
-        
+
         {/* Buttons */}
         <div className="flex flex-col gap-2 mt-auto">
           <a
@@ -30,7 +30,7 @@ export default function ProjectCard({ title, desc, image, link, url, githubUrl }
             View Details
             <FaExternalLinkAlt className="text-xs" />
           </a>
-          
+
           <div className="flex gap-2">
             {url && (
               <a
@@ -44,7 +44,7 @@ export default function ProjectCard({ title, desc, image, link, url, githubUrl }
                 Live
               </a>
             )}
-            
+
             {githubUrl ? (
               <a
                 href={githubUrl}

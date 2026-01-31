@@ -57,7 +57,7 @@ export default function MemberProfilePage({ memberId }) {
   }
 
   // Filter projects where this member is a contributor
-  const memberProjects = projects.filter(project => 
+  const memberProjects = projects.filter(project =>
     project.contributors && project.contributors.includes(member.id)
   )
 

@@ -90,19 +90,41 @@ export default function HomePage({ teamName = 'Tech Operations', description = '
   // State for scroll animations
   const [visibleSections, setVisibleSections] = useState(new Set())
   const [showScrollIndicator, setShowScrollIndicator] = useState(true)
+  const [isMobile, setIsMobile] = useState(false)
   const sectionRefs = useRef([])
 
   const loading = projectsLoading || membersLoading;
   const error = projectsError || membersError;
 
   // Get featured projects (hardcoded specific projects)
-  const featuredProjectIds = [6, 8, 1, 3]; // Legend of Legendary, Tech Trivia, Scoreboard, Coders Cup Bidding
-  const featuredProjects = projects
+  const featuredProjectIds = [6, 3, 8, 1]; // Legend of Legendary, Tech Trivia, Scoreboard, Coders Cup Bidding
+  const allFeaturedProjects = projects
     ? featuredProjectIds.map(id => projects.find(p => p.id === id)).filter(Boolean)
     : [];
 
-  // Get star performers
-  const starPerformers = members ? members.filter(m => m.starPerformer === true).slice(0, 6) : [];
+  // Limit to 3 on mobile, 4 on desktop
+  const featuredProjects = isMobile ? allFeaturedProjects.slice(0, 3) : allFeaturedProjects;
+
+  // Get star performers (hardcoded specific members in desired order)
+  const starPerformerIds = [1, 6, 4, 3, 10, 5]; // Hatim, Haider, Muhib, Usaid, then others
+  const allStarPerformers = members
+    ? starPerformerIds.map(id => members.find(m => m.id === id)).filter(Boolean)
+    : [];
+
+  // Limit to 3 on mobile, 6 on desktop
+  const starPerformers = isMobile ? allStarPerformers.slice(0, 3) : allStarPerformers;
+
+  // Detect mobile screen size
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768) // 768px is the 'md' breakpoint in Tailwind
+    }
+
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
 
   useEffect(() => {
     // Only set up observer after data has loaded
