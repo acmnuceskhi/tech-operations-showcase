@@ -90,16 +90,41 @@ export default function HomePage({ teamName = 'Tech Operations', description = '
   // State for scroll animations
   const [visibleSections, setVisibleSections] = useState(new Set())
   const [showScrollIndicator, setShowScrollIndicator] = useState(true)
+  const [isMobile, setIsMobile] = useState(false)
   const sectionRefs = useRef([])
 
   const loading = projectsLoading || membersLoading;
   const error = projectsError || membersError;
 
-  // Get featured projects (first 4)
-  const featuredProjects = projects ? projects.slice(0, 4) : [];
+  // Get featured projects (hardcoded specific projects)
+  const featuredProjectIds = [6, 3, 8, 1]; // Legend of Legendary, Tech Trivia, Scoreboard, Coders Cup Bidding
+  const allFeaturedProjects = projects
+    ? featuredProjectIds.map(id => projects.find(p => p.id === id)).filter(Boolean)
+    : [];
 
-  // Get star performers
-  const starPerformers = members ? members.filter(m => m.starPerformer === true).slice(0, 6) : [];
+  // Limit to 3 on mobile, 4 on desktop
+  const featuredProjects = isMobile ? allFeaturedProjects.slice(0, 3) : allFeaturedProjects;
+
+  // Get star performers (hardcoded specific members in desired order)
+  const starPerformerIds = [1, 6, 4, 3, 10, 5]; // Hatim, Haider, Muhib, Usaid, then others
+  const allStarPerformers = members
+    ? starPerformerIds.map(id => members.find(m => m.id === id)).filter(Boolean)
+    : [];
+
+  // Limit to 3 on mobile, 6 on desktop
+  const starPerformers = isMobile ? allStarPerformers.slice(0, 3) : allStarPerformers;
+
+  // Detect mobile screen size
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768) // 768px is the 'md' breakpoint in Tailwind
+    }
+
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
 
   useEffect(() => {
     // Only set up observer after data has loaded
@@ -295,10 +320,7 @@ export default function HomePage({ teamName = 'Tech Operations', description = '
           {/* Interstitial - Community Driven */}
           <section
             ref={addToRefs}
-            className={`transition-all duration-700 ${visibleSections.has(6)
-              ? 'opacity-100 translate-y-0'
-              : 'opacity-0 translate-y-10'
-              }`}
+            className="transition-all duration-700 opacity-100 translate-y-0 animate-fade-in"
           >
             <InterstitialText
               text="Where Creativity Meets Code"
@@ -310,10 +332,7 @@ export default function HomePage({ teamName = 'Tech Operations', description = '
           {starPerformers.length > 0 && (
             <section
               ref={addToRefs}
-              className={`space-y-8 py-12 px-4 sm:px-8 transition-all duration-700 ${visibleSections.has(7)
-                ? 'opacity-100 translate-y-0'
-                : 'opacity-0 translate-y-10'
-                }`}
+              className="space-y-8 py-12 px-4 sm:px-8 transition-all duration-700 opacity-100 translate-y-0 animate-fade-in"
             >
               <h2 className="text-[clamp(1.75rem,4.5vw,2.25rem)] font-semibold text-white text-center arcade-font-white px-2">
                 Star Performers
@@ -349,10 +368,7 @@ export default function HomePage({ teamName = 'Tech Operations', description = '
           {/* Join Us Section */}
           <section
             ref={addToRefs}
-            className={`space-y-8 py-12 transition-all duration-700 ${visibleSections.has(8)
-              ? 'opacity-100 translate-y-0'
-              : 'opacity-0 translate-y-10'
-              }`}
+            className="space-y-8 py-12 transition-all duration-700 opacity-100 translate-y-0 animate-fade-in"
           >
             <div className="max-w-4xl mx-auto text-center px-4">
               <div className="bg-black/30 backdrop-blur-sm border-2 border-white/20 rounded-2xl p-8 sm:p-12 hover:border-white/30 hover:bg-black/40 transition-all duration-300 shadow-2xl">
@@ -378,10 +394,7 @@ export default function HomePage({ teamName = 'Tech Operations', description = '
           {/* Get in Touch Section */}
           <section
             ref={addToRefs}
-            className={`py-12 pb-20 transition-all duration-700 ${visibleSections.has(9)
-              ? 'opacity-100 translate-y-0'
-              : 'opacity-0 translate-y-10'
-              }`}
+            className="py-12 pb-20 transition-all duration-700 opacity-100 translate-y-0 animate-fade-in"
           >
             <div className="max-w-4xl mx-auto text-center px-4">
               <div className="bg-black/30 backdrop-blur-sm border border-white/20 rounded-2xl p-8 sm:p-12">

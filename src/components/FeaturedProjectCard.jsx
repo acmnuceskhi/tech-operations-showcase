@@ -69,7 +69,18 @@ export default function FeaturedProjectCard({ project, index, members = [] }) {
                         View Details
                         <FaExternalLinkAlt className="text-sm" />
                     </button>
-                    {project.githubUrl && (
+                    {project.url && (
+                        <a
+                            href={project.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-2 px-6 py-3 bg-white/10 hover:bg-white/15 border border-white/20 hover:border-white/30 text-slate-200 hover:text-white font-semibold rounded-lg transition-all duration-300"
+                        >
+                            <FaExternalLinkAlt className="text-lg" />
+                            Live
+                        </a>
+                    )}
+                    {project.githubUrl ? (
                         <a
                             href={project.githubUrl}
                             target="_blank"
@@ -79,6 +90,11 @@ export default function FeaturedProjectCard({ project, index, members = [] }) {
                             <FaGithub className="text-lg" />
                             GitHub
                         </a>
+                    ) : (
+                        <div className="flex items-center gap-2 px-6 py-3 bg-white/5 border border-white/10 text-slate-400 font-semibold rounded-lg cursor-not-allowed">
+                            <FaGithub className="text-lg" />
+                            Code Private
+                        </div>
                     )}
                 </div>
             </div>

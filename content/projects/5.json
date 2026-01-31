@@ -2,14 +2,15 @@
   "id": "p5",
   "title": "ACM Activities Platform",
   "desc": "Multi-purpose platform for activity scoreboards and registrations",
-  "image": "https://res.cloudinary.com/dlkt7gfbc/image/upload/v1762679722/coderscup_vvqybz.png",
+  "image": "https://res.cloudinary.com/dlkt7gfbc/image/upload/v1769792893/acm_activities_r4aodj.jpg",
   "fullDescription": "A multi-purpose platform that hosts scoreboards and handles registrations for any custom activity that needs to be conducted. Built in Flutter and Firebase for seamless cross-platform experience.",
   "images": [
-    "https://res.cloudinary.com/dlkt7gfbc/image/upload/v1762679722/coderscup_vvqybz.png",
-    "https://res.cloudinary.com/dlkt7gfbc/image/upload/v1762679722/coderscup_vvqybz.png",
-    "https://res.cloudinary.com/dlkt7gfbc/image/upload/v1762679722/coderscup_vvqybz.png"
+    "https://res.cloudinary.com/dlkt7gfbc/image/upload/v1769793431/tech_trivia_lbomr4.jpg",
+    "https://res.cloudinary.com/dlkt7gfbc/image/upload/v1769793704/flash_debugging_fijb1c.jpg",
+    "https://res.cloudinary.com/dlkt7gfbc/image/upload/v1769792893/acm_activities_r4aodj.jpg"
   ],
-  "githubUrl": "https://github.com",
+  "githubUrl": "",
+  "url": "https://www.activities.acmnuceskhi.com/",
   "contributors": [
     "14",
     "1"

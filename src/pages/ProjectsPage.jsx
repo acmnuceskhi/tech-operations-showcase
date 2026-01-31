@@ -58,6 +58,8 @@ export default function ProjectsPage() {
                 desc={project.desc}
                 image={project.image}
                 link={project.link}
+                url={project.url}
+                githubUrl={project.githubUrl}
               />
             ))}
           </div>

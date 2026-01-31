@@ -11,8 +11,9 @@ export default defineConfig({
   branch,
 
   // Tina Cloud configuration
-  clientId: process.env.VITE_TINA_CLIENT_ID,
-  token: process.env.VITE_TINA_TOKEN,
+  // Support both VITE_ prefixed (for local dev) and non-prefixed (for build/Cloudflare)
+  clientId: process.env.VITE_TINA_CLIENT_ID || process.env.TINA_CLIENT_ID,
+  token: process.env.VITE_TINA_TOKEN || process.env.TINA_TOKEN,
 
   build: {
     outputFolder: "admin",
@@ -136,6 +137,13 @@ export default defineConfig({
             name: "githubUrl",
             label: "GitHub URL",
             required: true,
+          },
+          {
+            type: "string",
+            name: "url",
+            label: "Deployed URL",
+            required: false,
+            description: "Link to the live/deployed project",
           },
           {
             type: "string",
