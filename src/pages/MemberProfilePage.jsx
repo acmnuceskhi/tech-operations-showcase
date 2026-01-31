@@ -164,14 +164,13 @@ export default function MemberProfilePage({ memberId }) {
                       {/* Accent gradient on hover */}
                       <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-transparent to-pink-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
-                    <a href={project.link}>
-                      <div className="relative z-10">
-                        <h3 className="text-[clamp(1.1rem,3.2vw,1.5rem)] font-bold text-white mb-2 group-hover:text-slate-100 transition-colors">
-                          {project.title}
-                        </h3>
-                        <p className="text-xs sm:text-sm text-slate-300 leading-relaxed mb-4 flex-1">
-                          {project.desc}
-                        </p>
+                    <div className="relative z-10">
+                      <h3 className="text-[clamp(1.1rem,3.2vw,1.5rem)] font-bold text-white mb-2 group-hover:text-slate-100 transition-colors">
+                        {project.title}
+                      </h3>
+                      <p className="text-xs sm:text-sm text-slate-300 leading-relaxed mb-4 flex-1">
+                        {project.desc}
+                      </p>
 
                         {/* Buttons */}
                         <div className="flex flex-col gap-2 mt-auto">
