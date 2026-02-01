@@ -380,7 +380,7 @@ export default function HomePage({ teamName = 'Tech Operations', description = '
                   Learn, create, and showcase your skills through innovative projects. No experience required—just passion.
                 </p>
                 <a
-                  href="https://example.com/join"
+                  href="https://forms.gle/1ipBbz3GJv1BWQL7A"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-block px-8 py-4 bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white font-semibold rounded-lg hover:bg-white/20 hover:border-white/50 transition-all duration-300 shadow-lg hover:shadow-2xl transform hover:scale-105"
@@ -412,7 +412,7 @@ export default function HomePage({ teamName = 'Tech Operations', description = '
                         href="mailto:techops@example.com"
                         className="text-slate-300 hover:text-white transition-colors"
                       >
-                        techops@example.com
+                        k230691@nu.edu.pk
                       </a>
                     </div>
 
@@ -424,7 +424,7 @@ export default function HomePage({ teamName = 'Tech Operations', description = '
                         rel="noopener noreferrer"
                         className="text-slate-300 hover:text-white transition-colors"
                       >
-                        +1 (234) 567-890
+                        +92 333 8237882
                       </a>
                     </div>
                   </div>
