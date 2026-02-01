@@ -409,7 +409,7 @@ export default function HomePage({ teamName = 'Tech Operations', description = '
                     <div className="bg-black/20 backdrop-blur-sm border border-white/10 rounded-xl p-6 hover:border-white/20 transition-all duration-300">
                       <h3 className="text-white font-semibold text-lg mb-2">Email</h3>
                       <a
-                        href="mailto:techops@example.com"
+                        href="mailto:k230691@nu.edu.pk"
                         className="text-slate-300 hover:text-white transition-colors"
                       >
                         k230691@nu.edu.pk
@@ -419,7 +419,7 @@ export default function HomePage({ teamName = 'Tech Operations', description = '
                     <div className="bg-black/20 backdrop-blur-sm border border-white/10 rounded-xl p-6 hover:border-white/20 transition-all duration-300">
                       <h3 className="text-white font-semibold text-lg mb-2">WhatsApp</h3>
                       <a
-                        href="https://wa.me/1234567890"
+                        href="https://wa.me/923338237882"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-slate-300 hover:text-white transition-colors"
